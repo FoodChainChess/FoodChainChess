@@ -105,3 +105,13 @@ xcuserdata/
 ## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
+
+# Ignore cruft in the project bundle
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# Ignore build products folder
+build/
+
+# Ignore installed pods
+Pods/*
