@@ -13,7 +13,7 @@ struct RegisteredGamesView: View {
                     }
                     .onDelete(perform: deleteNumber)
                 }
-            }
+            }.scrollContentBackground(.hidden)
         }
     }
     

@@ -10,7 +10,7 @@ struct GamesView: View {
                     ListItemGamesView()
                     ListItemGamesView()
                 }
-            }
+            }.scrollContentBackground(.hidden)
         }
     }
 }

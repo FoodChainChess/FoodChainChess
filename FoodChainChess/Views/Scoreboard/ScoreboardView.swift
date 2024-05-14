@@ -11,7 +11,7 @@ struct ScoreboardView: View {
                 ListItemScoreboardView()
                 ListItemScoreboardView()
                 ListItemScoreboardView()
-            }
+            }.scrollContentBackground(.hidden)
         }
     }
 }
