@@ -15,6 +15,6 @@ struct GamesView: View {
     }
 }
 
-#Preview {
-    GamesView()
-}
+//#Preview {
+//    GamesView()
+//}

@@ -16,6 +16,6 @@ struct ListItemRegisteredGamesView: View {
     }
 }
 
-#Preview {
-    ListItemRegisteredGamesView()
-}
+//#Preview {
+//    ListItemRegisteredGamesView()
+//}

@@ -14,6 +14,6 @@ struct TopBarTitleBackArrowView: View {
     }
 }
 
-#Preview {
-    TopBarTitleBackArrowView(title: "Parties")
-}
+//#Preview {
+//    TopBarTitleBackArrowView(title: "Parties")
+//}

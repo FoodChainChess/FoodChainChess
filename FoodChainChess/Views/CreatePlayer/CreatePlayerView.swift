@@ -1,15 +1,17 @@
-//
-//  CreatePlayerView.swift
-//  FoodChainChess
-//
-//  Created by étudiant on 14/05/2024.
-//
-
 import SwiftUI
 
 struct CreatePlayerView: View {
+    @State private var name = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TopBarTitleBackArrowView(title: "New Player")
+            Spacer()
+            ProfilePictureView()
+            TextField("Enter your name", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+            Spacer()
+        }
     }
 }
 

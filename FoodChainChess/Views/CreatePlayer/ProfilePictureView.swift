@@ -1,15 +1,12 @@
-//
-//  ProfilePictureView.swift
-//  FoodChainChess
-//
-//  Created by étudiant on 14/05/2024.
-//
-
 import SwiftUI
 
 struct ProfilePictureView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("defaultAvatarPicture")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 200, height: 200)
+            .cornerRadius(100)
     }
 }
 
