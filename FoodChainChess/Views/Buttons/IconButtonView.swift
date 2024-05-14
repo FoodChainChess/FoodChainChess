@@ -9,14 +9,14 @@ import SwiftUI
 
 struct IconButtonView: View {
     var iconName: String
-    var action: () -> Void
-    var size:CGFloat
+    var action: () -> Void = {}
+    var size: ButtonSize
     
     var body: some View {
         
         Button(action: action) {
             Image(systemName: iconName)
-                .font(.system(size: size))
+                .font(.system(size: size.rawValue))
         }
         .buttonStyle(IconButtonStyle())
     }
@@ -27,6 +27,6 @@ struct IconButtonView_Previews: PreviewProvider {
         IconButtonView(
             iconName: "gearshape.fill",
             action: {},
-            size: 50)
+            size: .small)
     }
 }

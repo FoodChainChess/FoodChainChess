@@ -15,8 +15,7 @@ struct HomeView: View {
             HStack {
                 IconButtonView(
                     iconName: "gearshape.fill",
-                    action: {},
-                    size: ButtonSize.small.rawValue
+                    size: .small
                 )
                 Spacer()
                 
@@ -27,8 +26,7 @@ struct HomeView: View {
                 Spacer()
                 IconButtonView(
                     iconName: "person.badge.plus.fill",
-                    action: {},
-                    size: ButtonSize.small.rawValue
+                    size: .small
                 )
             }
             Spacer()
@@ -36,29 +34,27 @@ struct HomeView: View {
             VStack(spacing: 24) {
                 MainButtonView(
                     buttonText: "Play",
-                    color: Color("Text"),
+                    color: Colors.text,
                     iconName: "play.fill",
                     textColor: Color("Background"),
                     action: { isShowingPopUp.toggle() })
-                .font(.title2)
                 
                 MainButtonView(
                     buttonText: "High Scores 🏆",
                     color: Color("Primary"))
-                .font(.title2)
                 
                 MainButtonView(
                     buttonText: "Saved Games 💾",
                     color: Color("Accent"))
-                .font(.title2)
                 
                 MainButtonView(
                     buttonText: "Keep Playing",
                     color: Color("Secondary"),
                     iconName: "arrow.right.circle")
-                .font(.title2)
 
-            }.padding(80)
+            }
+            .font(.title2)
+            .padding(80)
             
             Spacer()
         }.sheet(isPresented: $isShowingPopUp) {

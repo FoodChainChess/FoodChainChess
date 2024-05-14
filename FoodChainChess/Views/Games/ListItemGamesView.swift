@@ -3,7 +3,7 @@ import SwiftUI
 struct ListItemGamesView: View {
     var body: some View {
         HStack {
-//            PlayerFaceView(imageSource: "", circleWidth: 40, circleHeight: 40)
+            //PlayerFaceView(imageSource: "", circleWidth: 40, circleHeight: 40)
 //            Spacer()
 //            Text("Username1")
 //            Spacer()

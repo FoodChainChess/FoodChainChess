@@ -10,12 +10,32 @@ import SwiftUI
 struct StartGamePopUpView: View {
     @Binding var isShowing: Bool
     
+    @State private var selectedGameMode: String = "PvP"
+    
     var body: some View {
         VStack {
-           Text("Pop-up!")
-               .padding()
+            
+            // Game Mode
+            HStack {
+                Text("Game Mode: \(selectedGameMode)")
+                    .padding()
+                 
+                 Picker("Game Mode",
+                        selection: $selectedGameMode) {
+                     
+                     Text("Player vs Player")
+                         .tag("pvp")
+                     
+                     Text("Player vs Computer")
+                         .tag("pve")
+                     
+                     Text("Multi-Device")
+                         .tag("multi")
+                 }
+            }
            
-           Button("Close") {
+           
+           Button("Back") {
                isShowing = false
            }
            .padding()
