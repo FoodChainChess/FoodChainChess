@@ -9,7 +9,56 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                IconButtonView(
+                    iconName: "gearshape.fill",
+                    action: {},
+                    size: ButtonSize.small.rawValue
+                )
+                Spacer()
+                
+                Text("Home")
+                    .TextStyle(TitleTextStyle())
+                    .padding(.top, 40)
+                
+                Spacer()
+                IconButtonView(
+                    iconName: "person.badge.plus.fill",
+                    action: {},
+                    size: ButtonSize.small.rawValue
+                )
+            }
+            Spacer()
+            
+            VStack(spacing: 24) {
+                MainButtonView(
+                    buttonText: "Play",
+                    color: Color("Text"),
+                    iconName: "play.fill",
+                    textColor: Color("Background"))
+                .font(.title2)
+                
+                MainButtonView(
+                    buttonText: "High Scores 🏆",
+                    color: Color("Primary"))
+                .font(.title2)
+                
+                MainButtonView(
+                    buttonText: "Saved Games 💾",
+                    color: Color("Accent"))
+                .font(.title2)
+                
+                MainButtonView(
+                    buttonText: "Keep Playing",
+                    color: Color("Secondary"),
+                    iconName: "arrow.right.circle")
+                .font(.title2)
+
+            }.padding(80)
+            
+            Spacer()
+        }
     }
 }
 

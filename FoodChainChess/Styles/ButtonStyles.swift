@@ -12,7 +12,8 @@ struct IconButtonStyle : ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label // ?? understand later
             .foregroundColor(Color("Text"))
+            .padding()
             .clipShape(Circle())
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .scaleEffect(configuration.isPressed ? 0.80 : 1.0)
     }
 }

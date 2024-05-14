@@ -9,6 +9,8 @@ struct TitleTextStyle : TextStyle {
     func body (content: Content) -> some View {
         content
             .foregroundColor(Colors.text)
+            .fontWeight(.bold)
+            .font(.title)
     }
 }
 
