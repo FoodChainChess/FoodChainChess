@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88C2BF34763008A99F5 /* IconButtonView.swift */; };
+		EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC62C88C2BF34763008A99F5 /* IconButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonView.swift; sourceTree = "<group>"; };
+		EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC62C88B2BF34723008A99F5 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EC62C88C2BF34763008A99F5 /* IconButtonView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		ECA1ED942BF29FBC001F546D /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +152,7 @@
 		ECD2FF6C2BF21345007836C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EC62C88B2BF34723008A99F5 /* Buttons */,
 				ECFE19A92BF343CF00A1D841 /* Home */,
 				ECAA4C6C2BF33C6E008172E0 /* RegisteredGames */,
 				ECAA4C642BF33878008172E0 /* Games */,
@@ -155,6 +168,7 @@
 			children = (
 				ECA1ED972BF2A4FD001F546D /* TextStyles.swift */,
 				ECA1ED992BF2A776001F546D /* Colors.swift */,
+				EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -259,6 +273,8 @@
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
 				ECD2FF5F2BF212EE007836C4 /* FoodChainChessApp.swift in Sources */,
+				EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */,
+				EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
