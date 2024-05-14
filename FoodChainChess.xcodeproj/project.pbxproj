@@ -11,6 +11,7 @@
 		EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */; };
 		EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8902BF351C2008A99F5 /* ButtonSize.swift */; };
 		EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8922BF3549F008A99F5 /* MainButtonView.swift */; };
+		EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
@@ -34,6 +35,7 @@
 		EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		EC62C8902BF351C2008A99F5 /* ButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSize.swift; sourceTree = "<group>"; };
 		EC62C8922BF3549F008A99F5 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
+		EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGamePopUpView.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
@@ -71,6 +73,14 @@
 				EC62C8922BF3549F008A99F5 /* MainButtonView.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		EC62C8942BF36901008A99F5 /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */,
+			);
+			path = Popups;
 			sourceTree = "<group>";
 		};
 		ECA1ED942BF29FBC001F546D /* TopBar */ = {
@@ -157,6 +167,7 @@
 		ECD2FF6C2BF21345007836C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EC62C8942BF36901008A99F5 /* Popups */,
 				EC62C88B2BF34723008A99F5 /* Buttons */,
 				ECFE19A92BF343CF00A1D841 /* Home */,
 				ECAA4C6C2BF33C6E008172E0 /* RegisteredGames */,
@@ -272,6 +283,7 @@
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
 				ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
+				EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
 				ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */,
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,

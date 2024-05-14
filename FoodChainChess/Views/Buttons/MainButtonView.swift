@@ -12,9 +12,10 @@ struct MainButtonView: View {
     var color: Color
     var iconName: String?
     var textColor: Color = Color("Text")
+    var action: () -> Void = {}
     
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             HStack {
                 Text(buttonText)
                 

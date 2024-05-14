@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var isShowingPopUp = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -36,7 +38,8 @@ struct HomeView: View {
                     buttonText: "Play",
                     color: Color("Text"),
                     iconName: "play.fill",
-                    textColor: Color("Background"))
+                    textColor: Color("Background"),
+                    action: { isShowingPopUp.toggle() })
                 .font(.title2)
                 
                 MainButtonView(
@@ -58,6 +61,8 @@ struct HomeView: View {
             }.padding(80)
             
             Spacer()
+        }.sheet(isPresented: $isShowingPopUp) {
+            StartGamePopUpView(isShowing: $isShowingPopUp)
         }
     }
 }
