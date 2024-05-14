@@ -15,6 +15,6 @@ struct ListItemScoreboardView: View {
     }
 }
 
-#Preview {
-    ListItemScoreboardView()
-}
+//#Preview {
+//    ListItemScoreboardView()
+//}

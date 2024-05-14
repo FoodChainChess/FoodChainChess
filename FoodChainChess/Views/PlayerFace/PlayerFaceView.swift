@@ -14,6 +14,6 @@ struct PlayerFaceView: View {
     }
 }
 
-#Preview {
-    PlayerFaceView(imageSource: "", circleWidth: 100, circleHeight: 100)
-}
+//#Preview {
+//    PlayerFaceView(imageSource: "", circleWidth: 100, circleHeight: 100)
+//}

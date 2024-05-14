@@ -22,6 +22,7 @@
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
+		ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE19AA2BF343F500A1D841 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		ECD2FF622BF212EE007836C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		ECFE19AA2BF343F500A1D841 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		ECD2FF6C2BF21345007836C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE19A92BF343CF00A1D841 /* Home */,
 				ECAA4C6C2BF33C6E008172E0 /* RegisteredGames */,
 				ECAA4C642BF33878008172E0 /* Games */,
 				ECAA4C612BF332B8008172E0 /* PlayerFace */,
@@ -162,6 +165,14 @@
 				ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		ECFE19A92BF343CF00A1D841 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ECFE19AA2BF343F500A1D841 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 			files = (
 				ECAA4C662BF33894008172E0 /* GamesView.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
+				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
 				ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
