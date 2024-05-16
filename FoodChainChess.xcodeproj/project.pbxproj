@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC31A5222BF631B000D70EC3 /* Localization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EC31A5212BF631B000D70EC3 /* Localization.xcstrings */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC31A5212BF631B000D70EC3 /* Localization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localization.xcstrings; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC31A5202BF630DB00D70EC3 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				EC31A5212BF631B000D70EC3 /* Localization.xcstrings */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
 		ECA1ED942BF29FBC001F546D /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +186,7 @@
 		ECD2FF6E2BF213CD007836C4 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				EC31A5202BF630DB00D70EC3 /* Localizations */,
 				ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */,
 			);
 			path = Ressources;
@@ -223,6 +234,8 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				"pt-BR",
 			);
 			mainGroup = ECD2FF522BF212EE007836C4;
 			productRefGroup = ECD2FF5C2BF212EE007836C4 /* Products */;
@@ -241,6 +254,7 @@
 			files = (
 				ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */,
 				ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */,
+				EC31A5222BF631B000D70EC3 /* Localization.xcstrings in Resources */,
 				ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
