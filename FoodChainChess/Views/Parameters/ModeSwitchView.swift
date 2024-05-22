@@ -16,7 +16,7 @@ struct ModeSwitchView: View {
             Toggle(isOn: $darkMode) {
                 Text("Dark Mode")
             }
-            .padding(.horizontal, 60) // Padding Horizontal entre le texte et le switch button
+            .padding(.horizontal, 60)
         }
     }
 }

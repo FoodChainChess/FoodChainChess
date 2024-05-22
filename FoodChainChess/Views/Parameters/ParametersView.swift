@@ -15,7 +15,9 @@ struct ParametersView: View {
             TopBarTitleBackArrowView(title: "Parameters")
             Spacer()
             ModeSwitchView()
+            LanguagePickerView()
             Spacer()
+            
         }
     }
 }

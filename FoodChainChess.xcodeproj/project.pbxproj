@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */; };
 		EC31A5222BF631B000D70EC3 /* Localization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EC31A5212BF631B000D70EC3 /* Localization.xcstrings */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerView.swift; sourceTree = "<group>"; };
 		EC31A5212BF631B000D70EC3 /* Localization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localization.xcstrings; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
@@ -145,6 +147,7 @@
 			children = (
 				ECC36F422BFDD02A0071AF45 /* ParametersView.swift */,
 				ECC36F442BFDD8FC0071AF45 /* ModeSwitchView.swift */,
+				EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,
 				ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */,
 				ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */,
+				EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */,
 				ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */,
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
