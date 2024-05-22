@@ -6,17 +6,23 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct ContentView: View {
+    var gameScene : GameScene = GameScene(size: CGSize(width: 940, height: 740))
+    
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            SpriteView(scene: gameScene)
         }
         .padding()
+        
     }
+        .task {
+            try : await
+            gameScene.game.start()
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {

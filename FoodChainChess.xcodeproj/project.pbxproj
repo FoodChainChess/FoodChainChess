@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */; };
+		EC1E90E72BFE13670006C610 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E62BFE13670006C610 /* GameScene.swift */; };
+		EC1E90E92BFE16DE0006C610 /* SpriteMeeple.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E82BFE16DE0006C610 /* SpriteMeeple.swift */; };
 		EC31A5222BF631B000D70EC3 /* Localization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EC31A5212BF631B000D70EC3 /* Localization.xcstrings */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerView.swift; sourceTree = "<group>"; };
+		EC1E90E62BFE13670006C610 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		EC1E90E82BFE16DE0006C610 /* SpriteMeeple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteMeeple.swift; sourceTree = "<group>"; };
 		EC31A5212BF631B000D70EC3 /* Localization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localization.xcstrings; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
@@ -171,6 +175,7 @@
 		ECD2FF5D2BF212EE007836C4 /* FoodChainChess */ = {
 			isa = PBXGroup;
 			children = (
+				EC1E90E82BFE16DE0006C610 /* SpriteMeeple.swift */,
 				ECD2FF6E2BF213CD007836C4 /* Ressources */,
 				ECD2FF6D2BF21384007836C4 /* Styles */,
 				ECD2FF6C2BF21345007836C4 /* Views */,
@@ -178,6 +183,7 @@
 				ECD2FF602BF212EE007836C4 /* ContentView.swift */,
 				ECD2FF622BF212EE007836C4 /* Assets.xcassets */,
 				ECD2FF642BF212EE007836C4 /* Preview Content */,
+				EC1E90E62BFE13670006C610 /* GameScene.swift */,
 			);
 			path = FoodChainChess;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC1E90E92BFE16DE0006C610 /* SpriteMeeple.swift in Sources */,
 				ECAA4C662BF33894008172E0 /* GamesView.swift in Sources */,
 				ECC36F452BFDD8FC0071AF45 /* ModeSwitchView.swift in Sources */,
 				ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */,
@@ -309,6 +316,7 @@
 				ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */,
 				ECA8FF3A2BF356E8006277C3 /* CellBoardView.swift in Sources */,
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,
+				EC1E90E72BFE13670006C610 /* GameScene.swift in Sources */,
 				ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */,
 				ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */,
 				EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */,
