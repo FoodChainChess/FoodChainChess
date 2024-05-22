@@ -20,6 +20,8 @@
 		ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C6A2BF338C8008172E0 /* ListItemGamesView.swift */; };
 		ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C6D2BF33C91008172E0 /* RegisteredGamesView.swift */; };
 		ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C6F2BF33CC6008172E0 /* ListItemRegisteredGamesView.swift */; };
+		ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAB1FF22BF3627D003D866C /* CreatePlayerView.swift */; };
+		ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAB1FF42BF3631B003D866C /* ProfilePictureView.swift */; };
 		ECD2FF5F2BF212EE007836C4 /* FoodChainChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2FF5E2BF212EE007836C4 /* FoodChainChessApp.swift */; };
 		ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2FF602BF212EE007836C4 /* ContentView.swift */; };
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		ECAA4C6A2BF338C8008172E0 /* ListItemGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemGamesView.swift; sourceTree = "<group>"; };
 		ECAA4C6D2BF33C91008172E0 /* RegisteredGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredGamesView.swift; sourceTree = "<group>"; };
 		ECAA4C6F2BF33CC6008172E0 /* ListItemRegisteredGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRegisteredGamesView.swift; sourceTree = "<group>"; };
+		ECAB1FF22BF3627D003D866C /* CreatePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlayerView.swift; sourceTree = "<group>"; };
+		ECAB1FF42BF3631B003D866C /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		ECD2FF5B2BF212EE007836C4 /* FoodChainChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodChainChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECD2FF5E2BF212EE007836C4 /* FoodChainChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodChainChessApp.swift; sourceTree = "<group>"; };
 		ECD2FF602BF212EE007836C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 			path = RegisteredGames;
 			sourceTree = "<group>";
 		};
+		ECAB1FF12BF3625B003D866C /* CreatePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				ECAB1FF22BF3627D003D866C /* CreatePlayerView.swift */,
+				ECAB1FF42BF3631B003D866C /* ProfilePictureView.swift */,
+			);
+			path = CreatePlayer;
+			sourceTree = "<group>";
+		};
 		ECD2FF522BF212EE007836C4 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				ECA8FF362BF35683006277C3 /* Board */,
+				ECAB1FF12BF3625B003D866C /* CreatePlayer */,
 				ECAA4C6C2BF33C6E008172E0 /* RegisteredGames */,
 				ECAA4C642BF33878008172E0 /* Games */,
 				ECAA4C612BF332B8008172E0 /* PlayerFace */,
@@ -267,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECAA4C662BF33894008172E0 /* GamesView.swift in Sources */,
+				ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
 				ECA8FF382BF35692006277C3 /* BoardView.swift in Sources */,
 				ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */,
@@ -277,6 +292,7 @@
 				ECA8FF3A2BF356E8006277C3 /* CellBoardView.swift in Sources */,
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,
 				ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */,
+				ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */,
 				ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */,
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,

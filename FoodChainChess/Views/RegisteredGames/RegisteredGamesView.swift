@@ -22,6 +22,6 @@ struct RegisteredGamesView: View {
     }
 }
 
-#Preview {
-    RegisteredGamesView()
-}
+//#Preview {
+//    RegisteredGamesView()
+//}
