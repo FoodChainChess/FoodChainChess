@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634922BFDD4700047975C /* EndGamePopUpView.swift */; };
+		EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */; };
+		EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */; };
 		EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88C2BF34763008A99F5 /* IconButtonView.swift */; };
 		EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */; };
 		EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8902BF351C2008A99F5 /* ButtonSize.swift */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC3634922BFDD4700047975C /* EndGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePopUpView.swift; sourceTree = "<group>"; };
+		EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileComponentView.swift; sourceTree = "<group>"; };
+		EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreComponentView.swift; sourceTree = "<group>"; };
 		EC62C88C2BF34763008A99F5 /* IconButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonView.swift; sourceTree = "<group>"; };
 		EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		EC62C8902BF351C2008A99F5 /* ButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSize.swift; sourceTree = "<group>"; };
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */,
+				EC3634922BFDD4700047975C /* EndGamePopUpView.swift */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -88,6 +95,10 @@
 		EC62C8972BF38EB0008A99F5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */,
+				EC62C8942BF36901008A99F5 /* Popups */,
+				EC62C88B2BF34723008A99F5 /* Buttons */,
+				EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -186,8 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				EC62C8972BF38EB0008A99F5 /* Components */,
-				EC62C8942BF36901008A99F5 /* Popups */,
-				EC62C88B2BF34723008A99F5 /* Buttons */,
 				ECFE19A92BF343CF00A1D841 /* Home */,
 				ECAA4C6C2BF33C6E008172E0 /* RegisteredGames */,
 				ECAA4C642BF33878008172E0 /* Games */,
@@ -300,7 +309,9 @@
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
 				EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */,
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
+				EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */,
 				ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */,
+				EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
 				EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
@@ -312,6 +323,7 @@
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
 				ECD2FF5F2BF212EE007836C4 /* FoodChainChessApp.swift in Sources */,
+				EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */,
 				EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */,
 				EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */,
 				EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */,

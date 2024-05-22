@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var isShowingPopUp = false
+    @State private var isShowingPopUp2 = false
+    @State private var isShowingAlert = false
     
     var body: some View {
         VStack {
@@ -41,7 +43,8 @@ struct HomeView: View {
                 
                 MainButtonView(
                     buttonText: "High Scores 🏆",
-                    color: Color("Primary"))
+                    color: Color("Primary"),
+                    action: { isShowingPopUp2.toggle() })
                 
                 MainButtonView(
                     buttonText: "Saved Games 💾",
@@ -50,7 +53,22 @@ struct HomeView: View {
                 MainButtonView(
                     buttonText: "Keep Playing",
                     color: Color("Secondary"),
-                    iconName: "arrow.right.circle")
+                    iconName: "arrow.right.circle",
+                    action: {isShowingAlert = true })
+                .alert(isPresented: $isShowingAlert) {
+                    Alert(
+                        title: Text("Save the game before quitting ?"),
+                        message: Text("If you don't save the game, it will be lost."),
+                        
+                        primaryButton: .default(
+                            Text("Yes")
+                        ),
+                        
+                        secondaryButton: .destructive(
+                            Text("No")
+                        )
+                    )
+                }
 
             }
             .font(.title2)
@@ -59,6 +77,14 @@ struct HomeView: View {
             Spacer()
         }.sheet(isPresented: $isShowingPopUp) {
             StartGamePopUpView(isShowing: $isShowingPopUp)
+        }.sheet(isPresented: $isShowingPopUp2) {
+            EndGamePopUpView(
+                isShowing: $isShowingPopUp2,
+                playerOneScore: 10,
+                playerTwoScore: 2,
+                playerUsername1: "Nicolas",
+                playerUsername2: "Lou",
+                winReason: "Den reached.")
         }
     }
 }
