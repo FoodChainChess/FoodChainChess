@@ -1,3 +1,40 @@
+# ---> macOS
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ---> Xcode
+## User settings
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
+
 # ---> Swift
 # Xcode
 #
@@ -31,17 +68,9 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
-### macOS ###
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
-
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
-*.playground
-
 
 # Swift Package Manager
 #
@@ -96,6 +125,7 @@ fastlane/test_output
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
+<<<<<<< HEAD
 iOSInjectionProject/
 
 # ---> Xcode
@@ -107,3 +137,6 @@ xcuserdata/
 *.xccheckout
 
 /Users/etudiant/repos/FoodChainChess/FoodChainChess.xcodeproj/project.xcworkspace/xcuserdata/etudiant.xcuserdatad/UserInterfaceState.xcuserstate
+=======
+iOSInjectionProject/
+>>>>>>> main

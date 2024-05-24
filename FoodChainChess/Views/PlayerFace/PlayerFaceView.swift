@@ -19,3 +19,6 @@ struct MyPreviewProvider_Previews: PreviewProvider {
         PlayerFaceView(imageSource: "", circleWidth: 50, circleHeight: 50)
     }
 }
+//#Preview {
+//    PlayerFaceView(imageSource: "", circleWidth: 100, circleHeight: 100)
+//}
