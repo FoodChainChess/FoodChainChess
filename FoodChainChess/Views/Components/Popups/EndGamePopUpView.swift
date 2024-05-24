@@ -24,10 +24,9 @@ struct EndGamePopUpView: View {
         VStack {
             
             HStack {
-                Button("x") {
+                Button("Close") {
                     isShowing = false
                 }
-                .font(.title)
                 .padding(20)
                 
                 Spacer()
@@ -58,7 +57,7 @@ struct EndGamePopUpView: View {
             }
             .padding(.bottom, 25)
             
-            Text("Den reached.")
+            Text(winReason)
                 .padding(.bottom, 25)
 
             
