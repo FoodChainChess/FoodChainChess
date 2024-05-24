@@ -12,6 +12,6 @@ struct PlayerProfilBoardView: View {
     }
 }
 
-//#Preview {
-//    PlayerProfilBoardView(imageSource: "", username: "Username")
-//}
+#Preview {
+    PlayerProfilBoardView(imageSource: "", username: "Username")
+}

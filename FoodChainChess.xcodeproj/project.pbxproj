@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */; };
-		EC31A5222BF631B000D70EC3 /* Localization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EC31A5212BF631B000D70EC3 /* Localization.xcstrings */; };
 		EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634922BFDD4700047975C /* EndGamePopUpView.swift */; };
 		EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */; };
 		EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */; };
@@ -21,6 +20,10 @@
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
+		ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E322C00C30D005C7689 /* BoardView.swift */; };
+		ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */; };
+		ECA69E372C00C364005C7689 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E362C00C364005C7689 /* GameScene.swift */; };
+		ECA69E392C00C38D005C7689 /* SpriteMeeple.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E382C00C38D005C7689 /* SpriteMeeple.swift */; };
 		ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C5D2BF330A5008172E0 /* ScoreboardView.swift */; };
 		ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C5F2BF33102008172E0 /* ListItemScoreboardView.swift */; };
 		ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA4C622BF332D5008172E0 /* PlayerFaceView.swift */; };
@@ -42,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerView.swift; sourceTree = "<group>"; };
-		EC31A5212BF631B000D70EC3 /* Localization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localization.xcstrings; sourceTree = "<group>"; };
 		EC3634922BFDD4700047975C /* EndGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePopUpView.swift; sourceTree = "<group>"; };
 		EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileComponentView.swift; sourceTree = "<group>"; };
 		EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreComponentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,10 @@
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
+		ECA69E322C00C30D005C7689 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfilBoardView.swift; sourceTree = "<group>"; };
+		ECA69E362C00C364005C7689 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		ECA69E382C00C38D005C7689 /* SpriteMeeple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteMeeple.swift; sourceTree = "<group>"; };
 		ECAA4C5D2BF330A5008172E0 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		ECAA4C5F2BF33102008172E0 /* ListItemScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemScoreboardView.swift; sourceTree = "<group>"; };
 		ECAA4C622BF332D5008172E0 /* PlayerFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFaceView.swift; sourceTree = "<group>"; };
@@ -129,6 +135,17 @@
 				ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */,
 			);
 			path = TopBar;
+			sourceTree = "<group>";
+		};
+		ECA69E302C00C2E3005C7689 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				ECA69E322C00C30D005C7689 /* BoardView.swift */,
+				ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */,
+				ECA69E362C00C364005C7689 /* GameScene.swift */,
+				ECA69E382C00C38D005C7689 /* SpriteMeeple.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		ECAA4C5A2BF33042008172E0 /* Scoreboard */ = {
@@ -227,8 +244,8 @@
 		ECD2FF6C2BF21345007836C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECA69E302C00C2E3005C7689 /* Board */,
 				ECC36F412BFDD00B0071AF45 /* Parameters */,
-				ECA8FF362BF35683006277C3 /* Board */,
 				ECAB1FF12BF3625B003D866C /* CreatePlayer */,
 				EC62C8972BF38EB0008A99F5 /* Components */,
 				ECFE19A92BF343CF00A1D841 /* Home */,
@@ -339,9 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA69E372C00C364005C7689 /* GameScene.swift in Sources */,
 				ECAA4C662BF33894008172E0 /* GamesView.swift in Sources */,
 				ECC36F452BFDD8FC0071AF45 /* ModeSwitchView.swift in Sources */,
 				ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */,
+				ECA69E392C00C38D005C7689 /* SpriteMeeple.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
 				EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */,
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
@@ -355,11 +374,13 @@
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,
 				ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */,
 				ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */,
+				ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */,
 				EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */,
 				EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */,
 				ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */,
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
+				ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */,
 				ECC36F432BFDD02A0071AF45 /* ParametersView.swift in Sources */,
 				ECD2FF5F2BF212EE007836C4 /* FoodChainChessApp.swift in Sources */,
 				EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */,

@@ -1,8 +1,8 @@
 import SwiftUI
+import SpriteKit
 
 struct BoardView: View {
-    let boardWidth: Int = 7
-    let boardHeight: Int = 9
+    var gameScene : GameScene = GameScene(size: CGSize(width: 940, height: 740))
     
     var body: some View {
         VStack {
@@ -15,22 +15,13 @@ struct BoardView: View {
                 Spacer()
             }.padding()
             Spacer()
-            VStack {
-                ForEach(0..<boardHeight, id: \.self) { row in
-                    HStack {
-                        ForEach(0..<boardWidth, id: \.self) { col in
-                            CellBoardView(row: row, col: col)
-                        }
-                    }
-                }
-            }
-            .background(Color.white)
+            SpriteView(scene: gameScene)
             Spacer()
             PlayerProfilBoardView(imageSource: "", username: "Username 1")
         }
     }
 }
 
-//#Preview {
-//    BoardView()
-//}
+#Preview {
+    BoardView()
+}
