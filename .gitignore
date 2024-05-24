@@ -125,18 +125,4 @@ fastlane/test_output
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
 
-<<<<<<< HEAD
 iOSInjectionProject/
-
-# ---> Xcode
-## User settings
-xcuserdata/
-
-## Xcode 8 and earlier
-*.xcscmblueprint
-*.xccheckout
-
-/Users/etudiant/repos/FoodChainChess/FoodChainChess.xcodeproj/project.xcworkspace/xcuserdata/etudiant.xcuserdatad/UserInterfaceState.xcuserstate
-=======
-iOSInjectionProject/
->>>>>>> main
