@@ -41,6 +41,7 @@
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
+		ECD528302C00CD0E00BA6C4E /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; };
 		ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE19AA2BF343F500A1D841 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		ECD2FF622BF212EE007836C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DSQ.xcframework; path = XCFramework/DSQ.xcframework; sourceTree = "<group>"; };
 		ECFE19AA2BF343F500A1D841 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD528302C00CD0E00BA6C4E /* DSQ.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +220,7 @@
 			children = (
 				ECD2FF5D2BF212EE007836C4 /* FoodChainChess */,
 				ECD2FF5C2BF212EE007836C4 /* Products */,
+				ECD5282E2C00CD0D00BA6C4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,6 +290,14 @@
 				EC62C8902BF351C2008A99F5 /* ButtonSize.swift */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		ECD5282E2C00CD0D00BA6C4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		ECFE19A92BF343CF00A1D841 /* Home */ = {
