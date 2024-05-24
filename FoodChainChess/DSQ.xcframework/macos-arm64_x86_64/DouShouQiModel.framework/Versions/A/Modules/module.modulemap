@@ -1,0 +1,11 @@
+framework module DouShouQiModel {
+  umbrella header "DouShouQiModel.h"
+  export *
+
+  module * { export * }
+}
+
+module DouShouQiModel.Swift {
+  header "DouShouQiModel-Swift.h"
+  requires objc
+}

@@ -22,6 +22,11 @@ struct BoardView: View {
     }
 }
 
-#Preview {
-    BoardView()
+//#Preview {
+//    BoardView()
+//}
+struct BoardViewPreview_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("Hello, world!")
+    }
 }
