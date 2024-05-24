@@ -14,9 +14,10 @@ struct ListItemScoreboardView: View {
         }.padding()
     }
 }
-struct MyPreviewProvider_Previews: PreviewProvider {
+
+struct ListItemScorePreview_Previews: PreviewProvider {
     static var previews: some View {
-        ListItemScoreboardView()
+        Text("Hello, world!")
     }
 }
 

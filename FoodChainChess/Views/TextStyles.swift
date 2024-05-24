@@ -9,6 +9,19 @@ struct TitleTextStyle : TextStyle {
     func body (content: Content) -> some View {
         content
             .foregroundColor(Colors.text)
+            .fontWeight(.bold)
+            .font(.title)
+    }
+}
+
+struct ScoreTextStyle : TextStyle {
+    var isBold: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Colors.text)
+            .font(.title)
+            .fontWeight(isBold ? .bold : .regular)
     }
 }
 
