@@ -1,0 +1,266 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-macos13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DouShouQiModel
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import DouShouQiModel
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum Result : Swift.Equatable {
+  case notFinished
+  case even
+  case winner(winner: DouShouQiModel.Owner, reason: DouShouQiModel.WinningReason)
+  public static func == (a: DouShouQiModel.Result, b: DouShouQiModel.Result) -> Swift.Bool
+}
+public enum WinningReason {
+  case denReached, noMorePieces, tooManyOccurences, noMovesLeft
+  public static func == (a: DouShouQiModel.WinningReason, b: DouShouQiModel.WinningReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum BoardResult : Swift.Equatable {
+  case unknown
+  case ok(piece: DouShouQiModel.Piece?)
+  case failed(reason: DouShouQiModel.BoardFailingReason)
+  public static func == (a: DouShouQiModel.BoardResult, b: DouShouQiModel.BoardResult) -> Swift.Bool
+}
+public enum BoardFailingReason {
+  case unknown, outOfBounds, cellNotEmpty, cellEmpty
+  public static func == (a: DouShouQiModel.BoardFailingReason, b: DouShouQiModel.BoardFailingReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers public class HumanPlayer : DouShouQiModel.Player {
+  public init?(withName name: Swift.String, andId id: DouShouQiModel.Owner, andInputMethod input: @escaping (_ hp: DouShouQiModel.HumanPlayer) -> DouShouQiModel.Move?)
+  override public init?(withName name: Swift.String, andId id: DouShouQiModel.Owner)
+  #if compiler(>=5.3) && $AsyncAwait
+  override public func chooseMove(in board: DouShouQiModel.Board, with rules: any DouShouQiModel.Rules) async throws
+  #endif
+  public func changeInput(input: @escaping (_ hp: DouShouQiModel.HumanPlayer) -> DouShouQiModel.Move?)
+  #if compiler(>=5.3) && $AsyncAwait
+  public func chooseMove(_ move: DouShouQiModel.Move?) async throws
+  #endif
+  @objc deinit
+}
+public struct ClassicRules : DouShouQiModel.Rules {
+  public static func createBoard() -> DouShouQiModel.Board
+  public static func checkBoard(_ board: DouShouQiModel.Board) throws
+  public init()
+  public init(occurences: [DouShouQiModel.Board : Swift.Int], historic: [DouShouQiModel.Move])
+  public func getMoves(in board: DouShouQiModel.Board, of owner: DouShouQiModel.Owner) -> [DouShouQiModel.Move]
+  public func getMoves(in board: DouShouQiModel.Board, of owner: DouShouQiModel.Owner, fromRow row: Swift.Int, andColumn col: Swift.Int) -> [DouShouQiModel.Move]
+  public func isMoveValid(onBoard board: DouShouQiModel.Board, fromRow originRow: Swift.Int, andFromColumn originColumn: Swift.Int, toRow destinationRow: Swift.Int, andToColumn destinationColumn: Swift.Int) -> Swift.Bool
+  public func isMoveValid(onBoard board: DouShouQiModel.Board, withMove move: DouShouQiModel.Move) -> Swift.Bool
+  public func isGameOver(withBoard board: DouShouQiModel.Board, andLastRowPlayed lastRow: Swift.Int, andLastColumnPlayer lastColumn: Swift.Int) -> (Swift.Bool, DouShouQiModel.Result)
+  public mutating func playedMove(_ move: DouShouQiModel.Move, onStartingBoard board: DouShouQiModel.Board, andResultingBoard resultingBoard: DouShouQiModel.Board) throws
+  public func getNextPlayer() -> DouShouQiModel.Owner
+  public var occurences: [DouShouQiModel.Board : Swift.Int] {
+    get
+  }
+  public var historic: [DouShouQiModel.Move] {
+    get
+  }
+}
+public struct Cell : Swift.CustomStringConvertible, Swift.Equatable {
+  public var description: Swift.String {
+    get
+  }
+  public let cellType: DouShouQiModel.CellType
+  public let initialOwner: DouShouQiModel.Owner
+  public var piece: DouShouQiModel.Piece?
+  public init(ofType cellType: DouShouQiModel.CellType, ownedBy initialOwner: DouShouQiModel.Owner = .noOne, withPiece piece: DouShouQiModel.Piece? = nil)
+  public static func == (a: DouShouQiModel.Cell, b: DouShouQiModel.Cell) -> Swift.Bool
+}
+public struct VerySimpleRules : DouShouQiModel.Rules {
+  public static func createBoard() -> DouShouQiModel.Board
+  public static func checkBoard(_ board: DouShouQiModel.Board) throws
+  public init()
+  public init(occurences: [DouShouQiModel.Board : Swift.Int], historic: [DouShouQiModel.Move])
+  public func getMoves(in board: DouShouQiModel.Board, of owner: DouShouQiModel.Owner) -> [DouShouQiModel.Move]
+  public func getMoves(in board: DouShouQiModel.Board, of owner: DouShouQiModel.Owner, fromRow row: Swift.Int, andColumn col: Swift.Int) -> [DouShouQiModel.Move]
+  public func isMoveValid(onBoard board: DouShouQiModel.Board, fromRow originRow: Swift.Int, andFromColumn originColumn: Swift.Int, toRow destinationRow: Swift.Int, andToColumn destinationColumn: Swift.Int) -> Swift.Bool
+  public func isMoveValid(onBoard board: DouShouQiModel.Board, withMove move: DouShouQiModel.Move) -> Swift.Bool
+  public func isGameOver(withBoard board: DouShouQiModel.Board, andLastRowPlayed lastRow: Swift.Int, andLastColumnPlayer lastColumn: Swift.Int) -> (Swift.Bool, DouShouQiModel.Result)
+  public mutating func playedMove(_ move: DouShouQiModel.Move, onStartingBoard board: DouShouQiModel.Board, andResultingBoard resultingBoard: DouShouQiModel.Board) throws
+  public func getNextPlayer() -> DouShouQiModel.Owner
+  public var occurences: [DouShouQiModel.Board : Swift.Int] {
+    get
+  }
+  public var historic: [DouShouQiModel.Move] {
+    get
+  }
+}
+public protocol Rules {
+  static func createBoard() -> DouShouQiModel.Board
+  static func checkBoard(_ board: DouShouQiModel.Board) throws
+  func getNextPlayer() -> DouShouQiModel.Owner
+  func getMoves(in board: DouShouQiModel.Board, of: DouShouQiModel.Owner) -> [DouShouQiModel.Move]
+  func getMoves(in board: DouShouQiModel.Board, of: DouShouQiModel.Owner, fromRow row: Swift.Int, andColumn col: Swift.Int) -> [DouShouQiModel.Move]
+  func isMoveValid(onBoard: DouShouQiModel.Board, fromRow: Swift.Int, andFromColumn: Swift.Int, toRow: Swift.Int, andToColumn: Swift.Int) -> Swift.Bool
+  func isMoveValid(onBoard: DouShouQiModel.Board, withMove move: DouShouQiModel.Move) -> Swift.Bool
+  func isGameOver(withBoard: DouShouQiModel.Board, andLastRowPlayed: Swift.Int, andLastColumnPlayer: Swift.Int) -> (Swift.Bool, DouShouQiModel.Result)
+  mutating func playedMove(_ move: DouShouQiModel.Move, onStartingBoard board: DouShouQiModel.Board, andResultingBoard resultingBoard: DouShouQiModel.Board) throws
+  var occurences: [DouShouQiModel.Board : Swift.Int] { get }
+  var historic: [DouShouQiModel.Move] { get }
+}
+public class Player {
+  final public let name: Swift.String
+  final public let id: DouShouQiModel.Owner
+  public init?(withName name: Swift.String, andId id: DouShouQiModel.Owner)
+  #if compiler(>=5.3) && $AsyncAwait
+  public func chooseMove(in board: DouShouQiModel.Board, with rules: any DouShouQiModel.Rules) async throws
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func addPlayedCallbacksListener(_ listener: @escaping (DouShouQiModel.Move?, DouShouQiModel.Player) async throws -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func notifyPlayed(withMove move: DouShouQiModel.Move?, andPlayer player: DouShouQiModel.Player) async throws
+  #endif
+  @objc deinit
+}
+public enum GameError : Swift.Error {
+  case invalidMove, nextPlayerError, badPlayerId(message: Swift.String), invalidRules, invalidPlayer, invalidGame, invalidBoard
+}
+@_inheritsConvenienceInitializers public class RandomPlayer : DouShouQiModel.IAPlayer {
+  #if compiler(>=5.3) && $AsyncAwait
+  override public func chooseMove(in board: DouShouQiModel.Board, with rules: any DouShouQiModel.Rules) async throws
+  #endif
+  override public init?(withName name: Swift.String, andId id: DouShouQiModel.Owner)
+  @objc deinit
+}
+public enum CellType : Swift.CaseIterable {
+  case unknown, jungle, water, trap, den
+  public static func == (a: DouShouQiModel.CellType, b: DouShouQiModel.CellType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [DouShouQiModel.CellType]
+  public static var allCases: [DouShouQiModel.CellType] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Board : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public let nbRows: Swift.Int
+  public let nbColumns: Swift.Int
+  public var grid: [[DouShouQiModel.Cell]] {
+    get
+  }
+  public init?(withGrid grid: [[DouShouQiModel.Cell]])
+  public func countPieces(of owner: DouShouQiModel.Owner) -> Swift.Int
+  public func countPieces() -> (nbOfPiecesOfPlayer1: Swift.Int, nbOfPiecesOfPlayer2: Swift.Int)
+  public mutating func insert(piece: DouShouQiModel.Piece, atRow row: Swift.Int, andColumn column: Swift.Int) -> DouShouQiModel.BoardResult
+  public mutating func removePiece(atRow row: Swift.Int, andColumn column: Swift.Int) -> DouShouQiModel.BoardResult
+  public static func == (a: DouShouQiModel.Board, b: DouShouQiModel.Board) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Piece : Swift.CustomStringConvertible, Swift.Hashable {
+  public var description: Swift.String {
+    get
+  }
+  public let owner: DouShouQiModel.Owner
+  public let animal: DouShouQiModel.Animal
+  public init(withOwner owner: DouShouQiModel.Owner, andAnimal animal: DouShouQiModel.Animal)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: DouShouQiModel.Piece, b: DouShouQiModel.Piece) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum InvalidBoardError : Swift.Error, Swift.Equatable {
+  case unknownError
+  case badDimensions(nbRows: Swift.Int, nbColumns: Swift.Int)
+  case badCellType(cellType: DouShouQiModel.CellType, row: Swift.Int, column: Swift.Int)
+  case multipleOccurenceOfSamePiece(piece: DouShouQiModel.Piece)
+  case pieceWithNoOwner(piece: DouShouQiModel.Piece)
+  case pieceNotAllowedOnThisCell(piece: DouShouQiModel.Piece, cell: DouShouQiModel.Cell)
+  public static func == (a: DouShouQiModel.InvalidBoardError, b: DouShouQiModel.InvalidBoardError) -> Swift.Bool
+}
+public enum Owner {
+  case noOne, player1, player2
+  public var simpleDescription: Swift.String {
+    get
+  }
+  public static func == (a: DouShouQiModel.Owner, b: DouShouQiModel.Owner) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers public class IAPlayer : DouShouQiModel.Player {
+  override public init?(withName name: Swift.String, andId id: DouShouQiModel.Owner)
+  @objc deinit
+}
+public struct Move : Swift.CustomStringConvertible, Swift.Equatable {
+  public let owner: DouShouQiModel.Owner
+  public let rowOrigin: Swift.Int
+  public let columnOrigin: Swift.Int
+  public let rowDestination: Swift.Int
+  public let columnDestination: Swift.Int
+  public init(of owner: DouShouQiModel.Owner, fromRow rowOrigin: Swift.Int, andFromColumn colOrigin: Swift.Int, toRow rowDest: Swift.Int, andToColumn colDest: Swift.Int)
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: DouShouQiModel.Move, b: DouShouQiModel.Move) -> Swift.Bool
+}
+public enum Animal : Swift.Int {
+  case rat, cat, dog, wolf, leopard, tiger, lion, elephant
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public class Game {
+  public var board: DouShouQiModel.Board {
+    get
+  }
+  public var rules: any DouShouQiModel.Rules {
+    get
+  }
+  final public let players: [DouShouQiModel.Owner : DouShouQiModel.Player]
+  public init(withRules rules: any DouShouQiModel.Rules, andPlayer1 player1: DouShouQiModel.Player, andPlayer2 player2: DouShouQiModel.Player) throws
+  public init(withBoard board: DouShouQiModel.Board, andRules rules: any DouShouQiModel.Rules, andPlayer1 player1: DouShouQiModel.Player, andPlayer2 player2: DouShouQiModel.Player) throws
+  public func addGameStartedListener(_ listener: @escaping (DouShouQiModel.Board) -> Swift.Void)
+  #if compiler(>=5.3) && $AsyncAwait
+  public func addPlayerNotifiedListener(_ listener: @escaping (DouShouQiModel.Board, DouShouQiModel.Player) async throws -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func addGameChangedListener(_ listener: @escaping (DouShouQiModel.Game) async -> Swift.Void)
+  #endif
+  public func addGameOverListener(_ listener: @escaping (DouShouQiModel.Board, DouShouQiModel.Result, DouShouQiModel.Player?) -> Swift.Void)
+  public func addMoveChosenCallbacksListener(_ listener: @escaping (DouShouQiModel.Board, DouShouQiModel.Move, DouShouQiModel.Player) -> Swift.Void)
+  public func addInvalidMoveCallbacksListener(_ listener: @escaping (DouShouQiModel.Board, DouShouQiModel.Move, DouShouQiModel.Player, Swift.Bool) -> Swift.Void)
+  public func addBoardChangedListener(_ listener: @escaping (DouShouQiModel.Board) -> Swift.Void)
+  public func addPieceRemovedListener(_ listener: @escaping (Swift.Int, Swift.Int, DouShouQiModel.Piece) -> Swift.Void)
+  #if compiler(>=5.3) && $AsyncAwait
+  public func onPlayed(with move: DouShouQiModel.Move?, from player: DouShouQiModel.Player) async throws
+  #endif
+  public var isOver: Swift.Bool {
+    get
+  }
+  #if compiler(>=5.3) && $AsyncAwait
+  public func start() async throws
+  #endif
+  @objc deinit
+}
+extension DouShouQiModel.WinningReason : Swift.Equatable {}
+extension DouShouQiModel.WinningReason : Swift.Hashable {}
+extension DouShouQiModel.BoardFailingReason : Swift.Equatable {}
+extension DouShouQiModel.BoardFailingReason : Swift.Hashable {}
+extension DouShouQiModel.CellType : Swift.Equatable {}
+extension DouShouQiModel.CellType : Swift.Hashable {}
+extension DouShouQiModel.Owner : Swift.Equatable {}
+extension DouShouQiModel.Owner : Swift.Hashable {}
+extension DouShouQiModel.Animal : Swift.Equatable {}
+extension DouShouQiModel.Animal : Swift.Hashable {}
+extension DouShouQiModel.Animal : Swift.RawRepresentable {}
