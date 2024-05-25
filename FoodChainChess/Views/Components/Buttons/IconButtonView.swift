@@ -9,24 +9,36 @@ import SwiftUI
 
 struct IconButtonView: View {
     var iconName: String
-    var action: () -> Void = {}
     var size: ButtonSize
+    var action: (() -> Void)?
+    var destination: AnyView?
     
     var body: some View {
-        
-        Button(action: action) {
-            Image(systemName: iconName)
-                .font(.system(size: size.rawValue))
+            Group {
+                if let destination = destination {
+                    NavigationLink(destination: destination) {
+                        Image(systemName: iconName)
+                            .font(.system(size: size.rawValue))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                } else {
+                    Button(action: {
+                        action?()
+                    }) {
+                        Image(systemName: iconName)
+                            .font(.system(size: size.rawValue))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+            }
         }
-        .buttonStyle(IconButtonStyle())
-    }
 }
 
 struct IconButtonView_Previews: PreviewProvider {
     static var previews: some View {
         IconButtonView(
             iconName: "gearshape.fill",
-            action: {},
-            size: .small)
+            size: .small,
+            action: {})
     }
 }

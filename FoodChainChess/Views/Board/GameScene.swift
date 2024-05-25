@@ -15,7 +15,6 @@ class GameScene : SKScene{
         super.init(size: size)
         self.scaleMode = .aspectFit
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.backgroundColor = .red
         
         self.addChild(imageBoard)
                 

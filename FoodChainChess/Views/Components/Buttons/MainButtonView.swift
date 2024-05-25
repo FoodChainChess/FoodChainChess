@@ -8,34 +8,61 @@
 import SwiftUI
 
 struct MainButtonView: View {
-    var buttonText : String
+    var buttonText: String
     var color: Color
     var iconName: String?
     var textColor: Color = Color("Text")
-    var action: () -> Void = {}
+    var action: (() -> Void)?
+    var destination: AnyView?
     
     var body: some View {
-        Button(action: action) {
-            HStack {
-                Text(buttonText)
-                
-                if let iconName = iconName {
-                    Image(systemName: iconName)
+        Group {
+            if let destination = destination {
+                NavigationLink(destination: destination) {
+                    buttonContent
                 }
-            }.frame(maxWidth: .infinity, alignment: .center)
-
+                .foregroundColor(textColor)
+                .buttonStyle(.borderedProminent)
+                .tint(color)
+            } else {
+                Button(action: {
+                    action?()
+                }) {
+                    buttonContent
+                }
+                .foregroundColor(textColor)
+                .buttonStyle(.borderedProminent)
+                .tint(color)
+            }
         }
-        .foregroundColor(textColor)
+    }
+    
+    private var buttonContent: some View {
+        HStack {
+            Text(buttonText)
+            
+            if let iconName = iconName {
+                Image(systemName: iconName)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
         .fontWeight(.semibold)
-        .buttonStyle(.borderedProminent)
-        .tint(color)
     }
 }
 
 struct MainButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        MainButtonView(buttonText: "High Scores 🏆", color: Color("Primary"), textColor: Color("Text"))
-            .font(.title)
-            .padding(30)
+        NavigationStack {
+            VStack {
+                MainButtonView(
+                    buttonText: "High Scores 🏆",
+                    color: Color("Primary"),
+                    iconName: nil,
+                    destination: AnyView(ScoreboardView())
+                )
+                .font(.title)
+                .padding(30)
+            }
+        }
     }
 }
