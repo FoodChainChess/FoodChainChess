@@ -2,6 +2,8 @@ import SwiftUI
 
 struct CreatePlayerView: View {
     @State private var name = ""
+
+    
     var body: some View {
         VStack {
             TopBarTitleBackArrowView(title: "New Player")
@@ -20,6 +22,7 @@ struct CreatePlayerView: View {
                 MainButtonView(buttonText: "Create", color: .secondary)
             }.padding(50)
         }.background(Colors.background)
+        
         
     }
 }
