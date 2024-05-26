@@ -6,12 +6,12 @@ struct GamesView: View {
             TopBarTitleBackArrowView(title: "Games")
             List {
                 Section(header: Text("01-02-2024")) {
-                    ListItemGamesView()
-                    ListItemGamesView()
-                    ListItemGamesView()
+                    ForEach((1...3), id: \.self) {_ in
+                        ListItemGamesView()
+                    }.listRowBackground(Colors.background)
                 }
             }.scrollContentBackground(.hidden)
-        }
+        }.background(Colors.background)
     }
 }
 

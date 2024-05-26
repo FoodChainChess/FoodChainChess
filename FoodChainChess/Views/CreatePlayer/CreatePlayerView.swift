@@ -11,7 +11,7 @@ struct CreatePlayerView: View {
                 .textFieldStyle(.roundedBorder)
                 .padding()
             Spacer()
-        }
+        }.background(Colors.background)
     }
 }
 

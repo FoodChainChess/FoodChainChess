@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @State private var isShowingPopUp = false
     @State private var isShowingPopUp2 = false
-    @State private var isShowingAlert = false
     
     var body: some View {
         NavigationStack {
@@ -54,26 +53,6 @@ struct HomeView: View {
                         color: Color("Accent"),
                         destination: AnyView(GamesView().navigationBarBackButtonHidden(true)))
                     
-//                    MainButtonView(
-//                        buttonText: "Keep Playing",
-//                        color: Color("Secondary"),
-//                        iconName: "arrow.right.circle",
-//                        action: {isShowingAlert = true })
-//                    .alert(isPresented: $isShowingAlert) {
-//                        Alert(
-//                            title: Text("Save the game before quitting ?"),
-//                            message: Text("If you don't save the game, it will be lost."),
-//                            
-//                            primaryButton: .default(
-//                                Text("Yes")
-//                            ),
-//                            
-//                            secondaryButton: .destructive(
-//                                Text("No")
-//                            )
-//                        )
-//                    }
-                    
                     MainButtonView(
                         buttonText: "Keep Playing",
                         color: Color("Secondary"),
@@ -95,9 +74,8 @@ struct HomeView: View {
                     playerUsername1: "Nicolas",
                     playerUsername2: "Lou",
                     winReason: "Den reached.")
-            }
+            }.background(Colors.background)
         }
-        
     }
 }
 

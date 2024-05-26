@@ -16,8 +16,7 @@ struct ParametersView: View {
             ModeSwitchView()
             LanguagePickerView()
             Spacer()
-            
-        }
+        }.background(Colors.background)
     }
 }
 

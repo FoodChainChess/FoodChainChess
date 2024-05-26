@@ -14,7 +14,7 @@ struct TopBarTitleBackArrowView: View {
                     .foregroundColor(Colors.text)
             }
             Spacer()
-            Text(title)
+            Text(title).TextStyle(TitleTextStyle())
             Spacer()
         }
         .padding()

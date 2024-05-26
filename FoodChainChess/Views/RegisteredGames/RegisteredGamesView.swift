@@ -11,10 +11,10 @@ struct RegisteredGamesView: View {
                     ForEach(numbers.indices, id: \.self) { index in
                         ListItemRegisteredGamesView()
                     }
-                    .onDelete(perform: deleteNumber)
+                    .onDelete(perform: deleteNumber).listRowBackground(Colors.background)
                 }
             }.scrollContentBackground(.hidden)
-        }
+        }.background(Colors.background)
     }
     
     func deleteNumber(at offsets: IndexSet) {
