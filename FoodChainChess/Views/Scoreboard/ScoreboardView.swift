@@ -13,6 +13,6 @@ struct ScoreboardView: View {
     }
 }
 
-#Preview {
-    ScoreboardView()
-}
+//#Preview {
+//    ScoreboardView()
+//}

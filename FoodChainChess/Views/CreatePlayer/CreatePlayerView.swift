@@ -8,10 +8,19 @@ struct CreatePlayerView: View {
             Spacer()
             ProfilePictureView()
             TextField("Enter your name", text: $name)
-                .textFieldStyle(.roundedBorder)
-                .padding()
+                .textFieldStyle(.plain)
+                .padding(10)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .shadow(radius: 2)
+                .padding(.horizontal, 60) // Changer la taille lateral
+                .padding(.top, 50)
             Spacer()
+            VStack {
+                MainButtonView(buttonText: "Create", color: .secondary)
+            }.padding(50)
         }.background(Colors.background)
+        
     }
 }
 
