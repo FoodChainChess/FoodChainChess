@@ -19,7 +19,7 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "gearshape.fill",
                         size: .small,
-                        destination: AnyView(ParametersView())
+                        destination: AnyView(ParametersView().navigationBarBackButtonHidden(true))
                     ).padding()
                     Spacer()
                     
@@ -31,7 +31,7 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "person.badge.plus.fill",
                         size: .small,
-                        destination: AnyView(CreatePlayerView())
+                        destination: AnyView(CreatePlayerView().navigationBarBackButtonHidden(true))
                     ).padding()
                 }
                 Spacer()
@@ -47,12 +47,12 @@ struct HomeView: View {
                     MainButtonView(
                         buttonText: "High Scores 🏆",
                         color: Color("Primary"),
-                        destination: AnyView(ScoreboardView()))
+                        destination: AnyView(ScoreboardView().navigationBarBackButtonHidden(true)))
                     
                     MainButtonView(
                         buttonText: "Saved Games 💾",
                         color: Color("Accent"),
-                        destination: AnyView(GamesView()))
+                        destination: AnyView(GamesView().navigationBarBackButtonHidden(true)))
                     
 //                    MainButtonView(
 //                        buttonText: "Keep Playing",
@@ -78,7 +78,7 @@ struct HomeView: View {
                         buttonText: "Keep Playing",
                         color: Color("Secondary"),
                         iconName: "arrow.right.circle",
-                        destination: AnyView(RegisteredGamesView()))
+                        destination: AnyView(RegisteredGamesView().navigationBarBackButtonHidden(true)))
 
                 }
                 .font(.title2)
