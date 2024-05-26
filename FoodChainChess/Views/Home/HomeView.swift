@@ -22,7 +22,7 @@ struct HomeView: View {
                     ).padding()
                     Spacer()
                     
-                    Text("Home")
+                    Text("Home", tableName: "Localization")
                         .TextStyle(TitleTextStyle())
                         .padding(.top, 40)
                     
