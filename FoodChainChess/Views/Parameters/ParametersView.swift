@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ParametersView: View {
     
-    
     var body: some View {
         VStack {
             TopBarTitleBackArrowView(title: "Parameters")
@@ -17,8 +16,7 @@ struct ParametersView: View {
             ModeSwitchView()
             LanguagePickerView()
             Spacer()
-            
-        }
+        }.background(Colors.background)
     }
 }
 

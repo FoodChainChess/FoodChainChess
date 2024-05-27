@@ -25,6 +25,15 @@ struct ScoreTextStyle : TextStyle {
     }
 }
 
+struct BoldBodyTextStyle : TextStyle {
+    func body (content: Content) -> some View {
+        content
+            .foregroundColor(Colors.text)
+            .fontWeight(.bold)
+            .font(.body)
+    }
+}
+
 extension Text {
     func TextStyle <T:TextStyle>(_ style : T) -> some View {
         modifier(style)

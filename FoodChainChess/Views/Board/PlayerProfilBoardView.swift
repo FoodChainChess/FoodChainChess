@@ -15,9 +15,3 @@ struct PlayerProfilBoardView: View {
 //#Preview {
 //    PlayerProfilBoardView(imageSource: "", username: "Username")
 //}
-
-struct PlayerProfilBoardViewPreview_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello, world!")
-    }
-}

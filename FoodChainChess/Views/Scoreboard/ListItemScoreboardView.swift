@@ -6,7 +6,7 @@ struct ListItemScoreboardView: View {
             Text("1")
             Spacer()
             PlayerFaceView(imageSource: "", circleWidth: 40, circleHeight: 40)
-            Text("Username")
+            Text("Username").TextStyle(BoldBodyTextStyle())
             Spacer()
             Text("V")
             Text("/")

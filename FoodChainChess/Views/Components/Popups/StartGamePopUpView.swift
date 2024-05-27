@@ -53,6 +53,14 @@ struct StartGamePopUpView: View {
                         .tag("Haaland")
                 }
             }
+            VStack(spacing: 24) {
+                MainButtonView(
+                    buttonText: "Play",
+                    color: Colors.text,
+                    iconName: "play.fill",
+                    textColor: Color("Background"),
+                    destination: AnyView(BoardView().navigationBarBackButtonHidden(true)))
+            }
             .navigationTitle("New Game")
             .navigationBarItems(
                 leading:
