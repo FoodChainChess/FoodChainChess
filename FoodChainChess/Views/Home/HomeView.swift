@@ -37,24 +37,24 @@ struct HomeView: View {
                 
                 VStack(spacing: 24) {
                     MainButtonView(
-                        buttonText: "Play",
+                        buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                         color: Colors.text,
                         iconName: "play.fill",
                         textColor: Color("Background"),
                         action: { isShowingPopUp.toggle() })
                     
                     MainButtonView(
-                        buttonText: "High Scores 🏆",
+                        buttonText:"\(NSLocalizedString("High Scores", tableName: "Localization", comment: "")) 🏆",
                         color: Color("Primary"),
                         destination: AnyView(ScoreboardView().navigationBarBackButtonHidden(true)))
                     
                     MainButtonView(
-                        buttonText: "Saved Games 💾",
+                        buttonText:"\(NSLocalizedString("Saved Games", tableName: "Localization", comment: "")) 💾",
                         color: Color("Accent"),
                         destination: AnyView(GamesView().navigationBarBackButtonHidden(true)))
                     
                     MainButtonView(
-                        buttonText: "Keep Playing",
+                        buttonText: NSLocalizedString("Keep Playing", tableName: "Localization", comment: ""),
                         color: Color("Secondary"),
                         iconName: "arrow.right.circle",
                         destination: AnyView(RegisteredGamesView().navigationBarBackButtonHidden(true)))

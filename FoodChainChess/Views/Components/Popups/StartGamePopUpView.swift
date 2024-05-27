@@ -18,22 +18,22 @@ struct StartGamePopUpView: View {
         NavigationStack {
             Form {
                 // Game mode selection
-                Picker("Game Mode",
+                Picker(NSLocalizedString("Game Mode", tableName: "Localization", comment: ""),
                        selection: $selectedGameMode) {
                     
-                    Text("Player vs Player")
+                    Text("Player vs Player", tableName: "Localization")
                         .tag("pvp")
                     
-                    Text("Player vs Computer")
+                    Text("Player vs Computer", tableName: "Localization")
                         .tag("pve")
                     
-                    Text("Multi-Device")
+                    Text("Multi-Device", tableName: "Localization")
                         .tag("multi")
                 }
                .pickerStyle(.navigationLink)
                 
                 // Player Selection
-                Picker("Player 1",
+                Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
                        selection: $selectedPlayer1) {
                     
                     Text("Ronaldo")
@@ -43,7 +43,7 @@ struct StartGamePopUpView: View {
                         .tag("Messi")
                 }
                 
-                Picker("Player 2",
+                Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
                        selection: $selectedPlayer2) {
                     
                     Text("Neymar")
@@ -55,16 +55,16 @@ struct StartGamePopUpView: View {
             }
             VStack(spacing: 24) {
                 MainButtonView(
-                    buttonText: "Play",
+                    buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                     color: Colors.text,
                     iconName: "play.fill",
                     textColor: Color("Background"),
                     destination: AnyView(BoardView().navigationBarBackButtonHidden(true)))
             }
-            .navigationTitle("New Game")
+            .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
             .navigationBarItems(
                 leading:
-                    Button("Close") {
+                    Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
                         isShowing = false
                     }
             )

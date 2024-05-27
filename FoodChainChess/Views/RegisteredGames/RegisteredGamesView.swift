@@ -5,7 +5,7 @@ struct RegisteredGamesView: View {
     
     var body: some View {
         VStack {
-            TopBarTitleBackArrowView(title: "Registered Games")
+            TopBarTitleBackArrowView(title: NSLocalizedString("Registered Games", tableName: "Localization", comment: ""))
             List {
                 Section(header: Text("01-02-2024")) {
                     ForEach(numbers.indices, id: \.self) { index in

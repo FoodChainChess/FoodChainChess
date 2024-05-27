@@ -16,18 +16,18 @@ struct BoardView: View {
                 }
                 .alert(isPresented: $isShowingAlert) {
                     Alert(
-                        title: Text("Save the game before quitting ?"),
-                        message: Text("If you don't save the game, it will be lost."),
+                        title: Text("Save the game before quitting ?", tableName: "Localization"),
+                        message: Text("If you don't save the game, it will be lost.", tableName: "Localization"),
 
                         primaryButton: .default(
-                            Text("Yes"),
+                            Text("Yes", tableName: "Localization"),
                             action: {
                                 presentationMode.wrappedValue.dismiss()
                             }
                         ),
 
                         secondaryButton: .destructive(
-                            Text("No")
+                            Text("No", tableName: "Localization")
                         )
                     )
                 }

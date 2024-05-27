@@ -7,7 +7,7 @@ struct ModeSwitchView: View {
     var body: some View {
         VStack{
             Toggle(isOn: $appearanceSettings.isDarkMode) {
-                Text("Dark Mode")
+                Text("Dark Mode", tableName: "Localization")
             }
             .padding(.horizontal, 60)
         }

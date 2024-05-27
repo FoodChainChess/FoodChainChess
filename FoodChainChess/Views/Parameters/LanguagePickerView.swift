@@ -13,9 +13,9 @@ struct LanguagePickerView: View {
         
         var displayName: String {
             switch self {
-            case .english: return "English"
-            case .portuguese: return "Portuguese (Brazil)"
-            case .french: return "French"
+            case .english: return NSLocalizedString("English", tableName: "Localization", comment: "")
+            case .portuguese: return NSLocalizedString("Portuguese", tableName: "Localization", comment: "")
+            case .french: return NSLocalizedString("French", tableName: "Localization", comment: "")
             }
         }
     }
@@ -23,7 +23,7 @@ struct LanguagePickerView: View {
     
     var body: some View {
         HStack{
-            Text("Language")
+            Text("Language", tableName: "Localization")
             Spacer()
             Picker("Language", selection: $languageSettings.currentLanguage) {
                 ForEach(Language.allCases) { language in

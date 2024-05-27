@@ -3,7 +3,7 @@ import SwiftUI
 struct ScoreboardView: View {
     var body: some View {
         VStack {
-            TopBarTitleBackArrowView(title: "Scoreboard")
+            TopBarTitleBackArrowView(title: NSLocalizedString("Scoreboard", tableName: "Localization", comment: ""))
             List {
                 ForEach((1...10), id: \.self) {_ in
                     ListItemScoreboardView()
