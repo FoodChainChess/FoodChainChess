@@ -2,22 +2,33 @@ import SwiftUI
 
 struct LanguagePickerView: View {
     
-    @State private var selectedLanguage: Language = .english
-    
+    @EnvironmentObject var languageSettings: LanguageSettings
+
     enum Language: String, CaseIterable, Identifiable {
-        case english, portuguese, french
+        case english = "en"
+        case portuguese = "pt-BR"
+        case french = "fr"
+        
         var id: Self { self }
+        
+        var displayName: String {
+            switch self {
+            case .english: return "English"
+            case .portuguese: return "Portuguese (Brazil)"
+            case .french: return "French"
+            }
+        }
     }
 
     
     var body: some View {
         HStack{
-            Text("Language :")
+            Text("Language")
             Spacer()
-            Picker("Language", selection: $selectedLanguage) {
-                Text("English").tag(Language.english)
-                Text("Portuguese").tag(Language.french)
-                Text("French").tag(Language.portuguese)
+            Picker("Language", selection: $languageSettings.currentLanguage) {
+                ForEach(Language.allCases) { language in
+                    Text(language.displayName).tag(language.rawValue)
+                }
             }
         }.padding(.horizontal, 60)
     }
@@ -25,6 +36,6 @@ struct LanguagePickerView: View {
 
 struct LangagePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        LanguagePickerView()
+        LanguagePickerView().environmentObject(LanguageSettings())
     }
 }

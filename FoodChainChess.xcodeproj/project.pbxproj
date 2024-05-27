@@ -17,6 +17,7 @@
 		EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8922BF3549F008A99F5 /* MainButtonView.swift */; };
 		EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */; };
 		EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C89B2BF39254008A99F5 /* PickerItems.swift */; };
+		EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
@@ -56,6 +57,7 @@
 		EC62C8922BF3549F008A99F5 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 		EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGamePopUpView.swift; sourceTree = "<group>"; };
 		EC62C89B2BF39254008A99F5 /* PickerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItems.swift; sourceTree = "<group>"; };
+		EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
@@ -132,6 +134,14 @@
 				EC62C89B2BF39254008A99F5 /* PickerItems.swift */,
 			);
 			path = Stub;
+			sourceTree = "<group>";
+		};
+		EC83FCD32C046D500075D6F4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		ECA1ED942BF29FBC001F546D /* TopBar */ = {
@@ -235,6 +245,7 @@
 		ECD2FF5D2BF212EE007836C4 /* FoodChainChess */ = {
 			isa = PBXGroup;
 			children = (
+				EC83FCD32C046D500075D6F4 /* Settings */,
 				EC62C89A2BF3923C008A99F5 /* Stub */,
 				ECD2FF6E2BF213CD007836C4 /* Ressources */,
 				ECD2FF6D2BF21384007836C4 /* Styles */,
@@ -388,6 +399,7 @@
 				ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */,
 				ECA69E392C00C38D005C7689 /* SpriteMeeple.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
+				EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */,
 				EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */,
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
 				EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */,
