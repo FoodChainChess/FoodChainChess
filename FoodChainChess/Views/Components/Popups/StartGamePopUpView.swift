@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct StartGamePopUpView: View {
-    @Binding var isShowing: Bool
     
     @State private var selectedGameMode: String = "PvP"
     @State private var selectedPlayer1: String = "none"
     @State private var selectedPlayer2: String = "none"
+    
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -53,19 +54,18 @@ struct StartGamePopUpView: View {
                         .tag("Haaland")
                 }
             }
-            VStack(spacing: 24) {
-                MainButtonView(
-                    buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
-                    color: Colors.text,
-                    iconName: "play.fill",
-                    textColor: Color("Background"),
-                    destination: AnyView(BoardView().navigationBarBackButtonHidden(true)))
-            }
+            MainButtonView(
+                buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
+                color: Colors.text,
+                iconName: "play.fill",
+                textColor: Color("Background"),
+                destination: AnyView(BoardView().navigationBarBackButtonHidden(true))
+            ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
             .navigationBarItems(
                 leading:
                     Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
-                        isShowing = false
+                        dismiss()
                     }
             )
         }
@@ -73,10 +73,7 @@ struct StartGamePopUpView: View {
 }
 
 struct StartGamePopUpView_Previews: PreviewProvider {
-    
-    @State static var isShowing = true
-
     static var previews: some View {
-        StartGamePopUpView(isShowing: $isShowing)
+        StartGamePopUpView()
     }
 }

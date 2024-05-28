@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var isShowingPopUp = false
     @State private var isShowingPopUp2 = false
     
     var body: some View {
@@ -41,7 +40,7 @@ struct HomeView: View {
                         color: Colors.text,
                         iconName: "play.fill",
                         textColor: Color("Background"),
-                        action: { isShowingPopUp.toggle() })
+                        destination: AnyView(StartGamePopUpView().navigationBarBackButtonHidden(true)))
                     
                     MainButtonView(
                         buttonText:"\(NSLocalizedString("High Scores", tableName: "Localization", comment: "")) 🏆",
@@ -58,14 +57,12 @@ struct HomeView: View {
                         color: Color("Secondary"),
                         iconName: "arrow.right.circle",
                         destination: AnyView(RegisteredGamesView().navigationBarBackButtonHidden(true)))
-
+                    
                 }
                 .font(.title2)
                 .padding(80)
                 
                 Spacer()
-            }.sheet(isPresented: $isShowingPopUp) {
-                StartGamePopUpView(isShowing: $isShowingPopUp)
             }.sheet(isPresented: $isShowingPopUp2) {
                 EndGamePopUpView(
                     isShowing: $isShowingPopUp2,

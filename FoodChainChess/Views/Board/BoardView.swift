@@ -43,6 +43,6 @@ struct BoardView: View {
     }
 }
 
-//#Preview {
-//    BoardView()
-//}
+#Preview {
+    BoardView()
+}
