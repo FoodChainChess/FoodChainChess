@@ -7,15 +7,21 @@ struct ModeSwitchView: View {
     var body: some View {
         VStack{
             Toggle(isOn: $appearanceSettings.isDarkMode) {
-                Text("Dark Mode", tableName: "Localization")
-            }
-            .padding(.horizontal, 60)
+                Text("🌗 Dark Mode", tableName: "Localization")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .padding(.leading, 20)
+            }            
         }
+        .padding()
+        .background(Colors.backgroundbutton)
+        .cornerRadius(10)
+        .padding(.horizontal, 20)
     }
 }
 
 struct ModeSwitchView_Previews: PreviewProvider {
     static var previews: some View {
-        ModeSwitchView()
+        ModeSwitchView().environmentObject(AppearanceSettings())
     }
 }

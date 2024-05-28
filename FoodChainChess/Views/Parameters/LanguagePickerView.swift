@@ -22,16 +22,30 @@ struct LanguagePickerView: View {
 
     
     var body: some View {
-        HStack{
-            Text("Language", tableName: "Localization")
-            Spacer()
-            Picker("Language", selection: $languageSettings.currentLanguage) {
-                ForEach(Language.allCases) { language in
-                    Text(language.displayName).tag(language.rawValue)
+            HStack {
+                Text(NSLocalizedString("🌎 Language", tableName: "Localization", comment: ""))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .padding(.leading, 20)
+                Spacer()
+                Picker("Language", selection: $languageSettings.currentLanguage) {
+                    ForEach(Language.allCases) { language in
+                        Text(language.displayName)
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .tag(language.rawValue)
+                    }
                 }
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Colors.background, lineWidth: 1)
+                )
             }
-        }.padding(.horizontal, 60)
-    }
+            .padding()
+            .background(Colors.backgroundbutton)
+            .cornerRadius(10)
+            .padding(.horizontal, 20)
+        }
 }
 
 struct LangagePickerView_Previews: PreviewProvider {
