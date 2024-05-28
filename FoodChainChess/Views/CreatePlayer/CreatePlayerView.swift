@@ -17,10 +17,10 @@ struct CreatePlayerView: View {
                 .shadow(radius: 2)
                 .padding(.horizontal, 60) // Changer la taille lateral
                 .padding(.top, 50)
-            Spacer()
             VStack {
                 MainButtonView(buttonText: "Create", color: .secondary)
-            }.padding(50)
+            }.padding(60)
+            Spacer()
         }.background(Colors.background)
         
         
