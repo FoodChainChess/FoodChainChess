@@ -11,7 +11,7 @@ struct MainButtonView: View {
     var buttonText: String
     var color: Color
     var iconName: String?
-    var textColor: Color = Color("Text")
+    var textColor: Color = .white
     var action: (() -> Void)?
     var destination: AnyView?
     

@@ -18,7 +18,7 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "gearshape.fill",
                         size: .small,
-                        destination: AnyView(ParametersView().navigationBarBackButtonHidden(true))
+                        destination: AnyView(ParametersView())
                     ).padding()
                     Spacer()
                     
@@ -30,7 +30,7 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "person.badge.plus.fill",
                         size: .small,
-                        destination: AnyView(CreatePlayerView().navigationBarBackButtonHidden(true))
+                        destination: AnyView(CreatePlayerView())
                     ).padding()
                 }
                 Spacer()
@@ -46,18 +46,18 @@ struct HomeView: View {
                     MainButtonView(
                         buttonText:"\(NSLocalizedString("High Scores", tableName: "Localization", comment: "")) 🏆",
                         color: Color("Primary"),
-                        destination: AnyView(ScoreboardView().navigationBarBackButtonHidden(true)))
+                        destination: AnyView(ScoreboardView()))
                     
                     MainButtonView(
                         buttonText:"\(NSLocalizedString("Saved Games", tableName: "Localization", comment: "")) 💾",
                         color: Color("Accent"),
-                        destination: AnyView(GamesView().navigationBarBackButtonHidden(true)))
+                        destination: AnyView(GamesView()))
                     
                     MainButtonView(
                         buttonText: NSLocalizedString("Keep Playing", tableName: "Localization", comment: ""),
                         color: Color("Secondary"),
                         iconName: "arrow.right.circle",
-                        destination: AnyView(RegisteredGamesView().navigationBarBackButtonHidden(true)))
+                        destination: AnyView(RegisteredGamesView()))
 
                 }
                 .font(.title2)

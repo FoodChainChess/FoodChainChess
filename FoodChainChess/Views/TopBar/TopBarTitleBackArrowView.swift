@@ -6,13 +6,13 @@ struct TopBarTitleBackArrowView: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "chevron.left")
-                    .imageScale(.large)
-                    .foregroundColor(Colors.text)
-            }
+//            Button(action: {
+//                presentationMode.wrappedValue.dismiss()
+//            }) {
+//                Image(systemName: "chevron.left")
+//                    .imageScale(.large)
+//                    .foregroundColor(Colors.text)
+//            }
             Spacer()
             Text(title).TextStyle(TitleTextStyle())
             Spacer()
