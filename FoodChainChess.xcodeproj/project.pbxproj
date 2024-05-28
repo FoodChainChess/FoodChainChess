@@ -17,6 +17,7 @@
 		EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8922BF3549F008A99F5 /* MainButtonView.swift */; };
 		EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */; };
 		EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C89B2BF39254008A99F5 /* PickerItems.swift */; };
+		EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9736D22C038FA100442C23 /* ImagePicker.swift */; };
 		EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */; };
 		EC83FCD92C0475FE0075D6F4 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
@@ -58,6 +59,7 @@
 		EC62C8922BF3549F008A99F5 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 		EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGamePopUpView.swift; sourceTree = "<group>"; };
 		EC62C89B2BF39254008A99F5 /* PickerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItems.swift; sourceTree = "<group>"; };
+		EC9736D22C038FA100442C23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
 		EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				ECAB1FF22BF3627D003D866C /* CreatePlayerView.swift */,
 				ECAB1FF42BF3631B003D866C /* ProfilePictureView.swift */,
+				EC9736D22C038FA100442C23 /* ImagePicker.swift */,
 			);
 			path = CreatePlayer;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
 				EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */,
+				EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
 				ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */,
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,

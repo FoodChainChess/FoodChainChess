@@ -2,16 +2,28 @@ import SwiftUI
 
 struct CreatePlayerView: View {
     @State private var name = ""
+
+    
     var body: some View {
         VStack {
             TopBarTitleBackArrowView(title: NSLocalizedString("New Player", tableName: "Localization", comment: ""))
             Spacer()
             ProfilePictureView()
             TextField(NSLocalizedString("Enter your name", tableName: "Localization", comment: ""), text: $name)
-                .textFieldStyle(.roundedBorder)
-                .padding()
+                .textFieldStyle(.plain)
+                .padding(10)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .shadow(radius: 2)
+                .padding(.horizontal, 60) // Changer la taille lateral
+                .padding(.top, 50)
+            VStack {
+                MainButtonView(buttonText: "Create", color: .secondary)
+            }.padding(60)
             Spacer()
         }.background(Colors.background)
+        
+        
     }
 }
 
