@@ -6,10 +6,10 @@ struct CreatePlayerView: View {
     
     var body: some View {
         VStack {
-            TopBarTitleBackArrowView(title: "New Player")
+            TopBarTitleBackArrowView(title: NSLocalizedString("New Player", tableName: "Localization", comment: ""))
             Spacer()
             ProfilePictureView()
-            TextField("Enter your name", text: $name)
+            TextField(NSLocalizedString("Enter your name", tableName: "Localization", comment: ""), text: $name)
                 .textFieldStyle(.plain)
                 .padding(10)
                 .background(Color(.systemGray6))

@@ -7,7 +7,7 @@ struct ListItemRegisteredGamesView: View {
             Text("vs")
             PlayerFaceView(imageSource: "", circleWidth: 40, circleHeight: 40)
             Spacer()
-            Text("Tour 34")
+            Text("\(NSLocalizedString("Round", tableName: "Localization", comment: "")) 34")
             Spacer()
             Image(systemName: "play")
                 .imageScale(.large)

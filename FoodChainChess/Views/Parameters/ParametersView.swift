@@ -11,7 +11,7 @@ struct ParametersView: View {
     
     var body: some View {
         VStack {
-            TopBarTitleBackArrowView(title: "Parameters")
+            TopBarTitleBackArrowView(title: NSLocalizedString("Parameters", tableName: "Localization", comment: ""))
             Spacer()
             ModeSwitchView()
             LanguagePickerView()

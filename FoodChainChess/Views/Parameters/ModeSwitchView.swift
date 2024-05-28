@@ -1,20 +1,13 @@
-//
-//  ModeSwitchView.swift
-//  FoodChainChess
-//
-//  Created by étudiant on 22/05/2024.
-//
-
 import SwiftUI
 
 struct ModeSwitchView: View {
     
-    @State private var darkMode = false
+    @EnvironmentObject var appearanceSettings: AppearanceSettings
 
     var body: some View {
         VStack{
-            Toggle(isOn: $darkMode) {
-                Text("Dark Mode")
+            Toggle(isOn: $appearanceSettings.isDarkMode) {
+                Text("Dark Mode", tableName: "Localization")
             }
             .padding(.horizontal, 60)
         }

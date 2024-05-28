@@ -24,7 +24,7 @@ struct EndGamePopUpView: View {
         VStack {
             
             HStack {
-                Button("Close") {
+                Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
                     isShowing = false
                 }
                 .padding(20)
@@ -34,7 +34,7 @@ struct EndGamePopUpView: View {
             
             Spacer()
             
-            Text("Game Ended")
+            Text("Game Ended", tableName: "Localization")
                 .TextStyle(TitleTextStyle())
                 .padding(.bottom, 0)
             
@@ -64,11 +64,11 @@ struct EndGamePopUpView: View {
             // Buttons
             HStack {
                 MainButtonView(
-                    buttonText: "Home 🏠",
+                    buttonText: "\(NSLocalizedString("Home", tableName: "Localization", comment: "")) 🏠",
                     color: Color("Primary"))
                 
                 MainButtonView(
-                    buttonText: "Rematch 🔄",
+                    buttonText: "\(NSLocalizedString("Rematch", tableName: "Localization", comment: "")) 🔄",
                     color: Color("Accent"))
             }
             .padding(30)
