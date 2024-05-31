@@ -55,7 +55,7 @@ struct MainButtonView_Previews: PreviewProvider {
         NavigationStack {
             VStack {
                 MainButtonView(
-                    buttonText: "High Scores 🏆",
+                    buttonText: "High Scores",
                     color: Color("Primary"),
                     iconName: nil,
                     destination: AnyView(ScoreboardView())

@@ -12,7 +12,7 @@ struct CreatePlayerView: View {
             TextField(NSLocalizedString("Enter your name", tableName: "Localization", comment: ""), text: $name)
                 .textFieldStyle(.plain)
                 .padding(10)
-                .background(Color(.systemGray6))
+                .background(Colors.backgroundbutton)
                 .cornerRadius(10)
                 .shadow(radius: 2)
                 .padding(.horizontal, 60) // Changer la taille lateral

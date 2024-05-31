@@ -15,6 +15,12 @@ struct GamesView: View {
     }
 }
 
+struct GamesView_Previews: PreviewProvider {
+    static var previews: some View {
+        GamesView()
+    }
+}
+
 //#Preview {
 //    GamesView()
 //}

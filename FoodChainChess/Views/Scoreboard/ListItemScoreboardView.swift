@@ -17,7 +17,8 @@ struct ListItemScoreboardView: View {
 
 struct ListItemScorePreview_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello, world!")
+        ListItemScoreboardView()
+        
     }
 }
 

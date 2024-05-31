@@ -22,6 +22,12 @@ struct RegisteredGamesView: View {
     }
 }
 
+struct RegisterGamesPreview: PreviewProvider {
+    static var previews: some View {
+        RegisteredGamesView()
+    }
+}
+
 //#Preview {
 //    RegisteredGamesView()
 //}
