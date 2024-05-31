@@ -39,7 +39,7 @@ struct MainButtonView: View {
     
     private var buttonContent: some View {
         HStack {
-            Text(buttonText)
+            Text(NSLocalizedString(buttonText, tableName: "Localization", comment: ""))
             
             if let iconName = iconName {
                 Image(systemName: iconName)
