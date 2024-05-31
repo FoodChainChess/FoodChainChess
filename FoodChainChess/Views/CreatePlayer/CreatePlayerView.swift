@@ -3,6 +3,8 @@ import SwiftUI
 struct CreatePlayerView: View {
     @State private var name = ""
     @State private var errorMessage = ""
+    
+    @State private var isShowingConfirmation = false
 
     @EnvironmentObject var playerManager: PlayerManager
 
@@ -31,10 +33,22 @@ struct CreatePlayerView: View {
                     if let error = playerManager.addPlayer(username: name) {
                         errorMessage = error
                     } else {
-                        name = ""
+                        self.isShowingConfirmation = true
                         errorMessage = ""
                         print("Player count: \(self.playerManager.createdPlayers.count)")
                     }
+                }
+                .alert(isPresented: $isShowingConfirmation) {
+                    Alert(
+                        title: Text("New player created.", tableName: "Localization"),
+                        message: Text("Player \(name) was created.", tableName: "Localization"),
+
+                        dismissButton: .default(
+                            Text("Ok", tableName: "Localization"),
+                            action: {
+                                self.name = ""
+                            }
+                        ))
                 }
             }.padding(60)
             Spacer()

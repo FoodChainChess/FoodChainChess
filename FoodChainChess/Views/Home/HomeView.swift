@@ -40,7 +40,7 @@ struct HomeView: View {
                         color: Colors.primary,
                         iconName: "play.fill",
                         textColor: Color("Background"),
-                        destination: AnyView(StartGamePopUpView().navigationBarBackButtonHidden(true)))
+                        destination: AnyView(StartGamePopUpView()))
                     
                     MainButtonView(
                         buttonText: (NSLocalizedString("High Scores", tableName: "Localization", comment: "")),

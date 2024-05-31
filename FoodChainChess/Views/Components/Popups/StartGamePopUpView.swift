@@ -65,12 +65,6 @@ struct StartGamePopUpView: View {
                 destination: AnyView(BoardView().navigationBarBackButtonHidden(true))
             ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
-            .navigationBarItems(
-                leading:
-                    Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
-                        dismiss()
-                    }
-            )
         }
     }
 }
