@@ -13,7 +13,7 @@ class GameScene : SKScene{
     
     override init(size: CGSize) {
         super.init(size: size)
-        self.scaleMode = .aspectFit
+        self.scaleMode = .resizeFill
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.addChild(imageBoard)

@@ -2,7 +2,7 @@ import SwiftUI
 import SpriteKit
 
 struct BoardView: View {
-    var gameScene : GameScene = GameScene(size: CGSize(width: 940, height: 740))
+    //var gameScene : GameScene = GameScene(size: CGSize(width: 900, height: 700))
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
 
@@ -35,9 +35,17 @@ struct BoardView: View {
                 PlayerProfilBoardView(imageSource: "", username: "Username 2").rotationEffect(.degrees(180))
                 Spacer()
             }.padding()
-            Spacer()
-            SpriteView(scene: gameScene)
-            Spacer()
+            GeometryReader { geometry in
+                SpriteView(scene: GameScene(size: CGSize(width: geometry.size.width, height: geometry.size.height)))
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .background(.red)
+            }.edgesIgnoringSafeArea(.all)
+//            SpriteView(scene: gameScene)
+//                .aspectRatio(contentMode: .fit)
+//                                    .rotationEffect(.degrees(90))
+//                                    .background(.red)
+//                                    .scaledToFill()
             PlayerProfilBoardView(imageSource: "", username: "Username 1")
         }
     }
