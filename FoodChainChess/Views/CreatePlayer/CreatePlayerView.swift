@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CreatePlayerView: View {
     @State private var name = ""
+    @EnvironmentObject var playerManager: PlayerManager
 
     
     var body: some View {
@@ -18,7 +19,11 @@ struct CreatePlayerView: View {
                 .padding(.horizontal, 60) // Changer la taille lateral
                 .padding(.top, 50)
             VStack {
-                MainButtonView(buttonText: "Create", color: .secondary)
+                MainButtonView(buttonText: "Create", color: .secondary) {
+                    self.playerManager.addPlayer(username: name)
+                    name = ""
+                    print("Player count: \(self.playerManager.createdPlayers.count)")
+                }
             }.padding(60)
             Spacer()
         }.background(Colors.background)
@@ -29,6 +34,6 @@ struct CreatePlayerView: View {
 
 struct CreatePlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePlayerView()
+        CreatePlayerView().environmentObject(PlayerManager())
     }
 }
