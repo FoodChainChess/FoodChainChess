@@ -2,6 +2,8 @@ import SwiftUI
 
 struct CreatePlayerView: View {
     @State private var name = ""
+    @State private var errorMessage = ""
+
     @EnvironmentObject var playerManager: PlayerManager
 
     
@@ -18,11 +20,21 @@ struct CreatePlayerView: View {
                 .shadow(radius: 2)
                 .padding(.horizontal, 60) // Changer la taille lateral
                 .padding(.top, 50)
+            
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding(.top, 10)
+            }
             VStack {
                 MainButtonView(buttonText: "Create", color: Colors.primary) {
-                    self.playerManager.addPlayer(username: name)
-                    name = ""
-                    print("Player count: \(self.playerManager.createdPlayers.count)")
+                    if let error = playerManager.addPlayer(username: name) {
+                        errorMessage = error
+                    } else {
+                        name = ""
+                        errorMessage = ""
+                        print("Player count: \(self.playerManager.createdPlayers.count)")
+                    }
                 }
             }.padding(60)
             Spacer()
