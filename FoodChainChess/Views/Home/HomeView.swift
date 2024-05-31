@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var isShowingPopUp = false
     @State private var isShowingPopUp2 = false
     
     var body: some View {
@@ -18,7 +17,7 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "gearshape.fill",
                         size: .small,
-                        destination: AnyView(ParametersView().navigationBarBackButtonHidden(true))
+                        destination: AnyView(ParametersView())
                     ).padding()
                     Spacer()
                     
@@ -30,42 +29,43 @@ struct HomeView: View {
                     IconButtonView(
                         iconName: "person.badge.plus.fill",
                         size: .small,
-                        destination: AnyView(CreatePlayerView().navigationBarBackButtonHidden(true))
+                        destination: AnyView(CreatePlayerView())
                     ).padding()
                 }
                 Spacer()
                 
-                VStack(spacing: 24) {
+                VStack(spacing: 35) {
                     MainButtonView(
                         buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
-                        color: Colors.text,
+                        color: Colors.primary,
                         iconName: "play.fill",
                         textColor: Color("Background"),
-                        action: { isShowingPopUp.toggle() })
+                        destination: AnyView(StartGamePopUpView().navigationBarBackButtonHidden(true)))
                     
                     MainButtonView(
-                        buttonText:"\(NSLocalizedString("High Scores", tableName: "Localization", comment: "")) 🏆",
-                        color: Color("Primary"),
-                        destination: AnyView(ScoreboardView().navigationBarBackButtonHidden(true)))
+                        buttonText: (NSLocalizedString("High Scores", tableName: "Localization", comment: "")),
+                        color: Colors.primary,
+                        iconName: "trophy.fill",
+                        destination: AnyView(ScoreboardView()))
                     
                     MainButtonView(
-                        buttonText:"\(NSLocalizedString("Saved Games", tableName: "Localization", comment: "")) 💾",
-                        color: Color("Accent"),
-                        destination: AnyView(GamesView().navigationBarBackButtonHidden(true)))
+                        buttonText:(NSLocalizedString("Saved Games", tableName: "Localization", comment: "")),
+                        color: Colors.primary,
+                        iconName: "folder.fill",
+                        destination: AnyView(GamesView()))
                     
                     MainButtonView(
                         buttonText: NSLocalizedString("Keep Playing", tableName: "Localization", comment: ""),
-                        color: Color("Secondary"),
+                        color: Colors.primary,
                         iconName: "arrow.right.circle",
-                        destination: AnyView(RegisteredGamesView().navigationBarBackButtonHidden(true)))
-
+                        destination: AnyView(RegisteredGamesView()))
+                    
                 }
+                .padding(70)
                 .font(.title2)
-                .padding(80)
+                
                 
                 Spacer()
-            }.sheet(isPresented: $isShowingPopUp) {
-                StartGamePopUpView(isShowing: $isShowingPopUp)
             }.sheet(isPresented: $isShowingPopUp2) {
                 EndGamePopUpView(
                     isShowing: $isShowingPopUp2,

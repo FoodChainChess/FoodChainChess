@@ -10,12 +10,12 @@ import DouShouQiModel
 
 struct StartGamePopUpView: View {
     @EnvironmentObject var playerManager: PlayerManager
-    
-    @Binding var isShowing: Bool
-    
+        
     @State private var selectedGameMode: String = "pvp"
     @State private var selectedPlayer1: String = "no player selected"
     @State private var selectedPlayer2: String = "no player selected"
+    
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -57,19 +57,18 @@ struct StartGamePopUpView: View {
                 }
                 .pickerStyle(.navigationLink)
             }
-            VStack(spacing: 24) {
-                MainButtonView(
-                    buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
-                    color: Colors.text,
-                    iconName: "play.fill",
-                    destination: AnyView(BoardView().navigationBarBackButtonHidden(true))
-                )
-            }
+            MainButtonView(
+                buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
+                color: Colors.text,
+                iconName: "play.fill",
+                textColor: Color("Background"),
+                destination: AnyView(BoardView().navigationBarBackButtonHidden(true))
+            ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
             .navigationBarItems(
                 leading:
                     Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
-                        isShowing = false
+                        dismiss()
                     }
             )
         }
@@ -86,7 +85,7 @@ struct StartGamePopUpView_Previews: PreviewProvider {
         playerManager.addPlayer(username: "LouSusÇa")
         playerManager.addPlayer(username: "LouSusComment")
         
-        return StartGamePopUpView(isShowing: $isShowing)
+        return StartGamePopUpView()
             .environmentObject(playerManager)
     }
 }

@@ -16,12 +16,6 @@ struct FoodChainChessApp: App {
                 .environmentObject(playerManager)
                 .preferredColorScheme(appearanceSettings.isDarkMode ? .dark : .light)
                 .id(rootViewID)
-                .onReceive(NotificationCenter.default.publisher(for: Notification.Name("LanguageChanged"))) { _ in
-                    rootViewID = UUID()
-                }
-                .onReceive(NotificationCenter.default.publisher(for: Notification.Name("AppearanceChanged"))) { _ in
-                    rootViewID = UUID()
-                }
         }
     }
 }

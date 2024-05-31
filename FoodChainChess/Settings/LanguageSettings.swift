@@ -5,7 +5,6 @@ class LanguageSettings: ObservableObject {
         didSet {
             UserDefaults.standard.set([currentLanguage], forKey: "AppleLanguages")
             UserDefaults.standard.synchronize()
-            NotificationCenter.default.post(name: NSNotification.Name("LanguageChanged"), object: nil)
         }
     }
 
