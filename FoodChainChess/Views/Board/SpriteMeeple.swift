@@ -91,7 +91,8 @@ class SpriteMeeple: SKNode {
             return
         }
         
-        self.position = touches.first?.location(in: parent!) ?? CGPoint(x: 0, y: 0)
+            // Mettre a jour la position de la pièce en fonction du touch
+            self.position = touches.first?.location(in: parent!) ?? CGPoint(x: 0, y: 0)
     }
     
     /// Méthode déclenchée à la fin du mouvement de la pièce
@@ -100,24 +101,38 @@ class SpriteMeeple: SKNode {
     ///   - event: <#event description#>
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard isOwnerCurrentPlayer() else {
+            // TODO: gestion d'erreur (throws ou retour de valeur d'erreur)
             return
         }
         
-        guard let parent = parent as? GameScene else { return }
+        
+        // guard let parent = parent as? GameScene else { return }
+        
+        guard let gameScene = self.gameScene else {
+            // TODO: gestion d'erreur (throws ou retour de valeur d'erreur)
+            return
+        }
 
-        let touchLocation = touches.first?.location(in: parent) ?? CGPoint.zero
+        let touchLocation = touches.first?.location(in: gameScene) ?? CGPoint.zero
         let nearestPosition = nearestCellPosition(to: touchLocation)
 
+        // mettre cellule en cours au premier plan
         SpriteMeeple.maxZPosition += 1
         self.zPosition = SpriteMeeple.maxZPosition
 
+        // position de la cellule actuelle
         self.cellPosition = nearestPosition
         
         // Mise à jour du modèle de jeu après le déplacement
-        if let piece = parent.game.board.grid[Int(self.cellPosition.y)][Int(self.cellPosition.x)].piece {
-            let possibleMoves = parent.game.rules.getMoves(in: parent.game.board, of: piece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
+        // check si le move est valide
+        
+            // appliquer le move si valide
+            // afficher erreur si move pas valide
+        
+        if let piece = gameScene.game.board.grid[Int(self.cellPosition.y)][Int(self.cellPosition.x)].piece {
+            let possibleMoves = gameScene.game.rules.getMoves(in: gameScene.game.board, of: piece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
             if let move = possibleMoves.first(where: { $0.rowDestination == Int(self.cellPosition.y) && $0.columnDestination == Int(self.cellPosition.x) }) {
-                parent.applyMove(move)
+                gameScene.applyMove(move)
             }
         }
     }

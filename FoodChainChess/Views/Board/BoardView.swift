@@ -43,20 +43,35 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "", username: player2.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: player2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "", username: player1.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: player1.player.name)
         }.task {
+            gameScene.game.addGameStartedListener { _ in
+                print("********")
+                print("louSusQi")
+                print("louSusQi")
+                print("louSusQi")
+                print("louSusQi")
+                print("louSusQi")
+                print("louSusQi")
+                print("louSusQi")
+                print("********")
+            }
             try? await gameScene.game.start()
-            //gameScene.game.addGameStartedListener(())
         }
     }
 }
 
-#Preview {
-    BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
+struct BoardViewPreview: PreviewProvider {
+    static var previews: some View {
+        BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
+    }
 }
+//#Preview {
+//    BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
+//}
