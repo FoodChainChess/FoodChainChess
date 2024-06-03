@@ -1,11 +1,22 @@
 import SwiftUI
 import SpriteKit
+import DouShouQiModel
 
 struct BoardView: View {
-    var gameScene : GameScene = GameScene(size: CGSize(width: 940, height: 740))
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
-
+    
+    @ObservedObject var player1: PlayerVM
+    @ObservedObject var player2: PlayerVM
+    
+    var gameScene: GameScene
+    
+    init(player1: PlayerVM, player2: PlayerVM) {
+        self.player1 = player1
+        self.player2 = player2
+        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -32,17 +43,20 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "", username: "Username 2").rotationEffect(.degrees(180))
+                PlayerProfilBoardView(imageSource: "", username: player2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "", username: "Username 1")
+            PlayerProfilBoardView(imageSource: "", username: player1.player.name)
+        }.task {
+            try? await gameScene.game.start()
+            //gameScene.game.addGameStartedListener(())
         }
     }
 }
 
 #Preview {
-    BoardView()
+    BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
 }

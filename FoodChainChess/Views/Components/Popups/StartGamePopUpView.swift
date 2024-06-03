@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import DouShouQiModel
 
 struct StartGamePopUpView: View {
     
     @State private var selectedGameMode: String = "PvP"
-    @State private var selectedPlayer1: String = "none"
-    @State private var selectedPlayer2: String = "none"
+    @State private var selectedPlayerName1: String = "none"
+    @State private var selectedPlayerName2: String = "none"
     
     @Environment(\.dismiss) private var dismiss
     
@@ -35,7 +36,7 @@ struct StartGamePopUpView: View {
                 
                 // Player Selection
                 Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
-                       selection: $selectedPlayer1) {
+                       selection: $selectedPlayerName1) {
                     
                     Text("Ronaldo")
                         .tag("Roanldo")
@@ -45,7 +46,7 @@ struct StartGamePopUpView: View {
                 }
                 
                 Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
-                       selection: $selectedPlayer2) {
+                       selection: $selectedPlayerName2) {
                     
                     Text("Neymar")
                         .tag("Neymar")
@@ -59,7 +60,7 @@ struct StartGamePopUpView: View {
                 color: Colors.text,
                 iconName: "play.fill",
                 textColor: Color("Background"),
-                destination: AnyView(BoardView().navigationBarBackButtonHidden(true))
+                destination: AnyView(BoardView(player1: PlayerVM(player: HumanPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: RandomPlayer(withName: "LouBis", andId: .player2)!)).navigationBarBackButtonHidden(true))
             ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
             .navigationBarItems(

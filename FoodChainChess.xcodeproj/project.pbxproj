@@ -17,12 +17,13 @@
 		EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8922BF3549F008A99F5 /* MainButtonView.swift */; };
 		EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */; };
 		EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C89B2BF39254008A99F5 /* PickerItems.swift */; };
-		EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9736D22C038FA100442C23 /* ImagePicker.swift */; };
 		EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */; };
 		EC83FCD92C0475FE0075D6F4 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */; };
+		EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9736D22C038FA100442C23 /* ImagePicker.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
+		ECA5AE4C2C09FC97004A0A39 /* PlayerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5AE4B2C09FC97004A0A39 /* PlayerVM.swift */; };
 		ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E322C00C30D005C7689 /* BoardView.swift */; };
 		ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */; };
 		ECA69E372C00C364005C7689 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E362C00C364005C7689 /* GameScene.swift */; };
@@ -59,12 +60,13 @@
 		EC62C8922BF3549F008A99F5 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 		EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGamePopUpView.swift; sourceTree = "<group>"; };
 		EC62C89B2BF39254008A99F5 /* PickerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItems.swift; sourceTree = "<group>"; };
-		EC9736D22C038FA100442C23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
 		EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
+		EC9736D22C038FA100442C23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
+		ECA5AE4B2C09FC97004A0A39 /* PlayerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVM.swift; sourceTree = "<group>"; };
 		ECA69E322C00C30D005C7689 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfilBoardView.swift; sourceTree = "<group>"; };
 		ECA69E362C00C364005C7689 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -155,6 +157,14 @@
 				ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */,
 			);
 			path = TopBar;
+			sourceTree = "<group>";
+		};
+		ECA5AE4A2C09FC7F004A0A39 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ECA5AE4B2C09FC97004A0A39 /* PlayerVM.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		ECA69E302C00C2E3005C7689 /* Board */ = {
@@ -251,6 +261,7 @@
 		ECD2FF5D2BF212EE007836C4 /* FoodChainChess */ = {
 			isa = PBXGroup;
 			children = (
+				ECA5AE4A2C09FC7F004A0A39 /* ViewModels */,
 				EC83FCD32C046D500075D6F4 /* Settings */,
 				EC62C89A2BF3923C008A99F5 /* Stub */,
 				ECD2FF6E2BF213CD007836C4 /* Ressources */,
@@ -403,6 +414,7 @@
 				ECAA4C662BF33894008172E0 /* GamesView.swift in Sources */,
 				ECC36F452BFDD8FC0071AF45 /* ModeSwitchView.swift in Sources */,
 				ECAB1FF52BF3631B003D866C /* ProfilePictureView.swift in Sources */,
+				ECA5AE4C2C09FC97004A0A39 /* PlayerVM.swift in Sources */,
 				ECA69E392C00C38D005C7689 /* SpriteMeeple.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
 				EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */,
