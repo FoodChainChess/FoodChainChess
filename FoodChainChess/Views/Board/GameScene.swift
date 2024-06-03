@@ -144,6 +144,7 @@ class GameScene: SKScene {
     
     func updateCurrentPlayer() {
         currentPlayer = game.rules.getNextPlayer()
+        // TODO remake
         let players = [player1.player, player2.player]
         if let player = players.first(where: { $0.id == currentPlayer }), player is RandomPlayer {
             let possibleMoves = game.rules.getMoves(in: game.board, of: currentPlayer!)

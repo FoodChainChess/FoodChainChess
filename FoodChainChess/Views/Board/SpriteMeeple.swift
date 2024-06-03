@@ -28,6 +28,21 @@ class SpriteMeeple: SKNode {
         }
     }
     
+    var possibleMoves: [Move] = []
+
+    var currentPiece: Piece? {
+        didSet {
+            print("Current piece is : \(currentPiece)")
+            
+            if let currentPiece = self.currentPiece {
+                possibleMoves = gameScene!.game.rules.getMoves(in: gameScene!.game.board, of: currentPiece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
+            }
+            
+            print("**** MOVES *****")
+            print(self.possibleMoves)
+        }
+    }
+        
     init(imageNamed imageName: String, size: CGSize, backgroundColor: UIColor, owner: Owner) {
         imageNode = SKSpriteNode(imageNamed: imageName)
         imageNode.size = CGSize(width: size.width, height: size.height)
@@ -78,6 +93,13 @@ class SpriteMeeple: SKNode {
         
         if let touch = touches.first {
             let position = touch.location(in: self.gameScene!)
+            
+            // position de la piece a partir de la zone touché
+            let currentPiecePosition = nearestCellPosition(to: position)
+            
+            // definir la piece en cours
+            self.currentPiece = self.gameScene?.game.board.grid[Int(currentPiecePosition.y)][Int(currentPiecePosition.x)].piece
+            
             highlightNodes(from: position)
         }
     }
@@ -112,19 +134,23 @@ class SpriteMeeple: SKNode {
             // TODO: gestion d'erreur (throws ou retour de valeur d'erreur)
             return
         }
-
-        let touchLocation = touches.first?.location(in: gameScene) ?? CGPoint.zero
-        let nearestPosition = nearestCellPosition(to: touchLocation)
-
+        
         // mettre cellule en cours au premier plan
         SpriteMeeple.maxZPosition += 1
         self.zPosition = SpriteMeeple.maxZPosition
-
-        // position de la cellule actuelle
+        
+        // recuperer la position du touch actuel
+        let touchLocation = touches.first?.location(in: gameScene) ?? CGPoint.zero
+        
+        // mettre a jour la position de la cellule
+        let nearestPosition = nearestCellPosition(to: touchLocation)
         self.cellPosition = nearestPosition
         
         // Mise à jour du modèle de jeu après le déplacement
         // check si le move est valide
+        
+        // prendre la piece en cours
+        
         
             // appliquer le move si valide
             // afficher erreur si move pas valide

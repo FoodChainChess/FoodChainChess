@@ -52,16 +52,9 @@ struct BoardView: View {
             PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: player1.player.name)
         }.task {
             gameScene.game.addGameStartedListener { _ in
-                print("********")
-                print("louSusQi")
-                print("louSusQi")
-                print("louSusQi")
-                print("louSusQi")
-                print("louSusQi")
-                print("louSusQi")
-                print("louSusQi")
-                print("********")
+               print("* Game Started")
             }
+            
             try? await gameScene.game.start()
         }
     }
