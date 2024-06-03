@@ -11,7 +11,7 @@ struct MainButtonView: View {
     var buttonText: String
     var color: Color
     var iconName: String?
-    var textColor: Color = Color("Text")
+    var textColor: Color = .white
     var action: (() -> Void)?
     var destination: AnyView?
     
@@ -55,7 +55,7 @@ struct MainButtonView_Previews: PreviewProvider {
         NavigationStack {
             VStack {
                 MainButtonView(
-                    buttonText: "High Scores 🏆",
+                    buttonText: "High Scores",
                     color: Color("Primary"),
                     iconName: nil,
                     destination: AnyView(ScoreboardView())

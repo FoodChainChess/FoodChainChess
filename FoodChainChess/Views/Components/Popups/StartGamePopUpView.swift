@@ -9,21 +9,22 @@ import SwiftUI
 import DouShouQiModel
 
 struct StartGamePopUpView: View {
-    
-    @State private var selectedGameMode: String = "PvP"
-    @State private var selectedPlayerName1: String = "none"
-    @State private var selectedPlayerName2: String = "none"
+    @EnvironmentObject var playerManager: PlayerManager
+        
+    @State private var selectedGameMode: String = "pvp"
+    @State private var selectedPlayer1: String = "no player selected"
+    @State private var selectedPlayer2: String = "no player selected"
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
-            Form {
+            VStack {
                 // Game mode selection
                 Picker(NSLocalizedString("Game Mode", tableName: "Localization", comment: ""),
                        selection: $selectedGameMode) {
                     
-                    Text("Player vs Player", tableName: "Localization")
+                    Text("PvP", tableName: "Localization")
                         .tag("pvp")
                     
                     Text("Player vs Computer", tableName: "Localization")
@@ -32,28 +33,29 @@ struct StartGamePopUpView: View {
                     Text("Multi-Device", tableName: "Localization")
                         .tag("multi")
                 }
-               .pickerStyle(.navigationLink)
+                .pickerStyle(.navigationLink)
                 
                 // Player Selection
                 Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
-                       selection: $selectedPlayerName1) {
+                       selection: $selectedPlayer1) {
                     
-                    Text("Ronaldo")
-                        .tag("Roanldo")
-                    
-                    Text("Messi")
-                        .tag("Messi")
+                    // need to use count because player does not conform with identifiable
+                    ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
+                        Text(playerManager.createdPlayers[index].name)
+                            .tag(playerManager.createdPlayers[index].name)
+                    }
                 }
+                       .pickerStyle(.navigationLink)
                 
                 Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
-                       selection: $selectedPlayerName2) {
+                       selection: $selectedPlayer2) {
                     
-                    Text("Neymar")
-                        .tag("Neymar")
-                    
-                    Text("Haaland")
-                        .tag("Haaland")
+                    ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
+                        Text(playerManager.createdPlayers[index].name)
+                            .tag(playerManager.createdPlayers[index].name)
+                    }
                 }
+                .pickerStyle(.navigationLink)
             }
             MainButtonView(
                 buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
@@ -63,18 +65,22 @@ struct StartGamePopUpView: View {
                 destination: AnyView(BoardView(player1: PlayerVM(player: HumanPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: RandomPlayer(withName: "LouBis", andId: .player2)!)).navigationBarBackButtonHidden(true))
             ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
-            .navigationBarItems(
-                leading:
-                    Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
-                        dismiss()
-                    }
-            )
         }
     }
 }
 
 struct StartGamePopUpView_Previews: PreviewProvider {
+    @State static var isShowing = true
+    
     static var previews: some View {
-        StartGamePopUpView()
+        let playerManager = PlayerManager()
+        playerManager.addPlayer(username: "LouSusQi")
+        playerManager.addPlayer(username: "LouSusQuoi")
+        playerManager.addPlayer(username: "LouSusÇa")
+        playerManager.addPlayer(username: "LouSusComment")
+        
+        return StartGamePopUpView()
+            .environmentObject(playerManager)
     }
 }
+

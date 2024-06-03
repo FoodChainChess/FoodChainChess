@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "🌎 Language" : {
+
+    },
+    "🌗 Dark Mode" : {
+
+    },
     "Close" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -279,6 +285,9 @@
         }
       }
     },
+    "New player created." : {
+
+    },
     "No" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -295,6 +304,9 @@
           }
         }
       }
+    },
+    "Ok" : {
+
     },
     "Parameters" : {
       "extractionState" : "manual",
@@ -347,6 +359,9 @@
         }
       }
     },
+    "Player %@ was created." : {
+
+    },
     "Player vs Computer" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -397,6 +412,9 @@
           }
         }
       }
+    },
+    "PvP" : {
+
     },
     "Registered Games" : {
       "extractionState" : "manual",
