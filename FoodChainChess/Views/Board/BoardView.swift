@@ -6,14 +6,14 @@ struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
     
-    @ObservedObject var player1: PlayerVM
-    @ObservedObject var player2: PlayerVM
-    
     var gameScene: GameScene
     
-    init(player1: PlayerVM, player2: PlayerVM) {
-        self.player1 = player1
-        self.player2 = player2
+    // pour acceder a game plus rapidement
+    var game: Game {
+        return self.gameScene.gameVM.game
+    }
+    
+    init(player1: Player, player2: Player) {
         self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
     }
     
@@ -43,26 +43,63 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: player2.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player2VM.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: player1.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
         }.task {
-            gameScene.game.addGameStartedListener { _ in
+            gameScene.gameVM.game.addGameStartedListener { _ in
                print("* Game Started")
+                
+             // print(self.game.board)
             }
             
-            try? await gameScene.game.start()
+            self.game.addBoardChangedListener { _ in
+                print("*** BOARD CHANGED ***")
+                print("*** ***** ******* ***")
+                // print(self.game.board)
+                print()
+            }
+            
+            self.game.addBoardChangedListener {
+                print("*** changed 2 ***")
+                print($0)
+            }
+            
+            self.game.addPlayerNotifiedListener({ board, player in
+                print("**************************************")
+                print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
+                print("**************************************")
+                //try! await Persistance.saveGame(withName: "game", andGame: game2)
+            })
+            
+            self.game.addMoveChosenCallbacksListener { _, move, player in
+                print("**************************************")
+                print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
+                print("**************************************")
+            }
+            
+            self.game.addInvalidMoveCallbacksListener { _, move, player, result in
+               print("**************************************")
+               print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
+               print("**************************************")
+               //_ = readLine()
+           }
+            await self.gameScene.gameVM.start()
         }
     }
 }
 
 struct BoardViewPreview: PreviewProvider {
     static var previews: some View {
-        BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
+        
+        let player1: Player = HumanPlayer(withName: "LouSusQi", andId: .player1)!
+        let player2: Player = HumanPlayer(withName: "LouSusQuoi", andId: .player2)!
+        
+        BoardView(player1: player1, player2: player2)
     }
 }
 //#Preview {
