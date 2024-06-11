@@ -84,7 +84,7 @@ struct StartGamePopUpView: View {
                 color: Colors.text,
                 iconName: "play.fill",
                 textColor: Color("Background"),
-                destination: AnyView(BoardView(player1: PlayerVM(player: HumanPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: RandomPlayer(withName: "LouBis", andId: .player2)!)).navigationBarBackButtonHidden(true))
+                destination: AnyView(BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: HumanPlayer(withName: "LouBis", andId: .player2)!).navigationBarBackButtonHidden(true))
             ).padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
         }

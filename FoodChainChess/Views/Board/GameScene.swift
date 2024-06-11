@@ -6,21 +6,24 @@ import DouShouQiModel
 class GameScene: SKScene {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
-    let meepleSize = CGSize(width: 80, height: 80)
-    
-    var game: Game
-    @ObservedObject var player1: PlayerVM
-    @ObservedObject var player2: PlayerVM
-    
+        
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
     
-    var currentPlayer: Owner?
+    /// Instance de game
+    var gameVM: GameVM
     
-    init(size: CGSize, player1: PlayerVM, player2: PlayerVM) {
-        self.player1 = player1
-        self.player2 = player2
-        self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1.player, andPlayer2: player2.player)
+    /// Permet un access rapide a l'instance de game
+    var game: Game {
+        return self.gameVM.game
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(size: CGSize, gameVM: GameVM) {
+        self.gameVM = gameVM
         super.init(size: size)
         
         self.scaleMode = .aspectFit
@@ -28,43 +31,18 @@ class GameScene: SKScene {
         
         self.addChild(imageBoard)
         
-        let players = [player1.player, player2.player]
-        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
-        
-        for player in players {
-            self.pieces[player.id] = [:]
-            for animal in animals {
-                let color: UIColor
-                switch player.id {
-                case .player1:
-                    color = .red
-                case .player2:
-                    color = .yellow
-                default:
-                    color = .gray
-                }
-                let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
-                self.pieces[player.id]?[animal] = spriteMeeple
-            }
-        }
+        self.pieces = gameVM.createScenePieces()
         
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
-        }
-        
-        do {
-            self.game = try Game(withRules: ClassicRules(), andPlayer1: HumanPlayer(withName: "Human", andId: .player1)!, andPlayer2: RandomPlayer(withName: "Random", andId: .player2)!)
+            
             displayBoard(game.board)
-        } catch {
-            print("Failed to initialize game: \(error)")
+            
+            showNextPlayerAnimation()
         }
-        
-        displayBoard(game.board)
-        
-        updateCurrentPlayer()
-        showNextPlayerAnimation()
     }
-    
+       
+    /// Afficher le plateau
     func displayBoard(_ board: Board) {
         for row in 0..<board.nbRows {
             for col in 0..<board.nbColumns {
@@ -75,9 +53,10 @@ class GameScene: SKScene {
         }
     }
     
+    /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
         clearHighlightedNodes()
-                
+        
         let cellWidth = imageBoard.size.width / CGFloat(game.board.nbColumns)
         let cellHeight = imageBoard.size.height / CGFloat(game.board.nbRows)
         
@@ -97,67 +76,17 @@ class GameScene: SKScene {
         self.view?.setNeedsDisplay()
     }
     
+    /// Effacer les noeuds soulignées
     func clearHighlightedNodes() {
         for node in highlightedNodes {
             node.removeFromParent()
         }
         highlightedNodes.removeAll()
     }
-
-    func playerChooseMove(for piece: Piece, with possibleMoves: [Move]) -> Move? {
-        guard let currentPlayer = currentPlayer else {
-            return nil
-        }
-
-        let players = [player1.player, player2.player]
-
-        guard let actualPlayer = players.first(where: { $0.id == currentPlayer }) else {
-            return nil
-        }
-
-        let chosenMove: Move?
-        
-        if actualPlayer is HumanPlayer {
-            return nil
-        } else if actualPlayer is RandomPlayer {
-            chosenMove = chooseRandomMove(in: possibleMoves)
-        } else {
-            return nil
-        }
-        return chosenMove
-    }
-    
-    func chooseRandomMove(in possibleMoves: [Move]) -> Move? {
-        guard let move = possibleMoves.randomElement() else {
-            return nil
-        }
-        return move
-    }
-    
-    func applyMove(_ move: Move) {
-        //game.rules.playedMove(move, onStartingBoard: game.board, andResultingBoard: game.board)
-        displayBoard(game.board)
-        updateCurrentPlayer()
-        showNextPlayerAnimation()
-        print("TUT")
-    }
-    
-    func updateCurrentPlayer() {
-        currentPlayer = game.rules.getNextPlayer()
-        // TODO remake
-        let players = [player1.player, player2.player]
-        if let player = players.first(where: { $0.id == currentPlayer }), player is RandomPlayer {
-            let possibleMoves = game.rules.getMoves(in: game.board, of: currentPlayer!)
-            let randomMove = chooseRandomMove(in: possibleMoves)
-            if let move = randomMove {
-                applyMove(move)
-            }
-        }
-    }
-    
+    /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = currentPlayer
+        let nextPlayer = game.rules.getNextPlayer()
         
         // Créez un nœud de texte pour afficher le prochain joueur
         let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")
@@ -178,9 +107,5 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
         
         nextPlayerLabel.run(sequence)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
