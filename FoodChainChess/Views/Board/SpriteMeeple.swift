@@ -143,28 +143,10 @@ class SpriteMeeple: SKNode {
         
         // Si move fait parti des moves possibles
         if let move = self.possibleMoves.first(where: { $0.rowDestination == Int(self.cellPosition.y)  && $0.columnDestination == Int(self.cellPosition.x )}) {
-            // Exécuter le move
             
-            let player = self.gameScene.gameVM.currentPlayerVM.player
-            
-            Task { // executer une opération asynchrone dans un contexte non async
-                print("Task")
-                print("")
-                if player is HumanPlayer {
-                    print("Try human player move")
-                    print("")
-                    
-                    do {
-                        print(move)
-                        try await (player as! HumanPlayer).chooseMove(move)
-                    } catch {
-                        print("Error choosing move: \(error)")
-                    }
-                } else {
-                    
-                    // TODO: _ = try! await player.chooseMove(in: board, with: game.rules)
-                }
-            }
+            // Ajouter le move a currentPlayerVM
+            self.gameScene.gameVM.currentPlayerVM.currentMove = move
+            print("added move: \(self.gameScene.gameVM.currentPlayerVM.currentMove)")
         }
         // check si le move est valide
         

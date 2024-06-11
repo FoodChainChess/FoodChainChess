@@ -11,7 +11,7 @@ class GameScene: SKScene {
     var highlightedNodes: [SKShapeNode] = []
     
     /// Instance de game
-    var gameVM: GameVM
+    @Published var gameVM: GameVM
     
     /// Permet un access rapide a l'instance de game
     var game: Game {
@@ -22,8 +22,8 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(size: CGSize, gameVM: GameVM) {
-        self.gameVM = gameVM
+    init(size: CGSize, player1: Player, player2: Player) {
+        self.gameVM = GameVM(player1: player1, player2: player2)
         super.init(size: size)
         
         self.scaleMode = .aspectFit
@@ -41,6 +41,7 @@ class GameScene: SKScene {
             showNextPlayerAnimation()
         }
     }
+
        
     /// Afficher le plateau
     func displayBoard(_ board: Board) {

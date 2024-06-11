@@ -7,19 +7,19 @@ struct BoardView: View {
     @State private var isShowingAlert = false
         
     var gameScene: GameScene
-    
+        
     /// Permet un access rapide a l'instance de gameVM
     var gameVM: GameVM {
         return self.gameScene.gameVM
     }
+    
     /// Permet un access rapide a l'instance de game
     var game: Game {
         return self.gameScene.gameVM.game
     }
     
     init(player1: Player, player2: Player) {
-        let gameVM = GameVM(player1: player1, player2: player2)
-        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), gameVM: gameVM)
+        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
     }
     
     var body: some View {
@@ -80,9 +80,27 @@ struct BoardView: View {
                 print("**************************************")
                 //try! await Persistance.saveGame(withName: "game", andGame: game2)
                 
-//                while() {
-//                    
-//                }
+                DispatchQueue.global().async {
+                    Task {
+                        print("entering task")
+                        while await self.gameVM.currentPlayerVM.currentMove == nil {
+                            // attendre
+                        }
+                        print("out of the loop")
+                        
+                        // recuperer le move du joueur actuelle
+                        let move = await self.gameVM.currentPlayerVM.currentMove
+                        
+                        // tenter d'executer le move
+                        if player is HumanPlayer {
+                            try! await (player as! HumanPlayer).chooseMove(move)
+                            print("succes move executed")
+                        } else {
+                            // si player pas humain tenter le move en tant que IA
+                            _ = try! await player.chooseMove(in: board, with: self.game.rules)
+                        }
+                    }
+                }
             })
             
             self.game.addMoveChosenCallbacksListener { _, move, player in

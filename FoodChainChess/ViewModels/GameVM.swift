@@ -58,7 +58,7 @@ class GameVM: ObservableObject {
     /// Lancer la boucle de jeu
     func start() async {
         print("GAME STARTED")
-       //  self.getNextPlayer()
+        //  self.getNextPlayer()
         try? await game.start()
     }
     
