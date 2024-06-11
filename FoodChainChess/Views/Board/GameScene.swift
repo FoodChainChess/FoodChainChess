@@ -6,53 +6,43 @@ import DouShouQiModel
 class GameScene: SKScene {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
-    let meepleSize = CGSize(width: 80, height: 80)
-    
-    var gameVM: GameVM
-    
+        
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
     
-    init(size: CGSize, player1: Player, player2: Player) {
-            
-        self.gameVM = GameVM(player1: player1, player2: player2)
+    /// Instance de game
+    var gameVM: GameVM
+    
+    /// Permet un access rapide a l'instance de game
+    var game: Game {
+        return self.gameVM.game
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(size: CGSize, gameVM: GameVM) {
+        self.gameVM = gameVM
         super.init(size: size)
-
+        
         self.scaleMode = .aspectFit
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.addChild(imageBoard)
         
-        let players = [gameVM.player1VM.player, gameVM.player2VM.player]
-        
-        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
-        
-        for player in players {
-            self.pieces[player.id] = [:]
-            for animal in animals {
-                let color: UIColor
-                switch player.id {
-                case .player1:
-                    color = .red
-                case .player2:
-                    color = .yellow
-                default:
-                    color = .gray
-                }
-                let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
-                self.pieces[player.id]?[animal] = spriteMeeple
-            }
-        }
+        self.pieces = gameVM.createScenePieces()
         
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
+            
+            displayBoard(game.board)
+            
+            showNextPlayerAnimation()
         }
-        
-        displayBoard(gameVM.game.board)
-        
-        showNextPlayerAnimation()
     }
-    
+       
+    /// Afficher le plateau
     func displayBoard(_ board: Board) {
         for row in 0..<board.nbRows {
             for col in 0..<board.nbColumns {
@@ -63,11 +53,12 @@ class GameScene: SKScene {
         }
     }
     
+    /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
         clearHighlightedNodes()
-                
-        let cellWidth = imageBoard.size.width / CGFloat(gameVM.game.board.nbColumns)
-        let cellHeight = imageBoard.size.height / CGFloat(gameVM.game.board.nbRows)
+        
+        let cellWidth = imageBoard.size.width / CGFloat(game.board.nbColumns)
+        let cellHeight = imageBoard.size.height / CGFloat(game.board.nbRows)
         
         for move in moves {
             let highlight = SKShapeNode(circleOfRadius: cellWidth / 4)
@@ -85,16 +76,17 @@ class GameScene: SKScene {
         self.view?.setNeedsDisplay()
     }
     
+    /// Effacer les noeuds soulignées
     func clearHighlightedNodes() {
         for node in highlightedNodes {
             node.removeFromParent()
         }
         highlightedNodes.removeAll()
     }
-    
+    /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = gameVM.currentPlayer
+        let nextPlayer = game.rules.getNextPlayer()
         
         // Créez un nœud de texte pour afficher le prochain joueur
         let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")
@@ -115,9 +107,5 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
         
         nextPlayerLabel.run(sequence)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

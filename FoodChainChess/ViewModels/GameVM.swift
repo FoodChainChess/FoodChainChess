@@ -1,41 +1,47 @@
 import DouShouQiModel
+import UIKit
 import Foundation
 
 class GameVM: ObservableObject {
+    /// Le game
     var game: Game
+    
+    /// Les joueurs
     var player1VM: PlayerVM
     var player2VM: PlayerVM
+    
+    /// Le joueur en coursVM
     @Published var currentPlayerVM: PlayerVM
     
-    @Published var currentPlayer: Owner? {
+    /// L'id du joueur en cours
+    /// Le changement de cette variable déclanche une mise a jour de l'instance
+    /// de currentPlayerVM.
+    @Published var currentPlayerId: Owner? {
         didSet {
             updateCurrentPlayerVM()
         }
     }
     
     init(player1: Player, player2: Player) {
+        
+        // definir les joueurs
         self.player1VM = PlayerVM(player: player1)
         self.player2VM = PlayerVM(player: player2)
         self.currentPlayerVM = player1VM
         
+        // initialiser un nouveau game
         self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
-        
-        do {
-            // TODO: adjust player initialization
-            self.game = try Game(withRules: ClassicRules(), andPlayer1: HumanPlayer(withName: "Human", andId: .player1)!, andPlayer2: RandomPlayer(withName: "Random", andId: .player2)!)
-        } catch {
-            fatalError("failed to create game: \(error)")
-        }
     }
     
     // Gestion des Players //
     func getNextPlayer() {
-        self.currentPlayer = game.rules.getNextPlayer()
+        self.currentPlayerId = game.rules.getNextPlayer()
     }
     
+    /// Mettre a jour le joueur actuelle
     func updateCurrentPlayerVM() {
         print("Updating current player")
-        switch self.currentPlayer {
+        switch self.currentPlayerId {
         case .player1:
             self.currentPlayerVM = self.player1VM
         case .player2:
@@ -49,9 +55,38 @@ class GameVM: ObservableObject {
         }
     }
     
+    /// Lancer la boucle de jeu
     func start() async {
         print("GAME STARTED")
        //  self.getNextPlayer()
         try? await game.start()
+    }
+    
+    /// Création des pieces
+    func createScenePieces() -> [Owner: [Animal: SpriteMeeple]]{
+        var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
+        let meepleSize = CGSize(width: 80, height: 80)
+        
+        let players = [self.player1VM.player, self.player2VM.player]
+        
+        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+        
+        for player in players {
+            pieces[player.id] = [:]
+            for animal in animals {
+                let color: UIColor
+                switch player.id {
+                case .player1:
+                    color = .red
+                case .player2:
+                    color = .yellow
+                default:
+                    color = .gray
+                }
+                let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
+                pieces[player.id]?[animal] = spriteMeeple
+            }
+        }
+        return pieces
     }
 }

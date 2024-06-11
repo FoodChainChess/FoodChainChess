@@ -5,16 +5,21 @@ import DouShouQiModel
 struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
-    
+        
     var gameScene: GameScene
     
-    // pour acceder a game plus rapidement
+    /// Permet un access rapide a l'instance de gameVM
+    var gameVM: GameVM {
+        return self.gameScene.gameVM
+    }
+    /// Permet un access rapide a l'instance de game
     var game: Game {
         return self.gameScene.gameVM.game
     }
     
     init(player1: Player, player2: Player) {
-        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
+        let gameVM = GameVM(player1: player1, player2: player2)
+        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), gameVM: gameVM)
     }
     
     var body: some View {
@@ -43,15 +48,15 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player2VM.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameVM.player2VM.player.name)
                 Spacer()
             }.padding()
             Spacer()
-            SpriteView(scene: gameScene)
+            SpriteView(scene: self.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameVM.player1VM.player.name)
         }.task {
-            gameScene.gameVM.game.addGameStartedListener { _ in
+            self.gameVM.game.addGameStartedListener { _ in
                print("* Game Started")
                 
              // print(self.game.board)
@@ -74,6 +79,10 @@ struct BoardView: View {
                 print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
                 print("**************************************")
                 //try! await Persistance.saveGame(withName: "game", andGame: game2)
+                
+//                while() {
+//                    
+//                }
             })
             
             self.game.addMoveChosenCallbacksListener { _, move, player in
@@ -88,7 +97,7 @@ struct BoardView: View {
                print("**************************************")
                //_ = readLine()
            }
-            await self.gameScene.gameVM.start()
+            await self.gameVM.start()
         }
     }
 }

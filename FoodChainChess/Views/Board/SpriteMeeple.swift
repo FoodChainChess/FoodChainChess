@@ -10,14 +10,15 @@ class SpriteMeeple: SKNode {
     
     let imageNode: SKSpriteNode
     let ellipseNode: SKShapeNode
+    var possibleMoves: [Move] = []
     
     var gameScene: GameScene {
         return (self.scene as? GameScene)!
     }
     
-    // Acceder plus facilement a notre instance game
+    // acceder a game plus rapidement
     var game: Game {
-        return self.gameScene.gameVM.game
+        return self.gameScene.game
     }
     
     // Contient la position actuelle de la cellule dans le board
@@ -28,20 +29,20 @@ class SpriteMeeple: SKNode {
         }
     }
     
+    // Le owner de la piece actuelle
     var owner: Owner {
         didSet {
             print("Owner set to: \(owner)")
         }
     }
     
-    var possibleMoves: [Move] = []
-    
+    // La piece actuelle
     var currentPiece: Piece? {
         didSet {
             print("Current piece is : \(currentPiece)")
             
             if let currentPiece = self.currentPiece {
-                possibleMoves = self.game.rules.getMoves(in: self.game.board, of: currentPiece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
+                possibleMoves = self.gameScene.game.rules.getMoves(in: self.gameScene.game.board, of: currentPiece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
             }
             
             print("**** MOVES *****")
@@ -78,7 +79,7 @@ class SpriteMeeple: SKNode {
         set {}
         get { true }
     }
-    
+
     /// Permet de savoir si le possesseur de la pièce est le joueur actuel
     /// - Returns: True s'il s'agit du joueur actuel, False sinon
     private func isOwnerCurrentPlayer() -> Bool {
