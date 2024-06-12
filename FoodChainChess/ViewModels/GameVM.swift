@@ -4,7 +4,7 @@ import Foundation
 
 class GameVM: ObservableObject {
     /// Le game
-    var game: Game
+    @Published var game: Game
     
     /// Les joueurs
     var player1VM: PlayerVM
@@ -23,7 +23,6 @@ class GameVM: ObservableObject {
     }
     
     init(player1: Player, player2: Player) {
-        
         // definir les joueurs
         self.player1VM = PlayerVM(player: player1)
         self.player2VM = PlayerVM(player: player2)

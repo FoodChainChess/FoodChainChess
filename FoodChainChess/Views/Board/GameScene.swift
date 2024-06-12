@@ -3,7 +3,7 @@ import SpriteKit
 import SwiftUI
 import DouShouQiModel
 
-class GameScene: SKScene {
+class GameScene: SKScene, ObservableObject {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
         
