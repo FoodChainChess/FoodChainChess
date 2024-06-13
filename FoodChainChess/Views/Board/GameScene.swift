@@ -3,27 +3,22 @@ import SpriteKit
 import SwiftUI
 import DouShouQiModel
 
-class GameScene: SKScene {
+class GameScene: SKScene, ObservableObject {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
         
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
     
-    /// Instance de game
-    var gameVM: GameVM
-    
-    /// Permet un access rapide a l'instance de game
-    var game: Game {
-        return self.gameVM.game
-    }
+    /// Instance de game vm
+    @Published var gameVM: GameVM
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(size: CGSize, gameVM: GameVM) {
-        self.gameVM = gameVM
+    init(size: CGSize, player1: Player, player2: Player) {
+        self.gameVM = GameVM(player1: player1, player2: player2)
         super.init(size: size)
         
         self.scaleMode = .aspectFit
@@ -31,16 +26,17 @@ class GameScene: SKScene {
         
         self.addChild(imageBoard)
         
-        self.pieces = gameVM.createScenePieces()
+        self.pieces = self.gameVM.createScenePieces()
         
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
             
-            displayBoard(game.board)
+            displayBoard(self.gameVM.game.board)
             
             showNextPlayerAnimation()
         }
     }
+
        
     /// Afficher le plateau
     func displayBoard(_ board: Board) {
@@ -57,8 +53,8 @@ class GameScene: SKScene {
     func highlightMoves(_ moves: [Move]) {
         clearHighlightedNodes()
         
-        let cellWidth = imageBoard.size.width / CGFloat(game.board.nbColumns)
-        let cellHeight = imageBoard.size.height / CGFloat(game.board.nbRows)
+        let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game.board.nbColumns)
+        let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game.board.nbRows)
         
         for move in moves {
             let highlight = SKShapeNode(circleOfRadius: cellWidth / 4)
@@ -86,7 +82,7 @@ class GameScene: SKScene {
     /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = game.rules.getNextPlayer()
+        let nextPlayer = self.gameVM.game.rules.getNextPlayer()
         
         // Créez un nœud de texte pour afficher le prochain joueur
         let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")
