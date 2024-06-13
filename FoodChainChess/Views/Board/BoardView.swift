@@ -7,57 +7,9 @@ struct BoardView: View {
     @State private var isShowingAlert = false
         
     @ObservedObject var gameScene: GameScene
-        
-    /// Permet un access rapide a l'instance de gameVM
-    var gameVM: GameVM {
-        return self.gameScene.gameVM
-    }
-    
-    /// Permet un access rapide a l'instance de game
-    var game: Game {
-        return self.gameScene.gameVM.game
-    }
     
     init(player1: Player, player2: Player) {
         self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
-        self.gameScene.gameVM.game.addGameStartedListener { _ in
-           print("* Game Started")
-            
-         // print(self.game.board)
-        }
-        
-        self.gameScene.gameVM.game.addBoardChangedListener { _ in
-            print("*** BOARD CHANGED ***")
-            print("*** ***** ******* ***")
-            // print(self.game.board)
-            print()
-        }
-        
-        self.gameScene.gameVM.game.addBoardChangedListener {
-            print("*** changed 2 ***")
-            print($0)
-        }
-        
-        self.gameScene.gameVM.game.addPlayerNotifiedListener({ board, player in
-            print("**************************************")
-            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
-            print("**************************************")
-            //try! await Persistance.saveGame(withName: "game", andGame: game2)
-        
-        })
-        
-        self.gameScene.gameVM.game.addMoveChosenCallbacksListener { _, move, player in
-            print("**************************************")
-            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
-            print("**************************************")
-        }
-        
-        self.gameScene.gameVM.game.addInvalidMoveCallbacksListener { _, move, player, result in
-           print("**************************************")
-           print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
-           print("**************************************")
-           //_ = readLine()
-       }
     }
     
     var body: some View {
@@ -86,13 +38,13 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameVM.player2VM.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player2VM.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: self.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameVM.player1VM.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
         }.task {
             await self.gameScene.gameVM.start()
         }

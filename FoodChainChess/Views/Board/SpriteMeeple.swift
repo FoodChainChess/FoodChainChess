@@ -147,12 +147,6 @@ class SpriteMeeple: SKNode {
         
         // appliquer le move si valide
         // afficher erreur si move pas valide
-        
-        //        if let piece = gameScene.game.board.grid[Int(self.cellPosition.y)][Int(self.cellPosition.x)].piece {
-        //            let possibleMoves = gameScene.game.rules.getMoves(in: gameScene.game.board, of: piece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
-        //            if let move = possibleMoves.first(where: { $0.rowDestination == Int(self.cellPosition.y) && $0.columnDestination == Int(self.cellPosition.x) }) {
-        //            }
-        //        }
     }
     
     

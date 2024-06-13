@@ -10,13 +10,8 @@ class GameScene: SKScene, ObservableObject {
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
     
-    /// Instance de game
+    /// Instance de game vm
     @Published var gameVM: GameVM
-    
-    /// Permet un access rapide a l'instance de game
-    var game: Game {
-        return self.gameVM.game
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -31,12 +26,12 @@ class GameScene: SKScene, ObservableObject {
         
         self.addChild(imageBoard)
         
-        self.pieces = gameVM.createScenePieces()
+        self.pieces = self.gameVM.createScenePieces()
         
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
             
-            displayBoard(game.board)
+            displayBoard(self.gameVM.game.board)
             
             showNextPlayerAnimation()
         }
@@ -58,8 +53,8 @@ class GameScene: SKScene, ObservableObject {
     func highlightMoves(_ moves: [Move]) {
         clearHighlightedNodes()
         
-        let cellWidth = imageBoard.size.width / CGFloat(game.board.nbColumns)
-        let cellHeight = imageBoard.size.height / CGFloat(game.board.nbRows)
+        let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game.board.nbColumns)
+        let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game.board.nbRows)
         
         for move in moves {
             let highlight = SKShapeNode(circleOfRadius: cellWidth / 4)
@@ -87,7 +82,7 @@ class GameScene: SKScene, ObservableObject {
     /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = game.rules.getNextPlayer()
+        let nextPlayer = self.gameVM.game.rules.getNextPlayer()
         
         // Créez un nœud de texte pour afficher le prochain joueur
         let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")

@@ -56,8 +56,42 @@ class GameVM: ObservableObject {
     
     /// Lancer la boucle de jeu
     func start() async {
-        print("GAME STARTED")
-        //  self.getNextPlayer()
+        self.game.addGameStartedListener { _ in
+            print("Game Started")
+        }
+        
+        self.game.addBoardChangedListener { _ in
+            print("*** BOARD CHANGED ***")
+            print("*** ***** ******* ***")
+            // print(self.game.board)
+            print()
+        }
+        
+        self.game.addBoardChangedListener {
+            print("*** changed 2 ***")
+            print($0)
+        }
+        
+        self.game.addPlayerNotifiedListener({ board, player in
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
+            print("**************************************")
+            
+            //try! await Persistance.saveGame(withName: "game", andGame: game2)
+        })
+        
+        self.game.addMoveChosenCallbacksListener { _, move, player in
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
+            print("**************************************")
+        }
+        
+        self.game.addInvalidMoveCallbacksListener { _, move, player, result in
+           print("**************************************")
+           print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
+           print("**************************************")
+           //_ = readLine()
+       }
         try? await game.start()
     }
     
@@ -76,9 +110,9 @@ class GameVM: ObservableObject {
                 let color: UIColor
                 switch player.id {
                 case .player1:
-                    color = .red
-                case .player2:
                     color = .yellow
+                case .player2:
+                    color = .red
                 default:
                     color = .gray
                 }
