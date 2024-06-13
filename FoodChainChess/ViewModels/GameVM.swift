@@ -22,6 +22,9 @@ class GameVM: ObservableObject {
         }
     }
     
+    ///CallBack pour reset piece dans SpriteMeeple
+    var invalidMoveCallback: (() -> Void)?
+    
     init(player1: Player, player2: Player) {
         // definir les joueurs
         self.player1VM = PlayerVM(player: player1)
@@ -30,6 +33,11 @@ class GameVM: ObservableObject {
         
         // initialiser un nouveau game
         self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
+    }
+    
+    //Listener du callback pour le reset piece dans SpriteMeeple
+    func addInvalidMoveCallbacksListener(callback: @escaping () -> Void) {
+        self.invalidMoveCallback = callback
     }
     
     // Gestion des Players //
@@ -76,6 +84,7 @@ class GameVM: ObservableObject {
             print("**************************************")
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
             print("**************************************")
+            self.getNextPlayer()
             
             //try! await Persistance.saveGame(withName: "game", andGame: game2)
         })
@@ -87,10 +96,15 @@ class GameVM: ObservableObject {
         }
         
         self.game.addInvalidMoveCallbacksListener { _, move, player, result in
+           if result {
+             return
+           }
            print("**************************************")
            print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
            print("**************************************")
-           //_ = readLine()
+           
+            self.invalidMoveCallback?()
+            
        }
         try? await game.start()
     }
@@ -118,6 +132,11 @@ class GameVM: ObservableObject {
                 }
                 let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
                 pieces[player.id]?[animal] = spriteMeeple
+                
+                //Listener qui va declencher le resetPiecePosition dans SpriteMeeple
+                addInvalidMoveCallbacksListener {
+                    spriteMeeple.resetPiecePosition()
+                }
             }
         }
         return pieces

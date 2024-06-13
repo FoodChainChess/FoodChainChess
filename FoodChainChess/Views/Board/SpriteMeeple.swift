@@ -16,6 +16,8 @@ class SpriteMeeple: SKNode {
         return (self.scene as? GameScene)!
     }
     
+    var fromMovePosition: [Int] = []
+    
     // Contient la position actuelle de la cellule dans le board
     var cellPosition: CGPoint {
         didSet {
@@ -53,6 +55,8 @@ class SpriteMeeple: SKNode {
         super.init()
         self.addChild(ellipseNode)
         self.addChild(imageNode)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,8 +96,10 @@ class SpriteMeeple: SKNode {
             // position de la piece a partir de la zone touché
             let currentPiecePosition = nearestCellPosition(to: position)
             
+            self.fromMovePosition = [Int(currentPiecePosition.y), Int(currentPiecePosition.x)]
+            
             // definir la piece en cours
-            self.currentPiece = self.gameScene.gameVM.game.board.grid[Int(currentPiecePosition.y)][Int(currentPiecePosition.x)].piece
+            self.currentPiece = self.gameScene.gameVM.game.board.grid[fromMovePosition[0]][fromMovePosition[1]].piece
             
             highlightNodes(from: position)
         }
@@ -133,7 +139,8 @@ class SpriteMeeple: SKNode {
         self.cellPosition = nearestPosition
         
         // Si move fait parti des moves possibles
-        if let move = self.possibleMoves.first(where: { $0.rowDestination == Int(self.cellPosition.y)  && $0.columnDestination == Int(self.cellPosition.x )}) {
+        let move = Move(of: self.gameScene.gameVM.currentPlayerVM.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
+        
             
             // Ajouter le move a currentPlayerVM
             self.gameScene.gameVM.currentPlayerVM.currentMove = move
@@ -142,7 +149,7 @@ class SpriteMeeple: SKNode {
                 //try! await (self.gameScene.gameVM.game.players[owner] as! HumanPlayer).chooseMove(move)
                 try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
             }
-        }
+        
         // check si le move est valide
         
         // appliquer le move si valide
@@ -173,4 +180,11 @@ class SpriteMeeple: SKNode {
             gameScene.highlightMoves(possibleMoves)
         }
     }
+    
+    func resetPiecePosition() {
+        print(self.fromMovePosition)
+        self.position.x = SpriteMeeple.offset.x + SpriteMeeple.direction.dx * CGFloat(self.fromMovePosition[1])
+        self.position.y = SpriteMeeple.offset.y + SpriteMeeple.direction.dy * CGFloat(self.fromMovePosition[0])
+    }
 }
+
