@@ -8,6 +8,9 @@ class SpriteMeeple: SKNode {
     
     static var maxZPosition: CGFloat = 0
     
+    /// Permet a gameVM de savoir quelle est la meeple en cours d'éxécution
+    var isCurrentMeeple: Bool = false
+    
     let imageNode: SKSpriteNode
     let ellipseNode: SKShapeNode
     var possibleMoves: [Move] = []
@@ -55,8 +58,6 @@ class SpriteMeeple: SKNode {
         super.init()
         self.addChild(ellipseNode)
         self.addChild(imageNode)
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,6 +90,8 @@ class SpriteMeeple: SKNode {
         guard isOwnerCurrentPlayer() else {
             return
         }
+        
+        self.isCurrentMeeple = true
         
         if let touch = touches.first {
             let position = touch.location(in: self.gameScene)
@@ -181,10 +184,12 @@ class SpriteMeeple: SKNode {
         }
     }
     
+    /// Remet la piece a la position initiale d'un move
     func resetPiecePosition() {
-        print(self.fromMovePosition)
         self.position.x = SpriteMeeple.offset.x + SpriteMeeple.direction.dx * CGFloat(self.fromMovePosition[1])
         self.position.y = SpriteMeeple.offset.y + SpriteMeeple.direction.dy * CGFloat(self.fromMovePosition[0])
+        
+        self.isCurrentMeeple = false
     }
 }
 
