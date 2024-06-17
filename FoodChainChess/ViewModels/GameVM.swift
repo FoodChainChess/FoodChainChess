@@ -106,6 +106,13 @@ class GameVM: ObservableObject {
             self.invalidMoveCallback?()
             
        }
+        self.game.addPieceRemovedListener { row, column, piece in
+            
+            print("**************************************")
+            print("XXXXXXX Piece Removed: \(piece)")
+            print("**************************************")
+                         
+        }
         try? await game.start()
     }
     

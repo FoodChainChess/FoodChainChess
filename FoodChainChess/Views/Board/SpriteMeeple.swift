@@ -127,7 +127,7 @@ class SpriteMeeple: SKNode {
             // TODO: gestion d'erreur (throws ou retour de valeur d'erreur)
             return
         }
-        // mettre cellule en cours au premier plan
+        // mettre cellule en cours au premier plan fait pour quand elle mange une autre piece
         SpriteMeeple.maxZPosition += 1
         self.zPosition = SpriteMeeple.maxZPosition
         
