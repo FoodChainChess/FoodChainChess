@@ -23,8 +23,8 @@ class GameVM: ObservableObject {
     }
     
     ///CallBack pour reset piece dans SpriteMeeple
-    var invalidMoveCallback: (() -> Void)?
-    
+    private var invalidMoveCallbacks: [SpriteMeeple: () -> Void] = [:]
+
     init(player1: Player, player2: Player) {
         // definir les joueurs
         self.player1VM = PlayerVM(player: player1)
@@ -36,8 +36,8 @@ class GameVM: ObservableObject {
     }
     
     //Listener du callback pour le reset piece dans SpriteMeeple
-    func addInvalidMoveCallbacksListener(callback: @escaping () -> Void) {
-        self.invalidMoveCallback = callback
+    func addInvalidMoveCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
+        invalidMoveCallbacks[meeple] = callback
     }
     
     // Gestion des Players //
@@ -102,8 +102,8 @@ class GameVM: ObservableObject {
            print("**************************************")
            print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
            print("**************************************")
-           
-            self.invalidMoveCallback?()
+        
+        self.triggerInvalidMoveCallback()
             
        }
         try? await game.start()
@@ -114,7 +114,7 @@ class GameVM: ObservableObject {
         var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
         let meepleSize = CGSize(width: 80, height: 80)
         
-        let players = [self.player1VM.player, self.player2VM.player]
+        let players = [self.player2VM.player, self.player1VM.player]
         
         let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
         
@@ -134,11 +134,20 @@ class GameVM: ObservableObject {
                 pieces[player.id]?[animal] = spriteMeeple
                 
                 //Listener qui va declencher le resetPiecePosition dans SpriteMeeple
-                addInvalidMoveCallbacksListener {
+                addInvalidMoveCallbacksListener(for: spriteMeeple) {
                     spriteMeeple.resetPiecePosition()
                 }
             }
         }
         return pieces
+    }
+    
+    func triggerInvalidMoveCallback() {
+        for (meeple, callback) in invalidMoveCallbacks {
+            if meeple.isCurrentMeeple {
+                callback()
+                return
+            }
+        }
     }
 }
