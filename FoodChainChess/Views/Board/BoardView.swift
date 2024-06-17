@@ -9,7 +9,11 @@ struct BoardView: View {
     @ObservedObject var gameScene: GameScene
     
     init(player1: Player, player2: Player) {
-        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
+        self.gameScene = GameScene(
+            size: CGSize(width: 700, height: 900),
+            player1: player1,
+            player2: player2
+        )
     }
     
     var body: some View {
