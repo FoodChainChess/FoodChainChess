@@ -55,6 +55,15 @@ class GameScene: SKScene, ObservableObject {
         }
         
         self.gameVM.game.addPlayerNotifiedListener({ board, player in
+            
+            if let ownerPieces = self.pieces[player.id] {
+                // Recuperer la piece et l'enlever de la scene
+                if let meeple = ownerPieces.first(where: { $0.value.isCurrentMeeple }) {
+                    // if a meeple has current meeple status, reset
+                    meeple.value.isCurrentMeeple = false;
+                }
+            }
+            
             print("**************************************")
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
             print("**************************************")
@@ -167,16 +176,14 @@ class GameScene: SKScene, ObservableObject {
     func removePiece(for owner: Owner, animal: Animal) {
         // Vérifiez si le propriétaire a des pièces
         if var ownerPieces = pieces[owner] {
-            // Supprimez la pièce spécifique
-            ownerPieces.removeValue(forKey: animal)
             
-            // Si le sous-dictionnaire est maintenant vide, supprimez l'entrée entière pour cet `Owner`
-            if ownerPieces.isEmpty {
-                pieces.removeValue(forKey: owner)
-            } else {
-                // Sinon, mettez à jour le sous-dictionnaire avec les modifications
-                pieces[owner] = ownerPieces
+            // Recuperer la piece et l'enlever de la scene
+            if let meeple = ownerPieces[animal] {
+                meeple.removeFromParent()
             }
+            
+            // Enlevez de la liste
+            ownerPieces.removeValue(forKey: animal)
         }
     }
 }

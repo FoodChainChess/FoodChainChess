@@ -109,6 +109,7 @@ class GameVM: ObservableObject {
     
     func triggerInvalidMoveCallback() {
         for (meeple, callback) in meepleCallbacks {
+            print("\(meeple.isCurrentMeeple)")
             if meeple.isCurrentMeeple, let invalidMoveCallback = callback["InvalidMove"] {
                 invalidMoveCallback()
                 return
@@ -120,6 +121,7 @@ class GameVM: ObservableObject {
         for (meeple, callback) in meepleCallbacks {
             if meeple.isCurrentMeeple, let removePieceCallBack = callback["RemovePiece"] {
                 removePieceCallBack()
+                meeple.isCurrentMeeple = false
                 return
             }
         }

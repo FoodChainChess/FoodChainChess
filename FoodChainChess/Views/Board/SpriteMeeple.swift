@@ -143,22 +143,13 @@ class SpriteMeeple: SKNode {
         
         // Si move fait parti des moves possibles
         let move = Move(of: self.gameScene.gameVM.currentPlayerVM.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
-        
             
             // Ajouter le move a currentPlayerVM
             self.gameScene.gameVM.currentPlayerVM.currentMove = move
             
             Task {
-                //try! await (self.gameScene.gameVM.game.players[owner] as! HumanPlayer).chooseMove(move)
                 try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
-            }
-        
-        self.isCurrentMeeple = false
-        
-        // check si le move est valide
-        
-        // appliquer le move si valide
-        // afficher erreur si move pas valide
+            }        
     }
     
     
