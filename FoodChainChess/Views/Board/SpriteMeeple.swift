@@ -153,6 +153,8 @@ class SpriteMeeple: SKNode {
                 try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
             }
         
+        self.isCurrentMeeple = false
+        
         // check si le move est valide
         
         // appliquer le move si valide
@@ -183,6 +185,7 @@ class SpriteMeeple: SKNode {
             gameScene.highlightMoves(possibleMoves)
         }
     }
+    
     
     /// Remet la piece a la position initiale d'un move
     func resetPiecePosition() {

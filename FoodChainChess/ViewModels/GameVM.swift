@@ -23,7 +23,7 @@ class GameVM: ObservableObject {
     }
     
     ///CallBack pour reset piece dans SpriteMeeple
-    private var invalidMoveCallbacks: [SpriteMeeple: () -> Void] = [:]
+    private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
 
     init(player1: Player, player2: Player) {
         // definir les joueurs
@@ -37,7 +37,12 @@ class GameVM: ObservableObject {
     
     //Listener du callback pour le reset piece dans SpriteMeeple
     func addInvalidMoveCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
-        invalidMoveCallbacks[meeple] = callback
+        meepleCallbacks[meeple] = ["InvalidMove":callback]
+    }
+    
+    //Listener du callback pour remove la piece dans SpriteMeeple lors qu'une piece mange l'autre
+    func addRemovePieceCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
+        meepleCallbacks[meeple] = ["RemovedPiece":callback]
     }
     
     // Gestion des Players //
@@ -64,55 +69,7 @@ class GameVM: ObservableObject {
     
     /// Lancer la boucle de jeu
     func start() async {
-        self.game.addGameStartedListener { _ in
-            print("Game Started")
-        }
         
-        self.game.addBoardChangedListener { _ in
-            print("*** BOARD CHANGED ***")
-            print("*** ***** ******* ***")
-            // print(self.game.board)
-            print()
-        }
-        
-        self.game.addBoardChangedListener {
-            print("*** changed 2 ***")
-            print($0)
-        }
-        
-        self.game.addPlayerNotifiedListener({ board, player in
-            print("**************************************")
-            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
-            print("**************************************")
-            self.getNextPlayer()
-            
-            //try! await Persistance.saveGame(withName: "game", andGame: game2)
-        })
-        
-        self.game.addMoveChosenCallbacksListener { _, move, player in
-            print("**************************************")
-            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
-            print("**************************************")
-        }
-        
-        self.game.addInvalidMoveCallbacksListener { _, move, player, result in
-           if result {
-             return
-           }
-           print("**************************************")
-           print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
-           print("**************************************")
-        
-        self.triggerInvalidMoveCallback()
-            
-       }
-        self.game.addPieceRemovedListener { row, column, piece in
-            
-            print("**************************************")
-            print("XXXXXXX Piece Removed: \(piece)")
-            print("**************************************")
-                         
-        }
         try? await game.start()
     }
     
@@ -144,15 +101,25 @@ class GameVM: ObservableObject {
                 addInvalidMoveCallbacksListener(for: spriteMeeple) {
                     spriteMeeple.resetPiecePosition()
                 }
+                
             }
         }
         return pieces
     }
     
     func triggerInvalidMoveCallback() {
-        for (meeple, callback) in invalidMoveCallbacks {
-            if meeple.isCurrentMeeple {
-                callback()
+        for (meeple, callback) in meepleCallbacks {
+            if meeple.isCurrentMeeple, let invalidMoveCallback = callback["InvalidMove"] {
+                invalidMoveCallback()
+                return
+            }
+        }
+    }
+    
+    func triggerRemovePieceCallback() {
+        for (meeple, callback) in meepleCallbacks {
+            if meeple.isCurrentMeeple, let removePieceCallBack = callback["RemovePiece"] {
+                removePieceCallBack()
                 return
             }
         }

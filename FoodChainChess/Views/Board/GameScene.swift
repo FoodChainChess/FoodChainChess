@@ -36,6 +36,63 @@ class GameScene: SKScene, ObservableObject {
             showNextPlayerAnimation()
         }
     }
+    
+    func startGame() async{
+        self.gameVM.game.addGameStartedListener { _ in
+            print("Game Started")
+        }
+        
+        self.gameVM.game.addBoardChangedListener { _ in
+            print("*** BOARD CHANGED ***")
+            print("*** ***** ******* ***")
+            // print(self.game.board)
+            print()
+        }
+        
+        self.gameVM.game.addBoardChangedListener {
+            print("*** changed 2 ***")
+            print($0)
+        }
+        
+        self.gameVM.game.addPlayerNotifiedListener({ board, player in
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
+            print("**************************************")
+            self.gameVM.getNextPlayer()
+            
+            //try! await Persistance.saveGame(withName: "game", andGame: game2)
+        })
+        
+        self.gameVM.game.addMoveChosenCallbacksListener { _, move, player in
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
+            print("**************************************")
+        }
+        
+        self.gameVM.game.addInvalidMoveCallbacksListener { _, move, player, result in
+           if result {
+             return
+           }
+           print("**************************************")
+           print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
+           print("**************************************")
+        
+            self.gameVM.triggerInvalidMoveCallback()
+            
+       }
+        self.gameVM.game.addPieceRemovedListener { row, column, piece in
+            
+            print("**************************************")
+            print("XXXXXXX Piece Removed: \(piece)")
+            print("**************************************")
+            
+            //self.triggerRemovePieceCallback()
+            self.removePiece(for: piece.owner, animal: piece.animal)
+            self.displayBoard(self.gameVM.game.board)
+        }
+        
+        await self.gameVM.start()
+    }
 
        
     /// Afficher le plateau
@@ -48,6 +105,8 @@ class GameScene: SKScene, ObservableObject {
             }
         }
     }
+    
+    
     
     /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
@@ -103,5 +162,21 @@ class GameScene: SKScene, ObservableObject {
         let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
         
         nextPlayerLabel.run(sequence)
+    }
+    
+    func removePiece(for owner: Owner, animal: Animal) {
+        // Vérifiez si le propriétaire a des pièces
+        if var ownerPieces = pieces[owner] {
+            // Supprimez la pièce spécifique
+            ownerPieces.removeValue(forKey: animal)
+            
+            // Si le sous-dictionnaire est maintenant vide, supprimez l'entrée entière pour cet `Owner`
+            if ownerPieces.isEmpty {
+                pieces.removeValue(forKey: owner)
+            } else {
+                // Sinon, mettez à jour le sous-dictionnaire avec les modifications
+                pieces[owner] = ownerPieces
+            }
+        }
     }
 }
