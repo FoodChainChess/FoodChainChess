@@ -144,12 +144,14 @@ class SpriteMeeple: SKNode {
         // Si move fait parti des moves possibles
         let move = Move(of: self.gameScene.gameVM.currentPlayerVM.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
             
-            // Ajouter le move a currentPlayerVM
-            self.gameScene.gameVM.currentPlayerVM.currentMove = move
-            
-            Task {
-                try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
-            }        
+        // Ajouter le move a currentPlayerVM
+        self.gameScene.gameVM.currentPlayerVM.currentMove = move
+        
+        Task {
+            try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
+        }
+        
+        gameScene.clearHighlightedNodes()
     }
     
     

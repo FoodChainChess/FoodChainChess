@@ -142,7 +142,6 @@ class GameScene: SKScene, ObservableObject {
     
     /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
-        clearHighlightedNodes()
         
         let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game.board.nbColumns)
         let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game.board.nbRows)
