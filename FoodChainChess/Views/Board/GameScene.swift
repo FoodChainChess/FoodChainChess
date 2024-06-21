@@ -6,9 +6,14 @@ import DouShouQiModel
 class GameScene: SKScene, ObservableObject {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
+    //Variable pour binder dans la view quand la game est fini
+    var gameEndResult : String = ""
         
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
+    
+    @Published var isShowingEndPopUp : Bool = false
+
     
     /// Instance de game vm
     @Published var gameVM: GameVM
@@ -20,7 +25,9 @@ class GameScene: SKScene, ObservableObject {
     init(size: CGSize, player1: Player, player2: Player) {
         self.gameVM = GameVM(player1: player1, player2: player2)
         super.init(size: size)
-        
+        self.isShowingEndPopUp = isShowingEndPopUp
+
+                
         self.scaleMode = .aspectFit
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -36,6 +43,7 @@ class GameScene: SKScene, ObservableObject {
             showNextPlayerAnimation()
         }
     }
+    
     
     func startGame() async{
         self.gameVM.game.addGameStartedListener { _ in
@@ -101,22 +109,28 @@ class GameScene: SKScene, ObservableObject {
             switch(result){
             case .notFinished:
                 print("⏳ Game is not over yet!")
-            case .winner(winner: let o, reason: let r):
+            case .winner(winner: let o, reason: let result):
                 print(board)
                 print("**************************************")
                 print("Game Over!!!")
                 print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
-                switch(r){
+                switch(result){
                 case .denReached:
                     print("🪺 the opponent's den has been reached.")
+                    self.gameEndResult = "🪺 the opponent's den has been reached."
                 case .noMorePieces:
                     print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
+                    self.gameEndResult = "🐭🐱🐯🦁🐘 all the opponent's animals have been eaten..."
                 case .noMovesLeft:
                     print("⛔️ the opponent can not move any piece!")
+                    self.gameEndResult = "⛔️ the opponent can not move any piece!"
                 case .tooManyOccurences:
                     print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
+                    self.gameEndResult = "🔄 the opponent seem to like this situation... but enough is enough. Sorry..."
                 }
                 print("**************************************")
+                self.isShowingEndPopUp = true
+                
             default:
                 break
             }

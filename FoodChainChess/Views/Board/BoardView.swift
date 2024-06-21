@@ -5,7 +5,7 @@ import DouShouQiModel
 struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
-        
+    
     @ObservedObject var gameScene: GameScene
     
     init(player1: Player, player2: Player) {
@@ -48,6 +48,8 @@ struct BoardView: View {
         }.task {
             await self.gameScene.startGame()
             
+        }.sheet(isPresented: $gameScene.isShowingEndPopUp) {
+            EndGamePopUpView(isShowing: $gameScene.isShowingEndPopUp, playerOneScore: 1, playerTwoScore: 0, playerUsername1: gameScene.gameVM.player1VM.player.name, playerUsername2: gameScene.gameVM.player2VM.player.name, winReason: gameScene.gameEndResult)
         }
     }
 }
@@ -59,6 +61,7 @@ struct BoardViewPreview: PreviewProvider {
         let player2: Player = HumanPlayer(withName: "LouSusQuoi", andId: .player2)!
         
         BoardView(player1: player1, player2: player2)
+        
     }
 }
 //#Preview {

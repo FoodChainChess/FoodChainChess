@@ -35,6 +35,7 @@ class GameVM: ObservableObject {
         self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
     }
     
+    
     //Listener du callback pour le reset piece dans SpriteMeeple
     func addInvalidMoveCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
         meepleCallbacks[meeple] = ["InvalidMove":callback]
