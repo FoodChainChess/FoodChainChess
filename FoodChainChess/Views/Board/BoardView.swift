@@ -57,7 +57,6 @@ struct BoardView: View {
 
 struct BoardViewPreview: PreviewProvider {
     static var previews: some View {
-        
         let player1: Player = HumanPlayer(withName: "LouSusQi", andId: .player1)!
         let player2: Player = HumanPlayer(withName: "LouSusQuoi", andId: .player2)!
         

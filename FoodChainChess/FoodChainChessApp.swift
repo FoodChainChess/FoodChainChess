@@ -8,6 +8,12 @@ struct FoodChainChessApp: App {
     
     var playerManager: PlayerManager = PlayerManager()
     
+    var gameScene = GameScene(
+        size: CGSize(width: 700, height: 900),
+    )
+    
+    //var gameSceneManager: GameSceneManager = GameSceneManager
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
