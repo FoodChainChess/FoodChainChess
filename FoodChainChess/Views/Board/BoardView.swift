@@ -50,7 +50,8 @@ struct BoardView: View {
             Spacer()
             PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
         }.task {
-            await self.gameScene.gameVM.start()
+            await self.gameScene.startGame()
+            
         }
     }
 }
