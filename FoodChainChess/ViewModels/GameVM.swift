@@ -40,11 +40,6 @@ class GameVM: ObservableObject {
         meepleCallbacks[meeple] = ["InvalidMove":callback]
     }
     
-    //Listener du callback pour remove la piece dans SpriteMeeple lors qu'une piece mange l'autre
-    func addRemovePieceCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
-        meepleCallbacks[meeple] = ["RemovedPiece":callback]
-    }
-    
     // Gestion des Players //
     func getNextPlayer() {
         self.currentPlayerId = game.rules.getNextPlayer()
@@ -112,16 +107,6 @@ class GameVM: ObservableObject {
             print("\(meeple.isCurrentMeeple)")
             if meeple.isCurrentMeeple, let invalidMoveCallback = callback["InvalidMove"] {
                 invalidMoveCallback()
-                return
-            }
-        }
-    }
-    
-    func triggerRemovePieceCallback() {
-        for (meeple, callback) in meepleCallbacks {
-            if meeple.isCurrentMeeple, let removePieceCallBack = callback["RemovePiece"] {
-                removePieceCallBack()
-                meeple.isCurrentMeeple = false
                 return
             }
         }

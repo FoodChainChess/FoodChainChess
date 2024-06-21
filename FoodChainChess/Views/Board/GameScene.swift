@@ -42,21 +42,17 @@ class GameScene: SKScene, ObservableObject {
             print("Game Started")
         }
         
-        self.gameVM.game.addBoardChangedListener { _ in
+        self.gameVM.game.addBoardChangedListener {
             print("*** BOARD CHANGED ***")
             print("*** ***** ******* ***")
-            // print(self.game.board)
-            print()
-        }
-        
-        self.gameVM.game.addBoardChangedListener {
-            print("*** changed 2 ***")
             print($0)
         }
         
         self.gameVM.game.addPlayerNotifiedListener({ board, player in
             
-            if let ownerPieces = self.pieces[player.id] {
+            let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
+            
+            if let ownerPieces = self.pieces[lastPlayerId]{
                 // Recuperer la piece et l'enlever de la scene
                 if let meeple = ownerPieces.first(where: { $0.value.isCurrentMeeple }) {
                     // if a meeple has current meeple status, reset
@@ -82,13 +78,14 @@ class GameScene: SKScene, ObservableObject {
            if result {
              return
            }
+
            print("**************************************")
            print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
            print("**************************************")
         
-            self.gameVM.triggerInvalidMoveCallback()
-            
-       }
+           self.gameVM.triggerInvalidMoveCallback()
+        }
+        
         self.gameVM.game.addPieceRemovedListener { row, column, piece in
             
             print("**************************************")
@@ -99,6 +96,32 @@ class GameScene: SKScene, ObservableObject {
             self.removePiece(for: piece.owner, animal: piece.animal)
             self.displayBoard(self.gameVM.game.board)
         }
+        
+        self.gameVM.game.addGameOverListener { board, result, player in
+            switch(result){
+            case .notFinished:
+                print("⏳ Game is not over yet!")
+            case .winner(winner: let o, reason: let r):
+                print(board)
+                print("**************************************")
+                print("Game Over!!!")
+                print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
+                switch(r){
+                case .denReached:
+                    print("🪺 the opponent's den has been reached.")
+                case .noMorePieces:
+                    print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
+                case .noMovesLeft:
+                    print("⛔️ the opponent can not move any piece!")
+                case .tooManyOccurences:
+                    print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
+                }
+                print("**************************************")
+            default:
+                break
+            }
+        }
+
         
         await self.gameVM.start()
     }

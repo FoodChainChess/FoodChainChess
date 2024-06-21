@@ -182,8 +182,6 @@ class SpriteMeeple: SKNode {
     func resetPiecePosition() {
         self.position.x = SpriteMeeple.offset.x + SpriteMeeple.direction.dx * CGFloat(self.fromMovePosition[1])
         self.position.y = SpriteMeeple.offset.y + SpriteMeeple.direction.dy * CGFloat(self.fromMovePosition[0])
-        
-        self.isCurrentMeeple = false
     }
 }
 
