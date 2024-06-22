@@ -31,7 +31,23 @@
 		EC0C8F2B2C271D8C00715C11 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F192C271D8C00715C11 /* board.png */; };
 		EC0C8F2C2C271D8C00715C11 /* ratMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F1A2C271D8C00715C11 /* ratMeeple.png */; };
 		EC0C8F2D2C271D8C00715C11 /* elephantMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F1B2C271D8C00715C11 /* elephantMeeple.png */; };
+		EC0C8F302C274E0900715C11 /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0C8F2F2C274E0900715C11 /* DSQ.xcframework */; };
+		EC0C8F312C274E0900715C11 /* DSQ.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EC0C8F2F2C274E0900715C11 /* DSQ.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EC0C8F322C274E0900715C11 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EC0C8F312C274E0900715C11 /* DSQ.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EC0C8EF32C27199800715C11 /* ARFoodChainChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARFoodChainChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +75,7 @@
 		EC0C8F192C271D8C00715C11 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		EC0C8F1A2C271D8C00715C11 /* ratMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ratMeeple.png; sourceTree = "<group>"; };
 		EC0C8F1B2C271D8C00715C11 /* elephantMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephantMeeple.png; sourceTree = "<group>"; };
+		EC0C8F2F2C274E0900715C11 /* DSQ.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DSQ.xcframework; path = ../XCFramework/DSQ.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC0C8F302C274E0900715C11 /* DSQ.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +95,7 @@
 			children = (
 				EC0C8EF52C27199800715C11 /* ARFoodChainChess */,
 				EC0C8EF42C27199800715C11 /* Products */,
+				EC0C8F2E2C274E0900715C11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +162,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		EC0C8F2E2C274E0900715C11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8F2F2C274E0900715C11 /* DSQ.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,6 +180,7 @@
 				EC0C8EEF2C27199800715C11 /* Sources */,
 				EC0C8EF02C27199800715C11 /* Frameworks */,
 				EC0C8EF12C27199800715C11 /* Resources */,
+				EC0C8F322C274E0900715C11 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
