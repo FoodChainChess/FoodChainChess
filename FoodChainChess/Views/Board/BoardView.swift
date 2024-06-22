@@ -6,16 +6,8 @@ struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
         
-    @ObservedObject var gameScene: GameScene
-    
-    init(player1: Player, player2: Player) {
-        self.gameScene = GameScene(
-            size: CGSize(width: 700, height: 900),
-            player1: player1,
-            player2: player2
-        )
-    }
-    
+    @EnvironmentObject var gameManager: GameSceneManager
+        
     var body: some View {
         VStack {
             HStack {
@@ -42,26 +34,23 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player2VM.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.player2VM.player.name)
                 Spacer()
             }.padding()
             Spacer()
-            SpriteView(scene: self.gameScene)
+            SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.player1VM.player.name)
         }.task {
-            await self.gameScene.startGame()
+            await self.gameManager.gameScene.startGame()
             
         }
     }
 }
 
 struct BoardViewPreview: PreviewProvider {
-    static var previews: some View {
-        let player1: Player = HumanPlayer(withName: "LouSusQi", andId: .player1)!
-        let player2: Player = HumanPlayer(withName: "LouSusQuoi", andId: .player2)!
-        
-        BoardView(player1: player1, player2: player2)
+    static var previews: some View {        
+        BoardView()
     }
 }
 //#Preview {

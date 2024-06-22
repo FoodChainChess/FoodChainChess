@@ -17,8 +17,8 @@ class GameScene: SKScene, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(size: CGSize, player1: Player, player2: Player) {
-        self.gameVM = GameVM(player1: player1, player2: player2)
+    override init(size: CGSize) {
+        self.gameVM = GameVM()
         super.init(size: size)
         
         self.scaleMode = .aspectFit
@@ -27,13 +27,11 @@ class GameScene: SKScene, ObservableObject {
         self.addChild(imageBoard)
         
         self.pieces = self.gameVM.createScenePieces()
-        
+                
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
             
             displayBoard(self.gameVM.game.board)
-            
-            showNextPlayerAnimation()
         }
     }
     
@@ -94,7 +92,6 @@ class GameScene: SKScene, ObservableObject {
             
             //self.triggerRemovePieceCallback()
             self.removePiece(for: piece.owner, animal: piece.animal)
-            self.displayBoard(self.gameVM.game.board)
         }
         
         self.gameVM.game.addGameOverListener { board, result, player in
@@ -122,7 +119,6 @@ class GameScene: SKScene, ObservableObject {
             }
         }
 
-        
         await self.gameVM.start()
     }
 

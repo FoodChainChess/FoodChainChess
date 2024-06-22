@@ -9,7 +9,7 @@ class GameVM: ObservableObject {
     /// Les joueurs
     var player1VM: PlayerVM
     var player2VM: PlayerVM
-    
+        
     /// Le joueur en coursVM
     @Published var currentPlayerVM: PlayerVM
     
@@ -25,13 +25,15 @@ class GameVM: ObservableObject {
     ///CallBack pour reset piece dans SpriteMeeple
     private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
 
-    init(player1: Player, player2: Player) {
-        // definir les joueurs
-        self.player1VM = PlayerVM(player: player1)
-        self.player2VM = PlayerVM(player: player2)
-        self.currentPlayerVM = player1VM
+    var playerManager = PlayerManager.shared
+    
+    /// GameVM Initializer
+    init() {
+        self.player1VM = PlayerVM(player: playerManager.selectedPlayer1)
+        self.player2VM = PlayerVM(player: playerManager.selectedPlayer2)
         
-        // initialiser un nouveau game
+        self.currentPlayerVM = self.player1VM
+        
         self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
     }
     

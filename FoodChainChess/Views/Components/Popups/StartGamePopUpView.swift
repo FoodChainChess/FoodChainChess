@@ -9,12 +9,16 @@ import SwiftUI
 import DouShouQiModel
 
 struct StartGamePopUpView: View {
-    @EnvironmentObject var playerManager: PlayerManager
-        
     @State private var selectedGameMode: String = "pvp"
-    @State private var selectedPlayer1: String = "no player selected"
-    @State private var selectedPlayer2: String = "no player selected"
-    let r = BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: HumanPlayer(withName: "LouBis", andId: .player2)!)
+    @State private var selectedPlayer1: String = "Player 1"
+    @State private var selectedPlayer2: String = "Player 2"
+    
+    var playerManager = PlayerManager.shared
+    
+    /// BoardView wrapper, avoids creating two instances of BoardView
+    /// (from HomeView + StartGamePopUpView)
+    let r = BoardView()
+    
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -95,14 +99,8 @@ struct StartGamePopUpView_Previews: PreviewProvider {
     @State static var isShowing = true
     
     static var previews: some View {
-        let playerManager = PlayerManager()
-        playerManager.addPlayer(username: "LouSusQi")
-        playerManager.addPlayer(username: "LouSusQuoi")
-        playerManager.addPlayer(username: "LouSusÇa")
-        playerManager.addPlayer(username: "LouSusComment")
         
         return StartGamePopUpView()
-            .environmentObject(playerManager)
     }
 }
 

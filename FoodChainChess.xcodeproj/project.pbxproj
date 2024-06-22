@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC055C5A2C05FED8008A5C56 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC055C592C05FED8008A5C56 /* PlayerManager.swift */; };
 		EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */; };
+		EC2BE6282C274156002418BC /* GameSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2BE6272C274156002418BC /* GameSceneManager.swift */; };
 		EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634922BFDD4700047975C /* EndGamePopUpView.swift */; };
 		EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */; };
 		EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */; };
@@ -47,7 +48,6 @@
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
-		ECD3B9782C1AF81900A3A029 /* GameSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD3B9772C1AF81900A3A029 /* GameSceneManager.swift */; };
 		ECD528302C00CD0E00BA6C4E /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; };
 		ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE19AA2BF343F500A1D841 /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +55,7 @@
 /* Begin PBXFileReference section */
 		EC055C592C05FED8008A5C56 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		EC1E90E22BFDE83E0006C610 /* LanguagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerView.swift; sourceTree = "<group>"; };
+		EC2BE6272C274156002418BC /* GameSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneManager.swift; sourceTree = "<group>"; };
 		EC3634922BFDD4700047975C /* EndGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePopUpView.swift; sourceTree = "<group>"; };
 		EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileComponentView.swift; sourceTree = "<group>"; };
 		EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreComponentView.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		ECD2FF622BF212EE007836C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		ECD3B9772C1AF81900A3A029 /* GameSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneManager.swift; sourceTree = "<group>"; };
 		ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DSQ.xcframework; path = XCFramework/DSQ.xcframework; sourceTree = "<group>"; };
 		ECFE19AA2BF343F500A1D841 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				EC055C592C05FED8008A5C56 /* PlayerManager.swift */,
-				ECD3B9772C1AF81900A3A029 /* GameSceneManager.swift */,
+				EC2BE6272C274156002418BC /* GameSceneManager.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					ECD2FF5A2BF212EE007836C4 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -435,7 +435,7 @@
 				ECA69E392C00C38D005C7689 /* SpriteMeeple.swift in Sources */,
 				ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */,
 				EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */,
-				ECD3B9782C1AF81900A3A029 /* GameSceneManager.swift in Sources */,
+				EC2BE6282C274156002418BC /* GameSceneManager.swift in Sources */,
 				EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */,
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
 				EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */,
@@ -475,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -507,6 +508,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -535,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -567,6 +570,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -590,9 +594,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodChainChess/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -607,6 +615,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.uca.iut.FoodChainChess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -618,9 +628,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodChainChess/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -635,6 +649,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.uca.iut.FoodChainChess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
