@@ -30,23 +30,25 @@ class GameScene: SKScene, ObservableObject {
                 
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
-            
-            displayBoard(self.gameVM.game.board)
         }
     }
     
     func startGame() async{
-        self.gameVM.game.addGameStartedListener { _ in
+        self.gameVM.initGame()
+        if let board = self.gameVM.game?.board {
+            displayBoard(board)
+        }
+        self.gameVM.game!.addGameStartedListener { _ in
             print("Game Started")
         }
         
-        self.gameVM.game.addBoardChangedListener {
+        self.gameVM.game!.addBoardChangedListener {
             print("*** BOARD CHANGED ***")
             print("*** ***** ******* ***")
             print($0)
         }
         
-        self.gameVM.game.addPlayerNotifiedListener({ board, player in
+        self.gameVM.game!.addPlayerNotifiedListener({ board, player in
             
             let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
             
@@ -66,13 +68,13 @@ class GameScene: SKScene, ObservableObject {
             //try! await Persistance.saveGame(withName: "game", andGame: game2)
         })
         
-        self.gameVM.game.addMoveChosenCallbacksListener { _, move, player in
+        self.gameVM.game!.addMoveChosenCallbacksListener { _, move, player in
             print("**************************************")
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
             print("**************************************")
         }
         
-        self.gameVM.game.addInvalidMoveCallbacksListener { _, move, player, result in
+        self.gameVM.game!.addInvalidMoveCallbacksListener { _, move, player, result in
            if result {
              return
            }
@@ -84,7 +86,7 @@ class GameScene: SKScene, ObservableObject {
            self.gameVM.triggerInvalidMoveCallback()
         }
         
-        self.gameVM.game.addPieceRemovedListener { row, column, piece in
+        self.gameVM.game!.addPieceRemovedListener { row, column, piece in
             
             print("**************************************")
             print("XXXXXXX Piece Removed: \(piece)")
@@ -94,7 +96,7 @@ class GameScene: SKScene, ObservableObject {
             self.removePiece(for: piece.owner, animal: piece.animal)
         }
         
-        self.gameVM.game.addGameOverListener { board, result, player in
+        self.gameVM.game!.addGameOverListener { board, result, player in
             switch(result){
             case .notFinished:
                 print("⏳ Game is not over yet!")
@@ -140,8 +142,8 @@ class GameScene: SKScene, ObservableObject {
     func highlightMoves(_ moves: [Move]) {
         clearHighlightedNodes()
         
-        let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game.board.nbColumns)
-        let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game.board.nbRows)
+        let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game!.board.nbColumns)
+        let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game!.board.nbRows)
         
         for move in moves {
             let highlight = SKShapeNode(circleOfRadius: cellWidth / 4)
@@ -169,7 +171,7 @@ class GameScene: SKScene, ObservableObject {
     /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = self.gameVM.game.rules.getNextPlayer()
+        let nextPlayer = self.gameVM.game!.rules.getNextPlayer()
         
         // Créez un nœud de texte pour afficher le prochain joueur
         let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")

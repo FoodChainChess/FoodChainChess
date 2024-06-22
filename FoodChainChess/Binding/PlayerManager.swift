@@ -11,8 +11,9 @@ import DouShouQiModel
 /// The player manager class.
 class PlayerManager: ObservableObject {
     @Published var createdPlayers: [Player]
-    @Published var selectedPlayer1: Player
-    @Published var selectedPlayer2: Player
+    
+    @Published var selectedPlayer1: PlayerVM
+    @Published var selectedPlayer2: PlayerVM
     
     static let shared = PlayerManager()
 
@@ -27,8 +28,8 @@ class PlayerManager: ObservableObject {
         self.createdPlayers = [player1, player2]
 
         // Set default selected players
-        self.selectedPlayer1 = player1
-        self.selectedPlayer2 = player2
+        self.selectedPlayer1 = PlayerVM(player: player1)
+        self.selectedPlayer2 = PlayerVM(player: player2)
     }
     
     /// Adds a new player to the list.
@@ -44,7 +45,7 @@ class PlayerManager: ObservableObject {
             return "Username already exists."
         }
         
-        let newPlayer = Player(withName: username, andId: identifier)
+        let newPlayer = HumanPlayer(withName: username, andId: identifier)
         
         if let newPlayer {
             createdPlayers.append(newPlayer)
@@ -58,7 +59,7 @@ class PlayerManager: ObservableObject {
     ///
     /// - Parameter username: The username of the player.
     /// - Returns: An optional `Player` instance if found.
-    func playerByUsername(_ username: String) -> Player? {
+    func getPlayerByUsername(_ username: String) -> Player? {
         return createdPlayers.first { $0.name == username }
     }
 }

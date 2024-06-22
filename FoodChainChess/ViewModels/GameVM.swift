@@ -4,11 +4,7 @@ import Foundation
 
 class GameVM: ObservableObject {
     /// Le game
-    @Published var game: Game
-    
-    /// Les joueurs
-    var player1VM: PlayerVM
-    var player2VM: PlayerVM
+    @Published var game: Game?
         
     /// Le joueur en coursVM
     @Published var currentPlayerVM: PlayerVM
@@ -29,12 +25,15 @@ class GameVM: ObservableObject {
     
     /// GameVM Initializer
     init() {
-        self.player1VM = PlayerVM(player: playerManager.selectedPlayer1)
-        self.player2VM = PlayerVM(player: playerManager.selectedPlayer2)
-        
-        self.currentPlayerVM = self.player1VM
-        
-        self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
+        self.currentPlayerVM = playerManager.selectedPlayer1
+    }
+    
+    func initGame() {
+        self.game = try! Game(
+            withRules: ClassicRules(),
+            andPlayer1: playerManager.selectedPlayer1.player,
+            andPlayer2: playerManager.selectedPlayer2.player
+        )
     }
     
     //Listener du callback pour le reset piece dans SpriteMeeple
@@ -44,7 +43,7 @@ class GameVM: ObservableObject {
     
     // Gestion des Players //
     func getNextPlayer() {
-        self.currentPlayerId = game.rules.getNextPlayer()
+        self.currentPlayerId = game?.rules.getNextPlayer()
     }
     
     /// Mettre a jour le joueur actuelle
@@ -52,9 +51,9 @@ class GameVM: ObservableObject {
         print("Updating current player")
         switch self.currentPlayerId {
         case .player1:
-            self.currentPlayerVM = self.player1VM
+            self.currentPlayerVM = self.playerManager.selectedPlayer1
         case .player2:
-                self.currentPlayerVM = self.player2VM
+            self.currentPlayerVM = self.playerManager.selectedPlayer2
         case .noOne:
             break
         case .none:
@@ -67,7 +66,7 @@ class GameVM: ObservableObject {
     /// Lancer la boucle de jeu
     func start() async {
         
-        try? await game.start()
+        try? await game?.start()
     }
     
     /// Création des pieces
@@ -75,7 +74,7 @@ class GameVM: ObservableObject {
         var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
         let meepleSize = CGSize(width: 80, height: 80)
         
-        let players = [self.player2VM.player, self.player1VM.player]
+        let players = [self.playerManager.selectedPlayer2.player, self.playerManager.selectedPlayer1.player]
         
         let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
         

@@ -7,7 +7,7 @@ struct BoardView: View {
     @State private var isShowingAlert = false
         
     @EnvironmentObject var gameManager: GameSceneManager
-        
+    
     var body: some View {
         VStack {
             HStack {
@@ -34,13 +34,13 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.player2VM.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.player1VM.player.name)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
         }.task {
             await self.gameManager.gameScene.startGame()
             

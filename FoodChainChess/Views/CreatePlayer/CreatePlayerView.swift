@@ -52,8 +52,6 @@ struct CreatePlayerView: View {
             }.padding(60)
             Spacer()
         }.background(Colors.background)
-        
-        
     }
 }
 
