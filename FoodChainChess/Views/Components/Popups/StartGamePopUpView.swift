@@ -15,6 +15,7 @@ struct StartGamePopUpView: View {
     @State private var selectedPlayer1: String = "no player selected"
     @State private var selectedPlayer2: String = "no player selected"
     let r = BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: HumanPlayer(withName: "LouBis", andId: .player2)!)
+//    let r = BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: IAPlayer(withName: "Bot", andId: .player2)!)
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {

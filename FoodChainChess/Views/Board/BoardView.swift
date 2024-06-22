@@ -45,7 +45,13 @@ struct BoardView: View {
             SpriteView(scene: self.gameScene)
             Spacer()
             PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
-        }.task {
+        }.background(
+            LinearGradient(
+                gradient: Gradient(colors: [Color.white, Color.yellow]),
+                startPoint: .top,
+                endPoint: .bottom
+            ) //couleur à changer en fonction du joueur en cours (J1 - white & yellow / J2 - red & white)
+        ).task {
             await self.gameScene.startGame()
             
         }.sheet(isPresented: $gameScene.isShowingEndPopUp) {

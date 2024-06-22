@@ -3,7 +3,7 @@ import UIKit
 import Foundation
 
 class GameVM: ObservableObject {
-    /// Le game
+    /// La game
     @Published var game: Game
     
     /// Les joueurs

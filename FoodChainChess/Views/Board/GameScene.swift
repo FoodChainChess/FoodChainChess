@@ -57,7 +57,6 @@ class GameScene: SKScene, ObservableObject {
         }
         
         self.gameVM.game.addPlayerNotifiedListener({ board, player in
-            
             let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
             
             if let ownerPieces = self.pieces[lastPlayerId]{
@@ -72,6 +71,14 @@ class GameScene: SKScene, ObservableObject {
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
             print("**************************************")
             self.gameVM.getNextPlayer()
+            
+
+            if player is IAPlayer {
+                Task {
+                    print("\(player) is choosing a Move")
+                    try! await player.chooseMove(in: board, with: self.gameVM.game.rules)
+                }
+            }
             
             //try! await Persistance.saveGame(withName: "game", andGame: game2)
         })
@@ -183,6 +190,7 @@ class GameScene: SKScene, ObservableObject {
         }
         highlightedNodes.removeAll()
     }
+    
     /// Affiche une animation indiquant le prochain tour
     func showNextPlayerAnimation() {
         // Obtenez le prochain joueur en utilisant les règles du jeu
