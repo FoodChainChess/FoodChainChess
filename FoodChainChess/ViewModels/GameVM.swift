@@ -4,7 +4,7 @@ import Foundation
 
 class GameVM: ObservableObject {
     /// Le game
-    var game: Game
+    @Published var game: Game
     
     /// Les joueurs
     var player1VM: PlayerVM
@@ -22,8 +22,10 @@ class GameVM: ObservableObject {
         }
     }
     
+    ///CallBack pour reset piece dans SpriteMeeple
+    private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
+
     init(player1: Player, player2: Player) {
-        
         // definir les joueurs
         self.player1VM = PlayerVM(player: player1)
         self.player2VM = PlayerVM(player: player2)
@@ -31,6 +33,12 @@ class GameVM: ObservableObject {
         
         // initialiser un nouveau game
         self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
+    }
+    
+    
+    //Listener du callback pour le reset piece dans SpriteMeeple
+    func addInvalidMoveCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
+        meepleCallbacks[meeple] = ["InvalidMove":callback]
     }
     
     // Gestion des Players //
@@ -57,8 +65,7 @@ class GameVM: ObservableObject {
     
     /// Lancer la boucle de jeu
     func start() async {
-        print("GAME STARTED")
-       //  self.getNextPlayer()
+        
         try? await game.start()
     }
     
@@ -67,7 +74,7 @@ class GameVM: ObservableObject {
         var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
         let meepleSize = CGSize(width: 80, height: 80)
         
-        let players = [self.player1VM.player, self.player2VM.player]
+        let players = [self.player2VM.player, self.player1VM.player]
         
         let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
         
@@ -77,16 +84,32 @@ class GameVM: ObservableObject {
                 let color: UIColor
                 switch player.id {
                 case .player1:
-                    color = .red
-                case .player2:
                     color = .yellow
+                case .player2:
+                    color = .red
                 default:
                     color = .gray
                 }
                 let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
                 pieces[player.id]?[animal] = spriteMeeple
+                
+                //Listener qui va declencher le resetPiecePosition dans SpriteMeeple
+                addInvalidMoveCallbacksListener(for: spriteMeeple) {
+                    spriteMeeple.resetPiecePosition()
+                }
+                
             }
         }
         return pieces
+    }
+    
+    func triggerInvalidMoveCallback() {
+        for (meeple, callback) in meepleCallbacks {
+            print("\(meeple.isCurrentMeeple)")
+            if meeple.isCurrentMeeple, let invalidMoveCallback = callback["InvalidMove"] {
+                invalidMoveCallback()
+                return
+            }
+        }
     }
 }
