@@ -39,8 +39,6 @@ class GameScene: SKScene, ObservableObject {
             self.addChild(piece)
             
             displayBoard(self.gameVM.game.board)
-            
-            showNextPlayerAnimation()
         }
     }
     
@@ -71,7 +69,6 @@ class GameScene: SKScene, ObservableObject {
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
             print("**************************************")
             self.gameVM.getNextPlayer()
-            
 
             if player is IAPlayer {
                 Task {
@@ -191,32 +188,6 @@ class GameScene: SKScene, ObservableObject {
         highlightedNodes.removeAll()
     }
     
-    /// Affiche une animation indiquant le prochain tour
-    func showNextPlayerAnimation() {
-        // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = self.gameVM.game.rules.getNextPlayer()
-        
-        // Créez un nœud de texte pour afficher le prochain joueur
-        let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")
-        nextPlayerLabel.fontSize = 40
-        nextPlayerLabel.fontColor = .white
-        nextPlayerLabel.position = CGPoint(x: 0, y: 0)
-        nextPlayerLabel.alpha = 0
-        nextPlayerLabel.zPosition = 1
-        
-        // Ajoutez le nœud de texte à la scène
-        self.addChild(nextPlayerLabel)
-        
-        // Animation pour faire apparaître puis disparaître le nœud de texte
-        let fadeIn = SKAction.fadeIn(withDuration: 1.0)
-        let wait = SKAction.wait(forDuration: 2.0)
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
-        let remove = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
-        
-        nextPlayerLabel.run(sequence)
-    }
-    
     func removePiece(for owner: Owner, animal: Animal) {
         // Vérifiez si le propriétaire a des pièces
         if var ownerPieces = pieces[owner] {
@@ -228,6 +199,21 @@ class GameScene: SKScene, ObservableObject {
             
             // Enlevez de la liste
             ownerPieces.removeValue(forKey: animal)
+        }
+    }
+    
+    /// Permet de faire automatiquement un move à la place d'un player
+    func autoMovePiece(move: Move){
+        if let meeple = self.pieces[move.owner]?.values.first(where: { $0.cellPosition == CGPoint(x: move.rowOrigin, y: move.columnOrigin) }){
+            let destination = CGPoint(
+                x: SpriteMeeple.offset.x + SpriteMeeple.direction.dx * CGFloat(move.rowDestination),
+                y: SpriteMeeple.offset.y + SpriteMeeple.direction.dy * CGFloat(move.columnDestination)
+            )
+
+            let moveAction = SKAction.move(to: destination, duration: 0.5)
+            meeple.run(moveAction) {
+                meeple.cellPosition = CGPoint(x: move.rowDestination, y: move.columnDestination)
+            }
         }
     }
 }

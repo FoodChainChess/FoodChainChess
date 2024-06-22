@@ -47,10 +47,10 @@ struct BoardView: View {
             PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
         }.background(
             LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color.yellow]),
+                gradient: Gradient(colors: self.gameScene.gameVM.currentPlayerVM.player.id == .player1 ? [Color.white, Color.yellow] : [Color.red, Color.white]),
                 startPoint: .top,
                 endPoint: .bottom
-            ) //couleur à changer en fonction du joueur en cours (J1 - white & yellow / J2 - red & white)
+            )
         ).task {
             await self.gameScene.startGame()
             
