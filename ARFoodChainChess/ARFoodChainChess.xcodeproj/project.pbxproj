@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC0C8EF72C27199800715C11 /* ARFoodChainChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0C8EF62C27199800715C11 /* ARFoodChainChessApp.swift */; };
+		EC0C8EF92C27199800715C11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0C8EF82C27199800715C11 /* ContentView.swift */; };
+		EC0C8EFB2C27199900715C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8EFA2C27199900715C11 /* Assets.xcassets */; };
+		EC0C8EFE2C27199900715C11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8EFD2C27199900715C11 /* Preview Assets.xcassets */; };
+		EC0C8F052C271B7500715C11 /* ARGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0C8F042C271B7500715C11 /* ARGameView.swift */; };
+		EC0C8F072C271BEB00715C11 /* ARViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0C8F062C271BEB00715C11 /* ARViewRepresentable.swift */; };
+		EC0C8F1C2C271D8C00715C11 /* dog.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F092C271D8C00715C11 /* dog.usdz */; };
+		EC0C8F1D2C271D8C00715C11 /* wolf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0A2C271D8C00715C11 /* wolf.usdz */; };
+		EC0C8F1E2C271D8C00715C11 /* lion.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0B2C271D8C00715C11 /* lion.usdz */; };
+		EC0C8F1F2C271D8C00715C11 /* tiger.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0C2C271D8C00715C11 /* tiger.usdz */; };
+		EC0C8F202C271D8C00715C11 /* leopard.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0D2C271D8C00715C11 /* leopard.usdz */; };
+		EC0C8F212C271D8C00715C11 /* board.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0E2C271D8C00715C11 /* board.usdz */; };
+		EC0C8F222C271D8C00715C11 /* cat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F0F2C271D8C00715C11 /* cat.usdz */; };
+		EC0C8F232C271D8C00715C11 /* rat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F102C271D8C00715C11 /* rat.usdz */; };
+		EC0C8F242C271D8C00715C11 /* elephant.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F112C271D8C00715C11 /* elephant.usdz */; };
+		EC0C8F252C271D8C00715C11 /* dogMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F132C271D8C00715C11 /* dogMeeple.png */; };
+		EC0C8F262C271D8C00715C11 /* tigerMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F142C271D8C00715C11 /* tigerMeeple.png */; };
+		EC0C8F272C271D8C00715C11 /* catMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F152C271D8C00715C11 /* catMeeple.png */; };
+		EC0C8F282C271D8C00715C11 /* wolfMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F162C271D8C00715C11 /* wolfMeeple.png */; };
+		EC0C8F292C271D8C00715C11 /* leopardMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F172C271D8C00715C11 /* leopardMeeple.png */; };
+		EC0C8F2A2C271D8C00715C11 /* lionMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F182C271D8C00715C11 /* lionMeeple.png */; };
+		EC0C8F2B2C271D8C00715C11 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F192C271D8C00715C11 /* board.png */; };
+		EC0C8F2C2C271D8C00715C11 /* ratMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F1A2C271D8C00715C11 /* ratMeeple.png */; };
+		EC0C8F2D2C271D8C00715C11 /* elephantMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C8F1B2C271D8C00715C11 /* elephantMeeple.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EC0C8EF32C27199800715C11 /* ARFoodChainChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARFoodChainChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC0C8EF62C27199800715C11 /* ARFoodChainChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFoodChainChessApp.swift; sourceTree = "<group>"; };
+		EC0C8EF82C27199800715C11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EC0C8EFA2C27199900715C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC0C8EFD2C27199900715C11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EC0C8F042C271B7500715C11 /* ARGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGameView.swift; sourceTree = "<group>"; };
+		EC0C8F062C271BEB00715C11 /* ARViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewRepresentable.swift; sourceTree = "<group>"; };
+		EC0C8F092C271D8C00715C11 /* dog.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = dog.usdz; sourceTree = "<group>"; };
+		EC0C8F0A2C271D8C00715C11 /* wolf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = wolf.usdz; sourceTree = "<group>"; };
+		EC0C8F0B2C271D8C00715C11 /* lion.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lion.usdz; sourceTree = "<group>"; };
+		EC0C8F0C2C271D8C00715C11 /* tiger.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tiger.usdz; sourceTree = "<group>"; };
+		EC0C8F0D2C271D8C00715C11 /* leopard.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = leopard.usdz; sourceTree = "<group>"; };
+		EC0C8F0E2C271D8C00715C11 /* board.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = board.usdz; sourceTree = "<group>"; };
+		EC0C8F0F2C271D8C00715C11 /* cat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cat.usdz; sourceTree = "<group>"; };
+		EC0C8F102C271D8C00715C11 /* rat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = rat.usdz; sourceTree = "<group>"; };
+		EC0C8F112C271D8C00715C11 /* elephant.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = elephant.usdz; sourceTree = "<group>"; };
+		EC0C8F132C271D8C00715C11 /* dogMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogMeeple.png; sourceTree = "<group>"; };
+		EC0C8F142C271D8C00715C11 /* tigerMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tigerMeeple.png; sourceTree = "<group>"; };
+		EC0C8F152C271D8C00715C11 /* catMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catMeeple.png; sourceTree = "<group>"; };
+		EC0C8F162C271D8C00715C11 /* wolfMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfMeeple.png; sourceTree = "<group>"; };
+		EC0C8F172C271D8C00715C11 /* leopardMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leopardMeeple.png; sourceTree = "<group>"; };
+		EC0C8F182C271D8C00715C11 /* lionMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lionMeeple.png; sourceTree = "<group>"; };
+		EC0C8F192C271D8C00715C11 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		EC0C8F1A2C271D8C00715C11 /* ratMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ratMeeple.png; sourceTree = "<group>"; };
+		EC0C8F1B2C271D8C00715C11 /* elephantMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephantMeeple.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC0C8EF02C27199800715C11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC0C8EEA2C27199800715C11 = {
+			isa = PBXGroup;
+			children = (
+				EC0C8EF52C27199800715C11 /* ARFoodChainChess */,
+				EC0C8EF42C27199800715C11 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC0C8EF42C27199800715C11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8EF32C27199800715C11 /* ARFoodChainChess.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC0C8EF52C27199800715C11 /* ARFoodChainChess */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8F122C271D8C00715C11 /* images */,
+				EC0C8F082C271D8C00715C11 /* objects */,
+				EC0C8EF62C27199800715C11 /* ARFoodChainChessApp.swift */,
+				EC0C8EF82C27199800715C11 /* ContentView.swift */,
+				EC0C8EFA2C27199900715C11 /* Assets.xcassets */,
+				EC0C8EFC2C27199900715C11 /* Preview Content */,
+				EC0C8F042C271B7500715C11 /* ARGameView.swift */,
+				EC0C8F062C271BEB00715C11 /* ARViewRepresentable.swift */,
+			);
+			path = ARFoodChainChess;
+			sourceTree = "<group>";
+		};
+		EC0C8EFC2C27199900715C11 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8EFD2C27199900715C11 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EC0C8F082C271D8C00715C11 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8F092C271D8C00715C11 /* dog.usdz */,
+				EC0C8F0A2C271D8C00715C11 /* wolf.usdz */,
+				EC0C8F0B2C271D8C00715C11 /* lion.usdz */,
+				EC0C8F0C2C271D8C00715C11 /* tiger.usdz */,
+				EC0C8F0D2C271D8C00715C11 /* leopard.usdz */,
+				EC0C8F0E2C271D8C00715C11 /* board.usdz */,
+				EC0C8F0F2C271D8C00715C11 /* cat.usdz */,
+				EC0C8F102C271D8C00715C11 /* rat.usdz */,
+				EC0C8F112C271D8C00715C11 /* elephant.usdz */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+		EC0C8F122C271D8C00715C11 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EC0C8F132C271D8C00715C11 /* dogMeeple.png */,
+				EC0C8F142C271D8C00715C11 /* tigerMeeple.png */,
+				EC0C8F152C271D8C00715C11 /* catMeeple.png */,
+				EC0C8F162C271D8C00715C11 /* wolfMeeple.png */,
+				EC0C8F172C271D8C00715C11 /* leopardMeeple.png */,
+				EC0C8F182C271D8C00715C11 /* lionMeeple.png */,
+				EC0C8F192C271D8C00715C11 /* board.png */,
+				EC0C8F1A2C271D8C00715C11 /* ratMeeple.png */,
+				EC0C8F1B2C271D8C00715C11 /* elephantMeeple.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC0C8EF22C27199800715C11 /* ARFoodChainChess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC0C8F012C27199900715C11 /* Build configuration list for PBXNativeTarget "ARFoodChainChess" */;
+			buildPhases = (
+				EC0C8EEF2C27199800715C11 /* Sources */,
+				EC0C8EF02C27199800715C11 /* Frameworks */,
+				EC0C8EF12C27199800715C11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARFoodChainChess;
+			productName = ARFoodChainChess;
+			productReference = EC0C8EF32C27199800715C11 /* ARFoodChainChess.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC0C8EEB2C27199800715C11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					EC0C8EF22C27199800715C11 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = EC0C8EEE2C27199800715C11 /* Build configuration list for PBXProject "ARFoodChainChess" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC0C8EEA2C27199800715C11;
+			productRefGroup = EC0C8EF42C27199800715C11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC0C8EF22C27199800715C11 /* ARFoodChainChess */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC0C8EF12C27199800715C11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC0C8F282C271D8C00715C11 /* wolfMeeple.png in Resources */,
+				EC0C8F242C271D8C00715C11 /* elephant.usdz in Resources */,
+				EC0C8F2B2C271D8C00715C11 /* board.png in Resources */,
+				EC0C8EFE2C27199900715C11 /* Preview Assets.xcassets in Resources */,
+				EC0C8F292C271D8C00715C11 /* leopardMeeple.png in Resources */,
+				EC0C8F252C271D8C00715C11 /* dogMeeple.png in Resources */,
+				EC0C8F2D2C271D8C00715C11 /* elephantMeeple.png in Resources */,
+				EC0C8F1D2C271D8C00715C11 /* wolf.usdz in Resources */,
+				EC0C8F222C271D8C00715C11 /* cat.usdz in Resources */,
+				EC0C8F1E2C271D8C00715C11 /* lion.usdz in Resources */,
+				EC0C8F272C271D8C00715C11 /* catMeeple.png in Resources */,
+				EC0C8EFB2C27199900715C11 /* Assets.xcassets in Resources */,
+				EC0C8F202C271D8C00715C11 /* leopard.usdz in Resources */,
+				EC0C8F1C2C271D8C00715C11 /* dog.usdz in Resources */,
+				EC0C8F212C271D8C00715C11 /* board.usdz in Resources */,
+				EC0C8F2A2C271D8C00715C11 /* lionMeeple.png in Resources */,
+				EC0C8F2C2C271D8C00715C11 /* ratMeeple.png in Resources */,
+				EC0C8F1F2C271D8C00715C11 /* tiger.usdz in Resources */,
+				EC0C8F232C271D8C00715C11 /* rat.usdz in Resources */,
+				EC0C8F262C271D8C00715C11 /* tigerMeeple.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC0C8EEF2C27199800715C11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC0C8EF92C27199800715C11 /* ContentView.swift in Sources */,
+				EC0C8EF72C27199800715C11 /* ARFoodChainChessApp.swift in Sources */,
+				EC0C8F072C271BEB00715C11 /* ARViewRepresentable.swift in Sources */,
+				EC0C8F052C271B7500715C11 /* ARGameView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EC0C8EFF2C27199900715C11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC0C8F002C27199900715C11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC0C8F022C27199900715C11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ARFoodChainChess/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Camera needed for AR app\"";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.uca.iut.-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC0C8F032C27199900715C11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ARFoodChainChess/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Camera needed for AR app\"";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.uca.iut.-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC0C8EEE2C27199800715C11 /* Build configuration list for PBXProject "ARFoodChainChess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0C8EFF2C27199900715C11 /* Debug */,
+				EC0C8F002C27199900715C11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC0C8F012C27199900715C11 /* Build configuration list for PBXNativeTarget "ARFoodChainChess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0C8F022C27199900715C11 /* Debug */,
+				EC0C8F032C27199900715C11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC0C8EEB2C27199800715C11 /* Project object */;
+}
