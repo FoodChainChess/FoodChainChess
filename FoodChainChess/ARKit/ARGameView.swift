@@ -8,14 +8,20 @@ import DouShouQiModel
 class ARGameView: ARView {
     
     var initialTransform: Transform = Transform()
-    var pieceEntities: [PieceObject] = []
-    var arGameManager : ARGameManager
+    var pieceEntities: [Owner: [Animal: PieceObject]] = [:]
     
+    var playerManager : PlayerManager = PlayerManager.shared
+    
+    
+    /// Le game
+    @Published var game: Game?
+    
+    var currenPlayer: PlayerVM? {
+        return playerManager.currentPlayer
+    }
     
     
     required init(frame frameRect: CGRect) {
-        
-        self.arGameManager = ARGameManager()
         super.init(frame: frameRect)
     }
     
@@ -27,19 +33,73 @@ class ARGameView: ARView {
         self.init(frame: UIScreen.main.bounds)
         
         setupBoardAndPieces()
-    
-        //Setup les gestures pour chaque piece
-        for piece in pieceEntities {
-            installGestures(.all, for: piece.entity as! Entity & HasCollision).forEach { gestureRecognizer in
-                gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
+        addListeners()
+        
+        
+        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+
+        for animal in animals {
+            if let playerPieces = pieceEntities[.player1], let pieceObject = playerPieces[animal] {
+                installGestures(.all, for: pieceObject.entity as! Entity & HasCollision).forEach { gestureRecognizer in
+                    gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
+                }
+            }
+            if let playerPieces = pieceEntities[.player2], let pieceObject = playerPieces[animal] {
+                installGestures(.all, for: pieceObject.entity as! Entity & HasCollision).forEach { gestureRecognizer in
+                    gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
+                }
             }
         }
-        Task{
-            await self.arGameManager.startGame()
-        }
-
+        
+        
+//        //Setup les gestures pour chaque piece
+//        for piece in pieceEntities {
+//            installGestures(.all, for: piece.entity as! Entity & HasCollision).forEach { gestureRecognizer in
+//                gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
+//            }
+//        }
     }
     
+    func initGame() {
+        self.game = try! Game(
+            withRules: ClassicRules(),
+            andPlayer1: playerManager.selectedPlayer1.player,
+            andPlayer2: playerManager.selectedPlayer2.player
+        )
+    }
+    
+    private func addListeners() {
+        
+        
+        self.game?.addPlayerNotifiedListener({ board, player in
+
+            let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
+            
+            if let ownerPieces = self.pieceEntities[lastPlayerId]{
+                // Recuperer la piece et l'enlever de la scene
+                if let pieceObject = ownerPieces.first(where: { $0.value.isCurrentPieceObject }) {
+                    // if a meeple has current meeple status, reset
+                    pieceObject.value.isCurrentPieceObject = false;
+                }
+            }
+            
+            
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
+            print("**************************************")
+            
+            // Update the current player instance on the player manager
+            self.playerManager.updateCurrentPlayer(currentPlayerId: player.id)
+            
+            if player is RandomPlayer {
+                try! await player.chooseMove(in: board, with: self.game!.rules)
+            }
+        })
+        
+        Task {
+          try! await game?.start()
+        }
+    }
     
     func setupPieces(on anchor: AnchorEntity) {
         let player1 = HumanPlayer(withName: "Bruno", andId: .player1)!
@@ -76,7 +136,7 @@ class ARGameView: ARView {
                         piece3D.name = "\(col),\(row)"
                         piece3D.generateCollisionShapes(recursive: true)
                         anchor.addChild(piece3D)
-                        pieceEntities.append(pieceObject)
+                        pieceEntities[piece.owner]?[piece.animal] = pieceObject
                     }
                 }
             }

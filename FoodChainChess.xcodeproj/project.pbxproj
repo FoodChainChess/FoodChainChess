@@ -31,7 +31,6 @@
 		EC44CAA42C2876EE003C4A13 /* cat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8B2C2876EE003C4A13 /* cat.usdz */; };
 		EC44CAA52C2876EE003C4A13 /* rat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8C2C2876EE003C4A13 /* rat.usdz */; };
 		EC44CAA62C2876EE003C4A13 /* elephant.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8D2C2876EE003C4A13 /* elephant.usdz */; };
-		EC44CAA72C2876EE003C4A13 /* ARGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */; };
 		EC44CAA82C2876EE003C4A13 /* ARViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */; };
 		EC44CAA92C2876EE003C4A13 /* PieceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA912C2876EE003C4A13 /* PieceObject.swift */; };
 		EC44CAAA2C2876EE003C4A13 /* ARGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA922C2876EE003C4A13 /* ARGameView.swift */; };
@@ -114,7 +113,6 @@
 		EC44CA8B2C2876EE003C4A13 /* cat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cat.usdz; sourceTree = "<group>"; };
 		EC44CA8C2C2876EE003C4A13 /* rat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = rat.usdz; sourceTree = "<group>"; };
 		EC44CA8D2C2876EE003C4A13 /* elephant.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = elephant.usdz; sourceTree = "<group>"; };
-		EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARGameManager.swift; sourceTree = "<group>"; };
 		EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewRepresentable.swift; sourceTree = "<group>"; };
 		EC44CA912C2876EE003C4A13 /* PieceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceObject.swift; sourceTree = "<group>"; };
 		EC44CA922C2876EE003C4A13 /* ARGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARGameView.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			children = (
 				EC44CA7A2C2876EE003C4A13 /* images */,
 				EC44CA842C2876EE003C4A13 /* objects */,
-				EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */,
 				EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */,
 				EC44CA902C2876EE003C4A13 /* Model */,
 				EC44CA922C2876EE003C4A13 /* ARGameView.swift */,
@@ -577,7 +574,6 @@
 				EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
 				EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */,
-				EC44CAA72C2876EE003C4A13 /* ARGameManager.swift in Sources */,
 				EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
 				ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */,
