@@ -36,6 +36,8 @@
 		EC44CAA92C2876EE003C4A13 /* PieceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA912C2876EE003C4A13 /* PieceObject.swift */; };
 		EC44CAAA2C2876EE003C4A13 /* ARGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA922C2876EE003C4A13 /* ARGameView.swift */; };
 		EC44CAAB2C2876EE003C4A13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA932C2876EE003C4A13 /* ContentView.swift */; };
+		EC44CAAD2C287AC0003C4A13 /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; };
+		EC44CAAE2C287AC0003C4A13 /* DSQ.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EC624AFF2C10653300138D8D /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC624AFE2C10653300138D8D /* GameVM.swift */; };
 		EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88C2BF34763008A99F5 /* IconButtonView.swift */; };
 		EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */; };
@@ -70,9 +72,22 @@
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
-		ECD528302C00CD0E00BA6C4E /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; };
 		ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE19AA2BF343F500A1D841 /* HomeView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EC44CAAF2C287AC0003C4A13 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EC44CAAE2C287AC0003C4A13 /* DSQ.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EC055C592C05FED8008A5C56 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
@@ -148,7 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECD528302C00CD0E00BA6C4E /* DSQ.xcframework in Frameworks */,
+				EC44CAAD2C287AC0003C4A13 /* DSQ.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +476,7 @@
 				ECD2FF572BF212EE007836C4 /* Sources */,
 				ECD2FF582BF212EE007836C4 /* Frameworks */,
 				ECD2FF592BF212EE007836C4 /* Resources */,
+				EC44CAAF2C287AC0003C4A13 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
