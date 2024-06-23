@@ -76,7 +76,7 @@ class ARGameView: ARView {
         
         let game = try! Game(withRules: ClassicRules(), andPlayer1: player1, andPlayer2: player2)
         
-        let pieceScale: Float = 0.6
+        let pieceScale: Float = 0.3
         
         for col in 0..<game.board.grid.count {
             for row in 0..<game.board.grid[col].count {
@@ -113,7 +113,7 @@ class ARGameView: ARView {
         scene.addAnchor(anchor)
         let board3D = try? Entity.loadModel(named: "board")
         if let board3D {
-            board3D.scale = [0.6, 0.6, 0.6]
+            board3D.scale = [0.3, 0.3, 0.3]
             anchor.addChild(board3D)
         }
         setupPieces(on: anchor)

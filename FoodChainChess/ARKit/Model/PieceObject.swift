@@ -5,8 +5,8 @@ import RealityKit
 
 
 class PieceObject {
-    static var offset = CGPoint(x: -0.2, y: -0.25)
-    static var direction = CGVector(dx: 0.074, dy: 0.06)
+    static var offset = CGPoint(x: -0.3435 * 0.3, y: -0.458 * 0.3)
+    static var direction = CGVector(dx: 0.1145 * 0.3, dy: 0.1145 * 0.3)
     
     var isCurrentPieceObject : Bool = false
     var entity: Entity
