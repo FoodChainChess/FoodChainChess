@@ -7,6 +7,8 @@ import FoodChainChess
 
 
 class Piece {
+    static var offset = CGPoint(x: -0.2, y: -0.25)
+    static var direction = CGVector(dx: 0.074, dy: 0.06)
     var entity: Entity
     var originalPosition: SIMD3<Float>
     var cellPosition: CGPoint {
@@ -15,8 +17,7 @@ class Piece {
         }
     }
     
-    static var offset = CGPoint(x: -0.2, y: -0.25)
-    static var direction = CGVector(dx: 0.074, dy: 0.06)
+    
     
     init(entity: Entity, cellPosition: CGPoint) {
         self.entity = entity
@@ -26,7 +27,6 @@ class Piece {
                                              z: Float(Piece.offset.y + Piece.direction.dy * cellPosition.y))
         updatePosition()
     }
-    
     private func updatePosition() {
         entity.position.x = Float(Piece.offset.x + Piece.direction.dx * cellPosition.x)
         entity.position.z = Float(Piece.offset.y + Piece.direction.dy * cellPosition.y)
@@ -78,32 +78,31 @@ class ARGameView: ARView {
         for col in 0..<game.board.grid.count {
                 for row in 0..<game.board.grid[col].count {
                     if let piece = game.board.grid[col][row].piece {
-                        let pieceModel = try! Entity.loadModel(named: "\(piece.animal)")
+                        let piece3D = try! Entity.loadModel(named: "\(piece.animal)")
                         
                         // Appliquer le matériau en fonction du joueur
                         if piece.owner == player1.id {
-                            pieceModel.model?.materials = [player1Material]
+                            piece3D.model?.materials = [player1Material]
                         } else if piece.owner == player2.id {
-                            pieceModel.model?.materials = [player2Material]
+                            piece3D.model?.materials = [player2Material]
                             
 //                            // Faire rotate la pièce de 180 degrés pour player2
-//                            var transform = pieceModel.transform
-//                            transform.rotation = simd_quatf(angle: .pi, axis: SIMD3<Float>(1, 0, 0))
-//                            pieceModel.transform = transform
+                            var transform = piece3D.transform
+                            transform.rotation = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0)) * transform.rotation
+                            piece3D.transform = transform
                         }
                         
                         let cellPosition = CGPoint(x: row, y: col)
-                        let pieceObject = Piece(entity: pieceModel, cellPosition: cellPosition)
-                        pieceModel.scale = [pieceScale, pieceScale, pieceScale]
-                        pieceModel.name = "\(col),\(row)"
-                        pieceModel.generateCollisionShapes(recursive: true)
-                        anchor.addChild(pieceModel)
+                        let pieceObject = Piece(entity: piece3D, cellPosition: cellPosition)
+                        piece3D.scale = [pieceScale, pieceScale, pieceScale]
+                        piece3D.name = "\(col),\(row)"
+                        piece3D.generateCollisionShapes(recursive: true)
+                        anchor.addChild(piece3D)
                         pieceEntities.append(pieceObject)
                     }
                 }
             }
     }
-
     
     func setupBoardAndPieces() {
         //let configuration = ARWorldTrackingConfiguration()
@@ -117,8 +116,6 @@ class ARGameView: ARView {
         }
         setupPieces(on: anchor)
     }
-    
-    
     
     @objc private func handleGesture(_ recognizer: UIGestureRecognizer) {
         guard let translationGesture = recognizer as? EntityTranslationGestureRecognizer, let entity = translationGesture.entity else { return }
