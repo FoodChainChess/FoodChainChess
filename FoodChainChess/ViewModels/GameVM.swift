@@ -53,7 +53,7 @@ class GameVM: ObservableObject {
         case .player1:
             self.currentPlayerVM = self.player1VM
         case .player2:
-                self.currentPlayerVM = self.player2VM
+            self.currentPlayerVM = self.player2VM
         case .noOne:
             break
         case .none:

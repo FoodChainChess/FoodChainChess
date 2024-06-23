@@ -48,13 +48,14 @@ class GameScene: SKScene, ObservableObject {
             print("Game Started")
         }
         
-        self.gameVM.game.addBoardChangedListener {
+        self.gameVM.game.addBoardChangedListener { _ in
             print("*** BOARD CHANGED ***")
             print("*** ***** ******* ***")
-            print($0)
         }
         
         self.gameVM.game.addPlayerNotifiedListener({ board, player in
+            self.displayBoard(board)
+
             let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
             
             if let ownerPieces = self.pieces[lastPlayerId]{
@@ -70,11 +71,8 @@ class GameScene: SKScene, ObservableObject {
             print("**************************************")
             self.gameVM.getNextPlayer()
 
-            if player is IAPlayer {
-                Task {
-                    print("\(player) is choosing a Move")
-                    try! await player.chooseMove(in: board, with: self.gameVM.game.rules)
-                }
+            if player is RandomPlayer {
+                try! await player.chooseMove(in: board, with: self.gameVM.game.rules)
             }
             
             //try! await Persistance.saveGame(withName: "game", andGame: game2)
@@ -106,7 +104,7 @@ class GameScene: SKScene, ObservableObject {
             
             //self.triggerRemovePieceCallback()
             self.removePiece(for: piece.owner, animal: piece.animal)
-            self.displayBoard(self.gameVM.game.board)
+            //self.displayBoard(self.gameVM.game.board)
         }
         
         self.gameVM.game.addGameOverListener { board, result, player in
@@ -156,8 +154,6 @@ class GameScene: SKScene, ObservableObject {
         }
     }
     
-    
-    
     /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
         
@@ -199,21 +195,6 @@ class GameScene: SKScene, ObservableObject {
             
             // Enlevez de la liste
             ownerPieces.removeValue(forKey: animal)
-        }
-    }
-    
-    /// Permet de faire automatiquement un move à la place d'un player
-    func autoMovePiece(move: Move){
-        if let meeple = self.pieces[move.owner]?.values.first(where: { $0.cellPosition == CGPoint(x: move.rowOrigin, y: move.columnOrigin) }){
-            let destination = CGPoint(
-                x: SpriteMeeple.offset.x + SpriteMeeple.direction.dx * CGFloat(move.rowDestination),
-                y: SpriteMeeple.offset.y + SpriteMeeple.direction.dy * CGFloat(move.columnDestination)
-            )
-
-            let moveAction = SKAction.move(to: destination, duration: 0.5)
-            meeple.run(moveAction) {
-                meeple.cellPosition = CGPoint(x: move.rowDestination, y: move.columnDestination)
-            }
         }
     }
 }

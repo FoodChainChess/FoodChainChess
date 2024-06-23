@@ -12,6 +12,16 @@ struct BoardView: View {
         self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
     }
     
+    private var backgroundColor: LinearGradient {
+        let colors: [Color]
+        if gameScene.gameVM.currentPlayerVM.player.id == .player1 {
+            colors = [Color.white, Color.yellow]
+        } else {
+            colors = [Color.red, Color.white]
+        }
+        return LinearGradient(gradient: Gradient(colors: colors), startPoint: .top, endPoint: .bottom)
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -45,16 +55,12 @@ struct BoardView: View {
             SpriteView(scene: self.gameScene)
             Spacer()
             PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
-        }.background(
-            LinearGradient(
-                gradient: Gradient(colors: self.gameScene.gameVM.currentPlayerVM.player.id == .player1 ? [Color.white, Color.yellow] : [Color.red, Color.white]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        ).task {
+        }
+        .background(backgroundColor)
+        .task {
             await self.gameScene.startGame()
-            
-        }.sheet(isPresented: $gameScene.isShowingEndPopUp) {
+        }
+        .sheet(isPresented: $gameScene.isShowingEndPopUp) {
             EndGamePopUpView(isShowing: $gameScene.isShowingEndPopUp, playerOneScore: 1, playerTwoScore: 0, playerUsername1: gameScene.gameVM.player1VM.player.name, playerUsername2: gameScene.gameVM.player2VM.player.name, winReason: gameScene.gameEndResult)
         }
     }
