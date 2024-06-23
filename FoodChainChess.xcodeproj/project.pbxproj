@@ -13,6 +13,29 @@
 		EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634922BFDD4700047975C /* EndGamePopUpView.swift */; };
 		EC3634952BFDE55D0047975C /* PlayerProfileComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */; };
 		EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */; };
+		EC44CA952C2876EE003C4A13 /* dogMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA7B2C2876EE003C4A13 /* dogMeeple.png */; };
+		EC44CA962C2876EE003C4A13 /* tigerMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA7C2C2876EE003C4A13 /* tigerMeeple.png */; };
+		EC44CA972C2876EE003C4A13 /* catMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA7D2C2876EE003C4A13 /* catMeeple.png */; };
+		EC44CA982C2876EE003C4A13 /* wolfMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA7E2C2876EE003C4A13 /* wolfMeeple.png */; };
+		EC44CA992C2876EE003C4A13 /* leopardMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA7F2C2876EE003C4A13 /* leopardMeeple.png */; };
+		EC44CA9A2C2876EE003C4A13 /* lionMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA802C2876EE003C4A13 /* lionMeeple.png */; };
+		EC44CA9B2C2876EE003C4A13 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA812C2876EE003C4A13 /* board.png */; };
+		EC44CA9C2C2876EE003C4A13 /* ratMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA822C2876EE003C4A13 /* ratMeeple.png */; };
+		EC44CA9D2C2876EE003C4A13 /* elephantMeeple.png in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA832C2876EE003C4A13 /* elephantMeeple.png */; };
+		EC44CA9E2C2876EE003C4A13 /* dog.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA852C2876EE003C4A13 /* dog.usdz */; };
+		EC44CA9F2C2876EE003C4A13 /* wolf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA862C2876EE003C4A13 /* wolf.usdz */; };
+		EC44CAA02C2876EE003C4A13 /* lion.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA872C2876EE003C4A13 /* lion.usdz */; };
+		EC44CAA12C2876EE003C4A13 /* tiger.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA882C2876EE003C4A13 /* tiger.usdz */; };
+		EC44CAA22C2876EE003C4A13 /* leopard.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA892C2876EE003C4A13 /* leopard.usdz */; };
+		EC44CAA32C2876EE003C4A13 /* board.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8A2C2876EE003C4A13 /* board.usdz */; };
+		EC44CAA42C2876EE003C4A13 /* cat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8B2C2876EE003C4A13 /* cat.usdz */; };
+		EC44CAA52C2876EE003C4A13 /* rat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8C2C2876EE003C4A13 /* rat.usdz */; };
+		EC44CAA62C2876EE003C4A13 /* elephant.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EC44CA8D2C2876EE003C4A13 /* elephant.usdz */; };
+		EC44CAA72C2876EE003C4A13 /* ARGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */; };
+		EC44CAA82C2876EE003C4A13 /* ARViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */; };
+		EC44CAA92C2876EE003C4A13 /* PieceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA912C2876EE003C4A13 /* PieceObject.swift */; };
+		EC44CAAA2C2876EE003C4A13 /* ARGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA922C2876EE003C4A13 /* ARGameView.swift */; };
+		EC44CAAB2C2876EE003C4A13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44CA932C2876EE003C4A13 /* ContentView.swift */; };
 		EC624AFF2C10653300138D8D /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC624AFE2C10653300138D8D /* GameVM.swift */; };
 		EC62C88D2BF34763008A99F5 /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88C2BF34763008A99F5 /* IconButtonView.swift */; };
 		EC62C88F2BF34B55008A99F5 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */; };
@@ -44,7 +67,6 @@
 		ECC36F432BFDD02A0071AF45 /* ParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC36F422BFDD02A0071AF45 /* ParametersView.swift */; };
 		ECC36F452BFDD8FC0071AF45 /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC36F442BFDD8FC0071AF45 /* ModeSwitchView.swift */; };
 		ECD2FF5F2BF212EE007836C4 /* FoodChainChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2FF5E2BF212EE007836C4 /* FoodChainChessApp.swift */; };
-		ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2FF602BF212EE007836C4 /* ContentView.swift */; };
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
@@ -59,6 +81,29 @@
 		EC3634922BFDD4700047975C /* EndGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePopUpView.swift; sourceTree = "<group>"; };
 		EC3634942BFDE55D0047975C /* PlayerProfileComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileComponentView.swift; sourceTree = "<group>"; };
 		EC3634962BFDE7EA0047975C /* PlayerScoreComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreComponentView.swift; sourceTree = "<group>"; };
+		EC44CA7B2C2876EE003C4A13 /* dogMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogMeeple.png; sourceTree = "<group>"; };
+		EC44CA7C2C2876EE003C4A13 /* tigerMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tigerMeeple.png; sourceTree = "<group>"; };
+		EC44CA7D2C2876EE003C4A13 /* catMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catMeeple.png; sourceTree = "<group>"; };
+		EC44CA7E2C2876EE003C4A13 /* wolfMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfMeeple.png; sourceTree = "<group>"; };
+		EC44CA7F2C2876EE003C4A13 /* leopardMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leopardMeeple.png; sourceTree = "<group>"; };
+		EC44CA802C2876EE003C4A13 /* lionMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lionMeeple.png; sourceTree = "<group>"; };
+		EC44CA812C2876EE003C4A13 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		EC44CA822C2876EE003C4A13 /* ratMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ratMeeple.png; sourceTree = "<group>"; };
+		EC44CA832C2876EE003C4A13 /* elephantMeeple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephantMeeple.png; sourceTree = "<group>"; };
+		EC44CA852C2876EE003C4A13 /* dog.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = dog.usdz; sourceTree = "<group>"; };
+		EC44CA862C2876EE003C4A13 /* wolf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = wolf.usdz; sourceTree = "<group>"; };
+		EC44CA872C2876EE003C4A13 /* lion.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lion.usdz; sourceTree = "<group>"; };
+		EC44CA882C2876EE003C4A13 /* tiger.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tiger.usdz; sourceTree = "<group>"; };
+		EC44CA892C2876EE003C4A13 /* leopard.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = leopard.usdz; sourceTree = "<group>"; };
+		EC44CA8A2C2876EE003C4A13 /* board.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = board.usdz; sourceTree = "<group>"; };
+		EC44CA8B2C2876EE003C4A13 /* cat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cat.usdz; sourceTree = "<group>"; };
+		EC44CA8C2C2876EE003C4A13 /* rat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = rat.usdz; sourceTree = "<group>"; };
+		EC44CA8D2C2876EE003C4A13 /* elephant.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = elephant.usdz; sourceTree = "<group>"; };
+		EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARGameManager.swift; sourceTree = "<group>"; };
+		EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewRepresentable.swift; sourceTree = "<group>"; };
+		EC44CA912C2876EE003C4A13 /* PieceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceObject.swift; sourceTree = "<group>"; };
+		EC44CA922C2876EE003C4A13 /* ARGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARGameView.swift; sourceTree = "<group>"; };
+		EC44CA932C2876EE003C4A13 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC624AFE2C10653300138D8D /* GameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVM.swift; sourceTree = "<group>"; };
 		EC62C88C2BF34763008A99F5 /* IconButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonView.swift; sourceTree = "<group>"; };
 		EC62C88E2BF34B55008A99F5 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
@@ -91,7 +136,6 @@
 		ECC36F442BFDD8FC0071AF45 /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
 		ECD2FF5B2BF212EE007836C4 /* FoodChainChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodChainChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECD2FF5E2BF212EE007836C4 /* FoodChainChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodChainChessApp.swift; sourceTree = "<group>"; };
-		ECD2FF602BF212EE007836C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ECD2FF622BF212EE007836C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -118,6 +162,60 @@
 				EC2BE6272C274156002418BC /* GameSceneManager.swift */,
 			);
 			path = Binding;
+			sourceTree = "<group>";
+		};
+		EC44CA792C2876EE003C4A13 /* ARKit */ = {
+			isa = PBXGroup;
+			children = (
+				EC44CA7A2C2876EE003C4A13 /* images */,
+				EC44CA842C2876EE003C4A13 /* objects */,
+				EC44CA8E2C2876EE003C4A13 /* ARGameManager.swift */,
+				EC44CA8F2C2876EE003C4A13 /* ARViewRepresentable.swift */,
+				EC44CA902C2876EE003C4A13 /* Model */,
+				EC44CA922C2876EE003C4A13 /* ARGameView.swift */,
+				EC44CA932C2876EE003C4A13 /* ContentView.swift */,
+			);
+			path = ARKit;
+			sourceTree = "<group>";
+		};
+		EC44CA7A2C2876EE003C4A13 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EC44CA7B2C2876EE003C4A13 /* dogMeeple.png */,
+				EC44CA7C2C2876EE003C4A13 /* tigerMeeple.png */,
+				EC44CA7D2C2876EE003C4A13 /* catMeeple.png */,
+				EC44CA7E2C2876EE003C4A13 /* wolfMeeple.png */,
+				EC44CA7F2C2876EE003C4A13 /* leopardMeeple.png */,
+				EC44CA802C2876EE003C4A13 /* lionMeeple.png */,
+				EC44CA812C2876EE003C4A13 /* board.png */,
+				EC44CA822C2876EE003C4A13 /* ratMeeple.png */,
+				EC44CA832C2876EE003C4A13 /* elephantMeeple.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		EC44CA842C2876EE003C4A13 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				EC44CA852C2876EE003C4A13 /* dog.usdz */,
+				EC44CA862C2876EE003C4A13 /* wolf.usdz */,
+				EC44CA872C2876EE003C4A13 /* lion.usdz */,
+				EC44CA882C2876EE003C4A13 /* tiger.usdz */,
+				EC44CA892C2876EE003C4A13 /* leopard.usdz */,
+				EC44CA8A2C2876EE003C4A13 /* board.usdz */,
+				EC44CA8B2C2876EE003C4A13 /* cat.usdz */,
+				EC44CA8C2C2876EE003C4A13 /* rat.usdz */,
+				EC44CA8D2C2876EE003C4A13 /* elephant.usdz */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+		EC44CA902C2876EE003C4A13 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC44CA912C2876EE003C4A13 /* PieceObject.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EC62C88B2BF34723008A99F5 /* Buttons */ = {
@@ -277,6 +375,7 @@
 		ECD2FF5D2BF212EE007836C4 /* FoodChainChess */ = {
 			isa = PBXGroup;
 			children = (
+				EC44CA792C2876EE003C4A13 /* ARKit */,
 				ECA5AE4A2C09FC7F004A0A39 /* ViewModels */,
 				EC055C582C05FEC3008A5C56 /* Binding */,
 				EC83FCD32C046D500075D6F4 /* Settings */,
@@ -285,7 +384,6 @@
 				ECD2FF6D2BF21384007836C4 /* Styles */,
 				ECD2FF6C2BF21345007836C4 /* Views */,
 				ECD2FF5E2BF212EE007836C4 /* FoodChainChessApp.swift */,
-				ECD2FF602BF212EE007836C4 /* ContentView.swift */,
 				ECD2FF622BF212EE007836C4 /* Assets.xcassets */,
 				ECD2FF642BF212EE007836C4 /* Preview Content */,
 			);
@@ -413,10 +511,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC44CAA62C2876EE003C4A13 /* elephant.usdz in Resources */,
+				EC44CA9B2C2876EE003C4A13 /* board.png in Resources */,
+				EC44CA9F2C2876EE003C4A13 /* wolf.usdz in Resources */,
 				ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */,
+				EC44CA982C2876EE003C4A13 /* wolfMeeple.png in Resources */,
+				EC44CAA42C2876EE003C4A13 /* cat.usdz in Resources */,
+				EC44CA9C2C2876EE003C4A13 /* ratMeeple.png in Resources */,
+				EC44CAA32C2876EE003C4A13 /* board.usdz in Resources */,
+				EC44CAA12C2876EE003C4A13 /* tiger.usdz in Resources */,
+				EC44CA962C2876EE003C4A13 /* tigerMeeple.png in Resources */,
+				EC44CA952C2876EE003C4A13 /* dogMeeple.png in Resources */,
 				ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */,
 				ECA69E3C2C00C577005C7689 /* Localization.xcstrings in Resources */,
+				EC44CA992C2876EE003C4A13 /* leopardMeeple.png in Resources */,
+				EC44CA9A2C2876EE003C4A13 /* lionMeeple.png in Resources */,
 				ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */,
+				EC44CA972C2876EE003C4A13 /* catMeeple.png in Resources */,
+				EC44CA9E2C2876EE003C4A13 /* dog.usdz in Resources */,
+				EC44CA9D2C2876EE003C4A13 /* elephantMeeple.png in Resources */,
+				EC44CAA02C2876EE003C4A13 /* lion.usdz in Resources */,
+				EC44CAA22C2876EE003C4A13 /* leopard.usdz in Resources */,
+				EC44CAA52C2876EE003C4A13 /* rat.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,24 +554,28 @@
 				EC2BE6282C274156002418BC /* GameSceneManager.swift in Sources */,
 				EC62C8912BF351C2008A99F5 /* ButtonSize.swift in Sources */,
 				ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */,
+				EC44CAAA2C2876EE003C4A13 /* ARGameView.swift in Sources */,
 				EC3634972BFDE7EA0047975C /* PlayerScoreComponentView.swift in Sources */,
 				EC055C5A2C05FED8008A5C56 /* PlayerManager.swift in Sources */,
 				ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */,
 				EC3634932BFDD4700047975C /* EndGamePopUpView.swift in Sources */,
 				ECAA4C6E2BF33C91008172E0 /* RegisteredGamesView.swift in Sources */,
 				EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */,
+				EC44CAA72C2876EE003C4A13 /* ARGameManager.swift in Sources */,
 				EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */,
 				ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */,
 				ECAA4C602BF33102008172E0 /* ListItemScoreboardView.swift in Sources */,
 				EC624AFF2C10653300138D8D /* GameVM.swift in Sources */,
+				EC44CAA82C2876EE003C4A13 /* ARViewRepresentable.swift in Sources */,
 				ECAA4C6B2BF338C8008172E0 /* ListItemGamesView.swift in Sources */,
 				EC83FCD92C0475FE0075D6F4 /* AppearanceSettings.swift in Sources */,
+				EC44CAA92C2876EE003C4A13 /* PieceObject.swift in Sources */,
+				EC44CAAB2C2876EE003C4A13 /* ContentView.swift in Sources */,
 				ECAA4C702BF33CC6008172E0 /* ListItemRegisteredGamesView.swift in Sources */,
 				ECAB1FF32BF3627D003D866C /* CreatePlayerView.swift in Sources */,
 				ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */,
 				EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */,
 				EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */,
-				ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */,
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
 				ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */,
@@ -603,17 +723,19 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Open the camera\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.uca.iut.FoodChainChess;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.uca.iut.-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;
@@ -637,17 +759,19 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 67U885533Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Open the camera\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.uca.iut.FoodChainChess;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.uca.iut.-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = tpiOS_2024_06_21_off;

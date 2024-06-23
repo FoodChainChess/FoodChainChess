@@ -3,7 +3,6 @@ import SwiftUI
 import ARKit
 import RealityKit
 import DouShouQiModel
-import FoodChainChess
 
 
 class ARGameView: ARView {
