@@ -9,13 +9,14 @@ import SwiftUI
 import DouShouQiModel
 
 struct StartGamePopUpView: View {
-    @EnvironmentObject var playerManager: PlayerManager
-        
     @State private var selectedGameMode: String = "pvp"
-    @State private var selectedPlayer1: String = "no player selected"
-    @State private var selectedPlayer2: String = "no player selected"
-    let r = BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: HumanPlayer(withName: "LouBis", andId: .player2)!)
-//    let r = BoardView(player1: HumanPlayer(withName: "Lou", andId: .player1)!, player2: IAPlayer(withName: "Bot", andId: .player2)!)
+    @State private var selectedPlayer1: String = "Player 1"
+    @State private var selectedPlayer2: String = "Player 2"
+    // flag pour la navigation de BoardView
+    @State private var isNavigationActive = false 
+    
+    var playerManager = PlayerManager.shared
+    
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -79,31 +80,49 @@ struct StartGamePopUpView: View {
             }
             .navigationBarTitle("Game Settings", displayMode: .inline)
             .padding()
-        }
+            
+            // MainButtonView with action and navigation
             MainButtonView(
                 buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                 color: Colors.text,
                 iconName: "play.fill",
                 textColor: Color("Background"),
-                destination: AnyView(r.navigationBarBackButtonHidden(true))
-            ).padding()
+                action: {
+                    if let newPlayer1 = playerManager.getPlayerByUsername(self.selectedPlayer1) {
+                        playerManager.selectedPlayer1 = PlayerVM(player: newPlayer1)
+                    }
+                    if let newPlayer2 = playerManager.getPlayerByUsername(self.selectedPlayer2) {
+                        playerManager.selectedPlayer2 = PlayerVM(player: newPlayer2)
+                    }
+                    
+                    // make sure ids are different
+                    playerManager.adjustSelectedPlayersId()
+                    
+                    print("Selected player 1 \(playerManager.selectedPlayer1.player.name)")
+                    
+                    // Set navigation active after action
+                    self.isNavigationActive = true
+                }
+            )
+            .padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
+            
+            // Navigation to BoardView
+            NavigationLink(
+                destination: BoardView().navigationBarBackButtonHidden(true),
+                isActive: $isNavigationActive,
+                label: { EmptyView() } // Hide navigation link label
+            )
         }
     }
-
+}
 
 struct StartGamePopUpView_Previews: PreviewProvider {
     @State static var isShowing = true
     
     static var previews: some View {
-        let playerManager = PlayerManager()
-        playerManager.addPlayer(username: "LouSusQi")
-        playerManager.addPlayer(username: "LouSusQuoi")
-        playerManager.addPlayer(username: "LouSusÇa")
-        playerManager.addPlayer(username: "LouSusComment")
         
         return StartGamePopUpView()
-            .environmentObject(playerManager)
     }
 }
 

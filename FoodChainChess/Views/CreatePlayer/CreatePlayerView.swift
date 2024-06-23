@@ -5,9 +5,8 @@ struct CreatePlayerView: View {
     @State private var errorMessage = ""
     
     @State private var isShowingConfirmation = false
-
-    @EnvironmentObject var playerManager: PlayerManager
-
+    
+    var playerManager = PlayerManager.shared
     
     var body: some View {
         VStack {
@@ -30,12 +29,12 @@ struct CreatePlayerView: View {
             }
             VStack {
                 MainButtonView(buttonText: "Create", color: Colors.primary) {
-                    if let error = playerManager.addPlayer(username: name) {
+                    if let error = playerManager.addNewPlayer(username: name) {
                         errorMessage = error
                     } else {
                         self.isShowingConfirmation = true
                         errorMessage = ""
-                        print("Player count: \(self.playerManager.createdPlayers.count)")
+                        print("Player count: \(playerManager.createdPlayers.count)")
                     }
                 }
                 .alert(isPresented: $isShowingConfirmation) {
@@ -53,13 +52,12 @@ struct CreatePlayerView: View {
             }.padding(60)
             Spacer()
         }.background(Colors.background)
-        
-        
     }
 }
 
 struct CreatePlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePlayerView().environmentObject(PlayerManager())
+    
+        CreatePlayerView()
     }
 }

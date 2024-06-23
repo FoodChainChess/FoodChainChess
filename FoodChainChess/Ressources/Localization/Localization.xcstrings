@@ -518,6 +518,12 @@
         }
       }
     },
+    "Select Game Mode" : {
+
+    },
+    "Select Players" : {
+
+    },
     "Yes" : {
       "extractionState" : "manual",
       "localizations" : {

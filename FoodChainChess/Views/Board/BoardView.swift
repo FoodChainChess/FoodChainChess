@@ -5,11 +5,19 @@ import DouShouQiModel
 struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingAlert = false
+        
+    @EnvironmentObject var gameManager: GameSceneManager
     
-    @ObservedObject var gameScene: GameScene
+    @ObservedObject var playerManager: PlayerManager = PlayerManager.shared
     
-    init(player1: Player, player2: Player) {
-        self.gameScene = GameScene(size: CGSize(width: 700, height: 900), player1: player1, player2: player2)
+    private var backgroundColor: LinearGradient {
+        let colors: [Color]
+        if self.playerManager.currentPlayer?.player.id == .player1 {
+            colors = [Color.white, Color.yellow]
+        } else {
+            colors = [Color.red, Color.white]
+        }
+        return LinearGradient(gradient: Gradient(colors: colors), startPoint: .top, endPoint: .bottom)
     }
     
     var body: some View {
@@ -38,36 +46,73 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player2VM.player.name)
+                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
             }.padding()
             Spacer()
-            SpriteView(scene: self.gameScene)
+            SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameScene.gameVM.player1VM.player.name)
-        }.background(
-            LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color.yellow]),
-                startPoint: .top,
-                endPoint: .bottom
-            ) //couleur à changer en fonction du joueur en cours (J1 - white & yellow / J2 - red & white)
-        ).task {
-            await self.gameScene.startGame()
-            
-        }.sheet(isPresented: $gameScene.isShowingEndPopUp) {
-            EndGamePopUpView(isShowing: $gameScene.isShowingEndPopUp, playerOneScore: 1, playerTwoScore: 0, playerUsername1: gameScene.gameVM.player1VM.player.name, playerUsername2: gameScene.gameVM.player2VM.player.name, winReason: gameScene.gameEndResult)
+            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
+        // add linear gadient changes
+        }
+        .background(backgroundColor)
+        .task {
+            // init game instance
+            self.gameManager.gameScene.gameVM.initGame()
+
+            // add game ended listener (here to be able to bind with gameManager)
+            self.gameManager.gameScene.gameVM.game!.addGameOverListener { board, result, player in
+                
+                // game ended messsage holder
+                var gameEndedMessage: String
+
+                switch(result){
+                case .notFinished:
+                    print("⏳ Game is not over yet!")
+                case .winner(winner: let o, reason: let result):
+                    print(board)
+                    print("**************************************")
+                    print("Game Over!!!")
+                    print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
+                    switch(result){
+                    case .denReached:
+                        print("🪺 the opponent's den has been reached.")
+                        gameEndedMessage = "🪺 the opponent's den has been reached."
+                    case .noMorePieces:
+                        print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
+                        gameEndedMessage = "🐭🐱🐯🦁🐘 all the opponent's animals have been eaten..."
+                    case .noMovesLeft:
+                        print("⛔️ the opponent can not move any piece!")
+                        gameEndedMessage = "⛔️ the opponent can not move any piece!"
+                    case .tooManyOccurences:
+                        print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
+                        gameEndedMessage = "🔄 the opponent seem to like this situation... but enough is enough. Sorry..."
+                    }
+                    print("**************************************")
+                    
+                    self.gameManager.gameScene.gameEndResult = gameEndedMessage
+                    
+                    // ! Mettre a jour UI dans le thread principale
+                    // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
+                    DispatchQueue.main.async {
+                        self.gameManager.isGameEnded = true
+                    }
+                    
+                default:
+                    break
+                }
+            }
+            await self.gameManager.gameScene.startGame()
+        }
+        .sheet(isPresented: self.$gameManager.isGameEnded) {
+            EndGamePopUpView(isShowing: self.$gameManager.isGameEnded, playerOneScore: 1, playerTwoScore: 0, playerUsername1: self.playerManager.selectedPlayer1.player.name, playerUsername2: self.playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult)
         }
     }
 }
 
 struct BoardViewPreview: PreviewProvider {
-    static var previews: some View {
-        
-        let player1: Player = HumanPlayer(withName: "LouSusQi", andId: .player1)!
-        let player2: Player = HumanPlayer(withName: "LouSusQuoi", andId: .player2)!
-        
-        BoardView(player1: player1, player2: player2)
-        
+    static var previews: some View {        
+        BoardView()
     }
 }
 //#Preview {

@@ -13,7 +13,7 @@ class SpriteMeeple: SKNode {
     
     let imageNode: SKSpriteNode
     let ellipseNode: SKShapeNode
-    var possibleMoves: [Move] = []
+    var possibleMoves: [Move]? = []
     
     var gameScene: GameScene {
         return (self.scene as? GameScene)!
@@ -41,7 +41,7 @@ class SpriteMeeple: SKNode {
         didSet {
             // calculer les moves possibles lors du changement de la piece en cours
             if let currentPiece = self.currentPiece {
-                possibleMoves = self.gameScene.gameVM.game.rules.getMoves(in: self.gameScene.gameVM.game.board, of: currentPiece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
+                possibleMoves = self.gameScene.gameVM.game?.rules.getMoves(in: self.gameScene.gameVM.game!.board, of: currentPiece.owner, fromRow: Int(self.cellPosition.y), andColumn: Int(self.cellPosition.x))
             }
         }
     }
@@ -79,14 +79,14 @@ class SpriteMeeple: SKNode {
     /// Permet de savoir si le possesseur de la pièce est le joueur actuel
     /// - Returns: True s'il s'agit du joueur actuel, False sinon
     private func isOwnerCurrentPlayer() -> Bool {
-        return self.gameScene.gameVM.currentPlayerVM.player.id == self.owner
+        return self.gameScene.gameVM.currenPlayerVM?.player.id == self.owner
     }
     
     /// Permet de savoir si le possesseur de la pièce est un joueur humain
     /// - Returns: True s'il s'agit d'un joueur humain, False sinon
     private func isOwnerHumanPlayer() -> Bool {
-        if self.gameScene.gameVM.currentPlayerVM.player.id == self.owner {
-            if self.gameScene.gameVM.currentPlayerVM.player is HumanPlayer {
+        if self.gameScene.gameVM.currenPlayerVM?.player.id == self.owner {
+            if self.gameScene.gameVM.currenPlayerVM?.player is HumanPlayer {
                 return true
             }
         }
@@ -113,7 +113,7 @@ class SpriteMeeple: SKNode {
             self.fromMovePosition = [Int(currentPiecePosition.y), Int(currentPiecePosition.x)]
             
             // definir la piece en cours
-            self.currentPiece = self.gameScene.gameVM.game.board.grid[fromMovePosition[0]][fromMovePosition[1]].piece
+            self.currentPiece = self.gameScene.gameVM.game?.board.grid[fromMovePosition[0]][fromMovePosition[1]].piece
             
             highlightNodes(from: position)
         }
@@ -153,14 +153,14 @@ class SpriteMeeple: SKNode {
         self.cellPosition = nearestPosition
         
         // Si move fait parti des moves possibles
-        let move = Move(of: self.gameScene.gameVM.currentPlayerVM.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
+        let move = Move(of: self.gameScene.gameVM.currenPlayerVM!.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
             
         // Ajouter le move a currentPlayerVM
-        self.gameScene.gameVM.currentPlayerVM.currentMove = move
+        self.gameScene.gameVM.currenPlayerVM!.currentMove = move
         
-        if self.gameScene.gameVM.currentPlayerVM.player is HumanPlayer {
+        if self.gameScene.gameVM.currenPlayerVM?.player is HumanPlayer {
             Task {
-                try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
+                try! await (self.gameScene.gameVM.currenPlayerVM?.player as! HumanPlayer).chooseMove(move)
             }
         }
 
@@ -181,15 +181,15 @@ class SpriteMeeple: SKNode {
     /// Permet d'afficher les cases de destination possibles lors de la sélection d'une pièce
     /// - Parameter position: Position initiale de la pièce
     func highlightNodes(from position: CGPoint) {
-        let cellWidth = gameScene.imageBoard.size.width / CGFloat(self.gameScene.gameVM.game.board.nbColumns)
-        let cellHeight = gameScene.imageBoard.size.height / CGFloat(self.gameScene.gameVM.game.board.nbRows)
+        let cellWidth = gameScene.imageBoard.size.width / CGFloat(self.gameScene.gameVM.game!.board.nbColumns)
+        let cellHeight = gameScene.imageBoard.size.height / CGFloat(self.gameScene.gameVM.game!.board.nbRows)
         
         let col = Int((position.x + gameScene.imageBoard.size.width / 2) / cellWidth)
         let row = Int((position.y + gameScene.imageBoard.size.height / 2) / cellHeight)
         
-        if let piece = self.gameScene.gameVM.game.board.grid[row][col].piece {
-            let possibleMoves = self.gameScene.gameVM.game.rules.getMoves(in: self.gameScene.gameVM.game.board, of: piece.owner, fromRow: row, andColumn: col)
-            gameScene.highlightMoves(possibleMoves)
+        if let piece = self.gameScene.gameVM.game?.board.grid[row][col].piece {
+            let possibleMoves = self.gameScene.gameVM.game?.rules.getMoves(in: self.gameScene.gameVM.game!.board, of: piece.owner, fromRow: row, andColumn: col)
+            gameScene.highlightMoves(possibleMoves!)
         }
     }
     

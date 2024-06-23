@@ -3,36 +3,25 @@ import UIKit
 import Foundation
 
 class GameVM: ObservableObject {
-    /// La game
-    @Published var game: Game
-    
-    /// Les joueurs
-    var player1VM: PlayerVM
-    var player2VM: PlayerVM
-    
-    /// Le joueur en coursVM
-    @Published var currentPlayerVM: PlayerVM
-    
-    /// L'id du joueur en cours
-    /// Le changement de cette variable déclanche une mise a jour de l'instance
-    /// de currentPlayerVM.
-    @Published var currentPlayerId: Owner? {
-        didSet {
-            updateCurrentPlayerVM()
-        }
+    /// Le game
+    @Published var game: Game?
+
+    /// Reference a current player VM
+    var currenPlayerVM: PlayerVM? {
+        return playerManager.currentPlayer
     }
     
     ///CallBack pour reset piece dans SpriteMeeple
     private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
 
-    init(player1: Player, player2: Player) {
-        // definir les joueurs
-        self.player1VM = PlayerVM(player: player1)
-        self.player2VM = PlayerVM(player: player2)
-        self.currentPlayerVM = player1VM
-        
-        // initialiser un nouveau game
-        self.game = try! Game(withRules: ClassicRules(), andPlayer1: player1VM.player, andPlayer2: player2VM.player)
+    var playerManager = PlayerManager.shared
+    
+    func initGame() {
+        self.game = try! Game(
+            withRules: ClassicRules(),
+            andPlayer1: playerManager.selectedPlayer1.player,
+            andPlayer2: playerManager.selectedPlayer2.player
+        )
     }
     
     
@@ -41,32 +30,14 @@ class GameVM: ObservableObject {
         meepleCallbacks[meeple] = ["InvalidMove":callback]
     }
     
-    // Gestion des Players //
-    func getNextPlayer() {
-        self.currentPlayerId = game.rules.getNextPlayer()
-    }
-    
     /// Mettre a jour le joueur actuelle
-    func updateCurrentPlayerVM() {
-        print("Updating current player")
-        switch self.currentPlayerId {
-        case .player1:
-            self.currentPlayerVM = self.player1VM
-        case .player2:
-                self.currentPlayerVM = self.player2VM
-        case .noOne:
-            break
-        case .none:
-            break
-        case .some(_): // au cas ou des nouvelles valeurs de owners sont ajouté au futur
-            break
-        }
+    func updateCurrentPlayerVM(currentPlayerId: Owner) {
+        playerManager.updateCurrentPlayer(currentPlayerId: currentPlayerId)
     }
     
     /// Lancer la boucle de jeu
     func start() async {
-        
-        try? await game.start()
+        try? await game?.start()
     }
     
     /// Création des pieces
@@ -74,7 +45,7 @@ class GameVM: ObservableObject {
         var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
         let meepleSize = CGSize(width: 80, height: 80)
         
-        let players = [self.player2VM.player, self.player1VM.player]
+        let players = [self.playerManager.selectedPlayer2.player, self.playerManager.selectedPlayer1.player]
         
         let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
         
