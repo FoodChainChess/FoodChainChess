@@ -56,6 +56,9 @@ struct BoardView: View {
         // add linear gadient changes
         }
         .background(backgroundColor)
+        .onAppear(){
+            self.gameManager.gameScene.gameVM.initGame()
+        }
         .task {
             // init game instance
             self.gameManager.gameScene.gameVM.initGame()
