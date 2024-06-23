@@ -6,40 +6,15 @@ import DouShouQiModel
 import FoodChainChess
 
 
-class Piece {
-    static var offset = CGPoint(x: -0.2, y: -0.25)
-    static var direction = CGVector(dx: 0.074, dy: 0.06)
-    var entity: Entity
-    var originalPosition: SIMD3<Float>
-    var cellPosition: CGPoint {
-        didSet {
-            updatePosition()
-        }
-    }
-    
-    
-    
-    init(entity: Entity, cellPosition: CGPoint) {
-        self.entity = entity
-        self.cellPosition = cellPosition
-        self.originalPosition = SIMD3<Float>(x: Float(Piece.offset.x + Piece.direction.dx * cellPosition.x),
-                                             y: 0.02,
-                                             z: Float(Piece.offset.y + Piece.direction.dy * cellPosition.y))
-        updatePosition()
-    }
-    private func updatePosition() {
-        entity.position.x = Float(Piece.offset.x + Piece.direction.dx * cellPosition.x)
-        entity.position.z = Float(Piece.offset.y + Piece.direction.dy * cellPosition.y)
-    }
-}
-
-
 class ARGameView: ARView {
     
     var initialTransform: Transform = Transform()
-    var pieceEntities: [Piece] = []
+    var pieceEntities: [PieceObject] = []
+    var arGameManager : ARGameManager
     
     required init(frame frameRect: CGRect) {
+        
+        self.arGameManager = ARGameManager()
         super.init(frame: frameRect)
     }
     
@@ -51,13 +26,15 @@ class ARGameView: ARView {
         self.init(frame: UIScreen.main.bounds)
         
         setupBoardAndPieces()
-        
-        
+    
         //Setup les gestures pour chaque piece
         for piece in pieceEntities {
             installGestures(.all, for: piece.entity as! Entity & HasCollision).forEach { gestureRecognizer in
                 gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
             }
+        }
+        Task{
+            await self.arGameManager.startGame()
         }
 
     }
@@ -93,7 +70,7 @@ class ARGameView: ARView {
                         }
                         
                         let cellPosition = CGPoint(x: row, y: col)
-                        let pieceObject = Piece(entity: piece3D, cellPosition: cellPosition)
+                        let pieceObject = PieceObject(entity: piece3D, cellPosition: cellPosition)
                         piece3D.scale = [pieceScale, pieceScale, pieceScale]
                         piece3D.name = "\(col),\(row)"
                         piece3D.generateCollisionShapes(recursive: true)
