@@ -20,44 +20,66 @@ struct StartGamePopUpView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(alignment: .leading, spacing: 20) {
                 // Game mode selection
-                Picker(NSLocalizedString("Game Mode", tableName: "Localization", comment: ""),
-                       selection: $selectedGameMode) {
-                    
-                    Text("PvP", tableName: "Localization")
-                        .tag("pvp")
-                    
-                    Text("Player vs Computer", tableName: "Localization")
-                        .tag("pve")
-                    
-                    Text("Multi-Device", tableName: "Localization")
-                        .tag("multi")
+                Section(header: Text(NSLocalizedString("Select Game Mode", tableName: "Localization", comment: ""))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .padding(.top)) {
+                    Picker(NSLocalizedString("Game Mode", tableName: "Localization", comment: ""),
+                           selection: $selectedGameMode) {
+                        
+                        Text("PvP", tableName: "Localization")
+                            .tag("pvp")
+                        
+                        Text("Player vs Computer", tableName: "Localization")
+                            .tag("pve")
+                        
+                        Text("Multi-Device", tableName: "Localization")
+                            .tag("multi")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
-                .pickerStyle(.navigationLink)
+                .padding()
+                .background(Color(UIColor.systemGray6))
+                .cornerRadius(10)
                 
                 // Player Selection
-                Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
-                       selection: $selectedPlayer1) {
-                    
-                    // need to use count because player does not conform with identifiable
-                    ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
-                        Text(playerManager.createdPlayers[index].name)
-                            .tag(playerManager.createdPlayers[index].name)
+                Section(header: Text(NSLocalizedString("Select Players", tableName: "Localization", comment: ""))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .padding(.top)) {
+                    Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
+                           selection: $selectedPlayer1) {
+                        
+                        ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
+                            Text(playerManager.createdPlayers[index].name)
+                                .tag(playerManager.createdPlayers[index].name)
+                        }
                     }
-                }
-                       .pickerStyle(.navigationLink)
-                
-                Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
-                       selection: $selectedPlayer2) {
+                    .pickerStyle(MenuPickerStyle())
+                    .padding()
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(10)
                     
-                    ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
-                        Text(playerManager.createdPlayers[index].name)
-                            .tag(playerManager.createdPlayers[index].name)
+                    Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
+                           selection: $selectedPlayer2) {
+                        
+                        ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
+                            Text(playerManager.createdPlayers[index].name)
+                                .tag(playerManager.createdPlayers[index].name)
+                        }
                     }
+                    .pickerStyle(MenuPickerStyle())
+                    .padding()
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(10)
                 }
-                .pickerStyle(.navigationLink)
+                .padding()
             }
+            .navigationBarTitle("Game Settings", displayMode: .inline)
+            .padding()
+        }
             MainButtonView(
                 buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                 color: Colors.text,
@@ -68,7 +90,7 @@ struct StartGamePopUpView: View {
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
         }
     }
-}
+
 
 struct StartGamePopUpView_Previews: PreviewProvider {
     @State static var isShowing = true
