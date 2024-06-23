@@ -22,13 +22,14 @@ class PlayerManager: ObservableObject {
     private init() {
         // Default players
         guard let player1 = HumanPlayer(withName: "Player 1", andId: .player1),
-              let player2 = HumanPlayer(withName: "Player 2", andId: .player2) else {
+              let player2 = HumanPlayer(withName: "Player 2", andId: .player2),
+              let botPlayer = RandomPlayer(withName: "Bot", andId: .player2) else {
             fatalError("Failed to create default players.")
         }
 
         // Add defaults to list
-        self.createdPlayers = [player1, player2]
-
+        self.createdPlayers = [player1, player2, botPlayer]
+        
         // Set default selected players
         self.selectedPlayer1 = PlayerVM(player: player1)
         self.selectedPlayer2 = PlayerVM(player: player2)
