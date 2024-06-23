@@ -106,13 +106,22 @@ struct StartGamePopUpView: View {
             )
             .padding()
             .navigationTitle(NSLocalizedString("New Game", tableName: "Localization", comment: ""))
+            if(selectedGameMode == "multi"){
+                NavigationLink(
+                    destination: ContentView().navigationBarBackButtonHidden(true),
+                    isActive: $isNavigationActive,
+                    label: { EmptyView() } // Hide navigation link label
+                )
+            }
+            else{
+                // Navigation to BoardView
+                NavigationLink(
+                    destination: BoardView().navigationBarBackButtonHidden(true),
+                    isActive: $isNavigationActive,
+                    label: { EmptyView() } // Hide navigation link label
+                )
+            }
             
-            // Navigation to BoardView
-            NavigationLink(
-                destination: BoardView().navigationBarBackButtonHidden(true),
-                isActive: $isNavigationActive,
-                label: { EmptyView() } // Hide navigation link label
-            )
         }
     }
 }

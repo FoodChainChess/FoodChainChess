@@ -11,6 +11,8 @@ class ARGameView: ARView {
     var pieceEntities: [PieceObject] = []
     var arGameManager : ARGameManager
     
+    
+    
     required init(frame frameRect: CGRect) {
         
         self.arGameManager = ARGameManager()
