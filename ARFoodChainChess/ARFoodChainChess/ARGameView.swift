@@ -15,8 +15,8 @@ class Piece {
         }
     }
     
-    static var offset = CGPoint(x: -0.5 * 0.3, y: -0.35 * 0.3)
-    static var direction = CGVector(dx: 0.25 * 0.3, dy: 0.2 * 0.3)
+    static var offset = CGPoint(x: -0.2, y: -0.25)
+    static var direction = CGVector(dx: 0.074, dy: 0.06)
     
     init(entity: Entity, cellPosition: CGPoint) {
         self.entity = entity
@@ -51,6 +51,15 @@ class ARGameView: ARView {
         self.init(frame: UIScreen.main.bounds)
         
         setupBoardAndPieces()
+        
+        
+        //Setup les gestures pour chaque piece
+        for piece in pieceEntities {
+            installGestures(.all, for: piece.entity as! Entity & HasCollision).forEach { gestureRecognizer in
+                gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
+            }
+        }
+
     }
     
     
