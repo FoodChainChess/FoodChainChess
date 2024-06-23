@@ -15,6 +15,8 @@ class PlayerManager: ObservableObject {
     @Published var selectedPlayer1: PlayerVM
     @Published var selectedPlayer2: PlayerVM
     
+    @Published var currentPlayer: PlayerVM?
+    
     static let shared = PlayerManager()
 
     private init() {
@@ -30,6 +32,9 @@ class PlayerManager: ObservableObject {
         // Set default selected players
         self.selectedPlayer1 = PlayerVM(player: player1)
         self.selectedPlayer2 = PlayerVM(player: player2)
+        
+        // Set the first player to current
+        self.currentPlayer = selectedPlayer2
     }
     
     /// Adds a new player to the list.
@@ -61,5 +66,51 @@ class PlayerManager: ObservableObject {
     /// - Returns: An optional `Player` instance if found.
     func getPlayerByUsername(_ username: String) -> Player? {
         return createdPlayers.first { $0.name == username }
+    }
+    
+    /// Adjust the selcted players Id's to make sure they are not the same.
+    func adjustSelectedPlayersId() {
+        guard self.selectedPlayer1.player.id != self.selectedPlayer2.player.id else {
+            // For each selected player, find the player in the created player list
+            if let index1 = createdPlayers.firstIndex(where: { $0.name == selectedPlayer1.player.name }),
+               let index2 = createdPlayers.firstIndex(where: { $0.name == selectedPlayer2.player.name }) {
+                
+                // Replace its instance with a new player with the same name but proper id
+                let newPlayer1 = HumanPlayer(withName: selectedPlayer1.player.name, andId: .player1)
+                let newPlayer2 = HumanPlayer(withName: selectedPlayer2.player.name, andId: .player2)
+                
+                if let newPlayer1 = newPlayer1, let newPlayer2 = newPlayer2 {
+                    // Update the createdPlayers list with the new players
+                    createdPlayers[index1] = newPlayer1
+                    createdPlayers[index2] = newPlayer2
+                    
+                    // Reassign selectedPlayer1 and selectedPlayer2 holders with the new players
+                    self.selectedPlayer1 = PlayerVM(player: newPlayer1)
+                    self.selectedPlayer2 = PlayerVM(player: newPlayer2)
+                } else {
+                    fatalError("Failed to create new player instances.")
+                }
+            } else {
+                fatalError("Selected players not found in the created players list.")
+            }
+            return
+        }
+    }
+    
+    func updateCurrentPlayer(currentPlayerId: Owner) {
+        // Ensure currentPlayer is not nil
+        guard let currentPlayer = self.currentPlayer else {
+            return
+        }
+        
+        if self.currentPlayer?.player.id == currentPlayerId {
+            return
+        } else { // Switch to the other player
+            if currentPlayer.player.id == self.selectedPlayer1.player.id {
+                self.currentPlayer = self.selectedPlayer2
+            } else {
+                self.currentPlayer = self.selectedPlayer1
+            }
+        }
     }
 }

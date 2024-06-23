@@ -13,7 +13,7 @@ struct PlayerProfileComponentView: View {
     var body: some View {
         VStack {
             PlayerFaceView(
-                imageSource: "",
+                imageSource: "defaultAvatarPicture",
                 circleWidth: 80,
                 circleHeight: 80)
             Text(playerUsername)

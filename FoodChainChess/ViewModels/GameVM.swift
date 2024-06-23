@@ -5,28 +5,16 @@ import Foundation
 class GameVM: ObservableObject {
     /// Le game
     @Published var game: Game?
-        
-    /// Le joueur en coursVM
-    @Published var currentPlayerVM: PlayerVM
-    
-    /// L'id du joueur en cours
-    /// Le changement de cette variable déclanche une mise a jour de l'instance
-    /// de currentPlayerVM.
-    @Published var currentPlayerId: Owner? {
-        didSet {
-            updateCurrentPlayerVM()
-        }
+
+    /// Reference a current player VM
+    var currenPlayerVM: PlayerVM? {
+        return playerManager.currentPlayer
     }
     
     ///CallBack pour reset piece dans SpriteMeeple
     private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
 
     var playerManager = PlayerManager.shared
-    
-    /// GameVM Initializer
-    init() {
-        self.currentPlayerVM = playerManager.selectedPlayer1
-    }
     
     func initGame() {
         self.game = try! Game(
@@ -36,36 +24,19 @@ class GameVM: ObservableObject {
         )
     }
     
+    
     //Listener du callback pour le reset piece dans SpriteMeeple
     func addInvalidMoveCallbacksListener(for meeple: SpriteMeeple, callback: @escaping () -> Void) {
         meepleCallbacks[meeple] = ["InvalidMove":callback]
     }
     
-    // Gestion des Players //
-    func getNextPlayer() {
-        self.currentPlayerId = game?.rules.getNextPlayer()
-    }
-    
     /// Mettre a jour le joueur actuelle
-    func updateCurrentPlayerVM() {
-        print("Updating current player")
-        switch self.currentPlayerId {
-        case .player1:
-            self.currentPlayerVM = self.playerManager.selectedPlayer1
-        case .player2:
-            self.currentPlayerVM = self.playerManager.selectedPlayer2
-        case .noOne:
-            break
-        case .none:
-            break
-        case .some(_): // au cas ou des nouvelles valeurs de owners sont ajouté au futur
-            break
-        }
+    func updateCurrentPlayerVM(currentPlayerId: Owner) {
+        playerManager.updateCurrentPlayer(currentPlayerId: currentPlayerId)
     }
     
     /// Lancer la boucle de jeu
     func start() async {
-        
         try? await game?.start()
     }
     

@@ -12,7 +12,8 @@ struct StartGamePopUpView: View {
     @State private var selectedGameMode: String = "pvp"
     @State private var selectedPlayer1: String = "Player 1"
     @State private var selectedPlayer2: String = "Player 2"
-    @State private var isNavigationActive = false // Control navigation programmatically
+    // flag pour la navigation de BoardView
+    @State private var isNavigationActive = false 
     
     var playerManager = PlayerManager.shared
     
@@ -87,13 +88,15 @@ struct StartGamePopUpView: View {
                 iconName: "play.fill",
                 textColor: Color("Background"),
                 action: {
-                    // Example logic to update selected players
                     if let newPlayer1 = playerManager.getPlayerByUsername(self.selectedPlayer1) {
                         playerManager.selectedPlayer1 = PlayerVM(player: newPlayer1)
                     }
                     if let newPlayer2 = playerManager.getPlayerByUsername(self.selectedPlayer2) {
                         playerManager.selectedPlayer2 = PlayerVM(player: newPlayer2)
                     }
+                    
+                    // make sure ids are different
+                    playerManager.adjustSelectedPlayersId()
                     
                     print("Selected player 1 \(playerManager.selectedPlayer1.player.name)")
                     

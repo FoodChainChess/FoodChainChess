@@ -79,7 +79,18 @@ class SpriteMeeple: SKNode {
     /// Permet de savoir si le possesseur de la pièce est le joueur actuel
     /// - Returns: True s'il s'agit du joueur actuel, False sinon
     private func isOwnerCurrentPlayer() -> Bool {
-        return self.gameScene.gameVM.currentPlayerVM.player.id == self.owner
+        return self.gameScene.gameVM.currenPlayerVM?.player.id == self.owner
+    }
+    
+    /// Permet de savoir si le possesseur de la pièce est un joueur humain
+    /// - Returns: True s'il s'agit d'un joueur humain, False sinon
+    private func isOwnerHumanPlayer() -> Bool {
+        if self.gameScene.gameVM.currenPlayerVM?.player.id == self.owner {
+            if self.gameScene.gameVM.currenPlayerVM?.player is HumanPlayer {
+                return true
+            }
+        }
+        return false
     }
     
     /// Méthode déclenchée au début du mouvement de la pièce
@@ -87,7 +98,7 @@ class SpriteMeeple: SKNode {
     ///   - touches: <#touches description#>
     ///   - event: <#event description#>
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard isOwnerCurrentPlayer() else {
+        guard isOwnerCurrentPlayer() && isOwnerHumanPlayer() else {
             return
         }
         
@@ -113,7 +124,7 @@ class SpriteMeeple: SKNode {
     ///   - touches: <#touches description#>
     ///   - event: <#event description#>
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard isOwnerCurrentPlayer() else {
+        guard isOwnerCurrentPlayer() && isOwnerHumanPlayer() else {
             return
         }
         
@@ -126,7 +137,7 @@ class SpriteMeeple: SKNode {
     ///   - touches: <#touches description#>
     ///   - event: <#event description#>
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard isOwnerCurrentPlayer() else {
+        guard isOwnerCurrentPlayer() && isOwnerHumanPlayer() else {
             // TODO: gestion d'erreur (throws ou retour de valeur d'erreur)
             return
         }
@@ -142,14 +153,19 @@ class SpriteMeeple: SKNode {
         self.cellPosition = nearestPosition
         
         // Si move fait parti des moves possibles
-        let move = Move(of: self.gameScene.gameVM.currentPlayerVM.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
+        let move = Move(of: self.gameScene.gameVM.currenPlayerVM!.player.id, fromRow: self.fromMovePosition[0], andFromColumn: self.fromMovePosition[1], toRow: Int(self.cellPosition.y), andToColumn: Int(self.cellPosition.x))
             
-            // Ajouter le move a currentPlayerVM
-            self.gameScene.gameVM.currentPlayerVM.currentMove = move
-            
+        // Ajouter le move a currentPlayerVM
+        self.gameScene.gameVM.currenPlayerVM!.currentMove = move
+        
+        if self.gameScene.gameVM.currenPlayerVM?.player is HumanPlayer {
             Task {
-                try! await (self.gameScene.gameVM.currentPlayerVM.player as! HumanPlayer).chooseMove(move)
-            }        
+                try! await (self.gameScene.gameVM.currenPlayerVM?.player as! HumanPlayer).chooseMove(move)
+            }
+        }
+
+        
+        gameScene.clearHighlightedNodes()
     }
     
     

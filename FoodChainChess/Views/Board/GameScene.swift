@@ -6,12 +6,14 @@ import DouShouQiModel
 class GameScene: SKScene, ObservableObject {
 
     let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
+    //Variable pour binder dans la view quand la game est fini
+    var gameEndResult : String = ""
         
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
     
     /// Instance de game vm
-    @Published var gameVM: GameVM
+    @ObservedObject var gameVM: GameVM
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -20,7 +22,7 @@ class GameScene: SKScene, ObservableObject {
     override init(size: CGSize) {
         self.gameVM = GameVM()
         super.init(size: size)
-        
+                
         self.scaleMode = .aspectFit
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -30,11 +32,15 @@ class GameScene: SKScene, ObservableObject {
                 
         for piece in pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
+            
+            if let board = self.gameVM.game?.board {
+                displayBoard(board)
+            }
         }
     }
     
+    
     func startGame() async{
-        self.gameVM.initGame()
         if let board = self.gameVM.game?.board {
             displayBoard(board)
         }
@@ -42,14 +48,14 @@ class GameScene: SKScene, ObservableObject {
             print("Game Started")
         }
         
-        self.gameVM.game!.addBoardChangedListener {
+        self.gameVM.game!.addBoardChangedListener { _ in
             print("*** BOARD CHANGED ***")
             print("*** ***** ******* ***")
-            print($0)
         }
         
-        self.gameVM.game!.addPlayerNotifiedListener({ board, player in
-            
+        self.gameVM.game?.addPlayerNotifiedListener({ board, player in
+            self.displayBoard(board)
+
             let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
             
             if let ownerPieces = self.pieces[lastPlayerId]{
@@ -63,7 +69,13 @@ class GameScene: SKScene, ObservableObject {
             print("**************************************")
             print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), it's your turn!")
             print("**************************************")
-            self.gameVM.getNextPlayer()
+            
+            // Update the current player instance on the player manager
+            self.gameVM.updateCurrentPlayerVM(currentPlayerId: player.id)
+            
+            if player is RandomPlayer {
+                try! await player.chooseMove(in: board, with: self.gameVM.game!.rules)
+            }
             
             //try! await Persistance.saveGame(withName: "game", andGame: game2)
         })
@@ -95,31 +107,6 @@ class GameScene: SKScene, ObservableObject {
             //self.triggerRemovePieceCallback()
             self.removePiece(for: piece.owner, animal: piece.animal)
         }
-        
-        self.gameVM.game!.addGameOverListener { board, result, player in
-            switch(result){
-            case .notFinished:
-                print("⏳ Game is not over yet!")
-            case .winner(winner: let o, reason: let r):
-                print(board)
-                print("**************************************")
-                print("Game Over!!!")
-                print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
-                switch(r){
-                case .denReached:
-                    print("🪺 the opponent's den has been reached.")
-                case .noMorePieces:
-                    print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
-                case .noMovesLeft:
-                    print("⛔️ the opponent can not move any piece!")
-                case .tooManyOccurences:
-                    print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
-                }
-                print("**************************************")
-            default:
-                break
-            }
-        }
 
         await self.gameVM.start()
     }
@@ -136,11 +123,8 @@ class GameScene: SKScene, ObservableObject {
         }
     }
     
-    
-    
     /// Souligné les noeuds selon les moves possibles
     func highlightMoves(_ moves: [Move]) {
-        clearHighlightedNodes()
         
         let cellWidth = imageBoard.size.width / CGFloat(self.gameVM.game!.board.nbColumns)
         let cellHeight = imageBoard.size.height / CGFloat(self.gameVM.game!.board.nbRows)
@@ -167,31 +151,6 @@ class GameScene: SKScene, ObservableObject {
             node.removeFromParent()
         }
         highlightedNodes.removeAll()
-    }
-    /// Affiche une animation indiquant le prochain tour
-    func showNextPlayerAnimation() {
-        // Obtenez le prochain joueur en utilisant les règles du jeu
-        let nextPlayer = self.gameVM.game!.rules.getNextPlayer()
-        
-        // Créez un nœud de texte pour afficher le prochain joueur
-        let nextPlayerLabel = SKLabelNode(text: "Next Player : \(String(describing: nextPlayer))")
-        nextPlayerLabel.fontSize = 40
-        nextPlayerLabel.fontColor = .white
-        nextPlayerLabel.position = CGPoint(x: 0, y: 0)
-        nextPlayerLabel.alpha = 0
-        nextPlayerLabel.zPosition = 1
-        
-        // Ajoutez le nœud de texte à la scène
-        self.addChild(nextPlayerLabel)
-        
-        // Animation pour faire apparaître puis disparaître le nœud de texte
-        let fadeIn = SKAction.fadeIn(withDuration: 1.0)
-        let wait = SKAction.wait(forDuration: 2.0)
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
-        let remove = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([fadeIn, wait, fadeOut, remove])
-        
-        nextPlayerLabel.run(sequence)
     }
     
     func removePiece(for owner: Owner, animal: Animal) {
