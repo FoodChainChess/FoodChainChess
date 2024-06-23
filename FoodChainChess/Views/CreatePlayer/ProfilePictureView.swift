@@ -1,28 +1,28 @@
 import SwiftUI
 
 struct ProfilePictureView: View {
-    @State private var image = UIImage(named: "defaultAvatarPicture")!
-    @State private var showSheet = false
+    @Binding var selectedImage: UIImage
+    @State private var showCamera = false
     
     var body: some View {
         VStack {
-            Image(uiImage: image)
+            Image(uiImage: selectedImage)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200, height: 200)
                 .cornerRadius(100)
                 .onTapGesture {
-                    self.showSheet = true
+                    self.showCamera = true
                 }
-                .sheet(isPresented: $showSheet) {
-                    ImagePicker(selectedImage: self.$image, sourceType: .camera)
-                }
+        }
+        .sheet(isPresented: $showCamera) {
+            ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
         }
     }
 }
 
 struct ProfilePictureView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePictureView()
+        ProfilePictureView(selectedImage: .constant(UIImage(named: "defaultAvatarPicture")!))
     }
 }

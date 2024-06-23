@@ -4,13 +4,15 @@ struct CreatePlayerView: View {
     @State private var name = ""
     @State private var errorMessage = ""
     @State private var isShowingConfirmation = false
+    @State private var selectedImage = UIImage(named: "defaultAvatarPicture")!
+    
     var playerManager = PlayerManager.shared
     
     var body: some View {
         VStack {
             TopBarTitleBackArrowView(title: NSLocalizedString("New Player", tableName: "Localization", comment: ""))
             Spacer()
-            ProfilePictureView()
+            ProfilePictureView(selectedImage: $selectedImage)
             TextField(NSLocalizedString("Enter your name", tableName: "Localization", comment: ""), text: $name)
                 .textFieldStyle(.plain)
                 .padding(10)
@@ -27,7 +29,7 @@ struct CreatePlayerView: View {
             }
             VStack {
                 MainButtonView(buttonText: "Create", color: Colors.primary) {
-                    if let error = playerManager.addNewPlayer(username: name) {
+                    if let error = playerManager.addNewPlayer(username: name, avatar: selectedImage) {
                         errorMessage = error
                     } else {
                         self.isShowingConfirmation = true

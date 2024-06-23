@@ -46,13 +46,13 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
+                PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
+            PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
         // add linear gadient changes
         }
         .background(backgroundColor)
