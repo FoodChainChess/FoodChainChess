@@ -19,6 +19,7 @@ struct IconButtonView: View {
                     NavigationLink(destination: destination) {
                         Image(systemName: iconName)
                             .font(.system(size: size.rawValue))
+                            .foregroundColor(.white)
                     }
                     .buttonStyle(PlainButtonStyle())
                 } else {
@@ -27,6 +28,7 @@ struct IconButtonView: View {
                     }) {
                         Image(systemName: iconName)
                             .font(.system(size: size.rawValue))
+                            .foregroundColor(.white)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }

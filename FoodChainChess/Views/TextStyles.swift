@@ -14,6 +14,15 @@ struct TitleTextStyle : TextStyle {
     }
 }
 
+struct TitleHomeTextStyle : TextStyle {
+    func body (content: Content) -> some View {
+        content
+            .foregroundColor(Color.white)
+            .fontWeight(.bold)
+            .font(.title)
+    }
+}
+
 struct ScoreTextStyle : TextStyle {
     var isBold: Bool
     

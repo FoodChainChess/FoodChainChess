@@ -148,6 +148,7 @@ class GameScene: SKScene, ObservableObject {
             let xPosition = CGFloat(move.columnDestination) * cellWidth - imageBoard.size.width / 2 + cellWidth / 2
             let yPosition = CGFloat(move.rowDestination) * cellHeight - imageBoard.size.height / 2 + cellHeight / 2
             highlight.position = CGPoint(x: xPosition, y: yPosition)
+            highlight.zPosition = 100
             
             self.addChild(highlight)
             highlightedNodes.append(highlight)

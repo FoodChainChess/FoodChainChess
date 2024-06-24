@@ -10,6 +10,10 @@ import SwiftUI
 struct HomeView: View {    
     var body: some View {
         NavigationStack {
+            Image("HomeBackground")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .overlay(
             VStack {
                 HStack {
                     IconButtonView(
@@ -20,7 +24,7 @@ struct HomeView: View {
                     Spacer()
                     
                     Text("Home", tableName: "Localization")
-                        .TextStyle(TitleTextStyle())
+                        .TextStyle(TitleHomeTextStyle())
                         .padding(.top, 40)
                     
                     Spacer()
@@ -61,10 +65,9 @@ struct HomeView: View {
                 .padding(70)
                 .font(.title2)
                 
-                
                 Spacer()
-            }.background(Colors.background)
-        }
+            }
+        )}
     }
 }
 
