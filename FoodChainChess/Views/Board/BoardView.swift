@@ -4,8 +4,12 @@ import DouShouQiModel
 
 struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
+    
     @State private var isShowingAlert = false
-        
+    @State private var isShowingEndgameAlert = false
+    @State private var endgameMessage = ""
+    @State private var winnerName = ""
+    
     @EnvironmentObject var gameManager: GameSceneManager
     
     @ObservedObject var playerManager: PlayerManager = PlayerManager.shared
@@ -59,10 +63,10 @@ struct BoardView: View {
                 
                 self.gameManager.gameScene.gameEndResult = gameEndedMessage
                 
-                // ! Mettre a jour UI dans le thread principale
-                // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
                 DispatchQueue.main.async {
-                    self.gameManager.isGameEnded = true
+                    self.winnerName = player?.name ?? ""
+                    self.endgameMessage = gameEndedMessage
+                    self.isShowingEndgameAlert = true
                 }
             default:
                 break
@@ -74,28 +78,6 @@ struct BoardView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: {isShowingAlert = true }) {
-                    Image(systemName: "chevron.left")
-                        .imageScale(.large)
-                        .foregroundColor(Color.black)
-                }
-                .alert(isPresented: $isShowingAlert) {
-                    Alert(
-                        title: Text("Save the game before quitting ?", tableName: "Localization"),
-                        message: Text("If you don't save the game, it will be lost.", tableName: "Localization"),
-                        
-                        primaryButton: .default(
-                            Text("Yes", tableName: "Localization"),
-                            action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        ),
-                        
-                        secondaryButton: .destructive(
-                            Text("No", tableName: "Localization")
-                        )
-                    )
-                }
                 Spacer()
                 PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
@@ -104,26 +86,27 @@ struct BoardView: View {
             SpriteView(scene: self.gameManager.gameScene)
             Spacer()
             PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
-        // add linear gadient changes
         }
         .background(backgroundColor)
         .task {
             self.gameManager.gameScene.resetGameScene()
             await self.startGameInstance()
         }
-        .navigationBarHidden(true)
-        NavigationLink(
-            destination: EndGamePopUpView(playerOneScore: 1, playerTwoScore: 0, playerUsername1: playerManager.selectedPlayer1.player.name, playerUsername2: playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
-            isActive: $gameManager.isGameEnded,
-            label: { EmptyView() }
-        )
+        .alert(isPresented: $isShowingEndgameAlert) {
+            Alert(
+                title: Text("Game Over"),
+                message: Text("Winner: \(winnerName)\n\(endgameMessage)"),
+                dismissButton: .default(Text("End"), action: {
+                    self.isShowingEndgameAlert = false
+                    presentationMode.wrappedValue.dismiss()
+                })
+            )
+        }
     }
 }
 
-
-
 struct BoardViewPreview: PreviewProvider {
-    static var previews: some View {        
+    static var previews: some View {
         BoardView()
     }
 }

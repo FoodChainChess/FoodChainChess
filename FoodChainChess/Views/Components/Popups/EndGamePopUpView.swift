@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// ! Attention !
+// Cette vue n'a pas été utilisé dans la version finale de notre application.
 
 struct EndGamePopUpView: View {
     // { TODO: use player object as parameter }
