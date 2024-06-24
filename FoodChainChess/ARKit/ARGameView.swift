@@ -6,12 +6,15 @@ import DouShouQiModel
 
 class ARGameView: ARView {
     
+    var gameManager: GameSceneManager?
+    
     var initialTransform: Transform = Transform()
     var pieceEntities: [Owner: [Animal: PieceObject]] = [:]
     var playerManager : PlayerManager = PlayerManager.shared
     let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
     var pieceObject : PieceObject? = nil
     
+    let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
     
     @Published var game: Game?
     
@@ -33,6 +36,10 @@ class ARGameView: ARView {
         addListeners()
         setupBoardAndPieces()
         setupGestureRecognizers()
+    }
+    
+    func setGameManager(_ gameManager: GameSceneManager) {
+        self.gameManager = gameManager
     }
     
     func initGame() {
@@ -99,6 +106,63 @@ class ARGameView: ARView {
             }
         }
         
+        self.game!.addPieceRemovedListener { row, column, piece in
+            
+            print("**************************************")
+            print("XXXXXXX Piece Removed: \(piece)")
+            print("**************************************")
+            
+            let opposingPlayer: Owner = self.playerManager.currentPlayer?.player.id == .player1 ? .player2 : .player1
+            
+            if let ownerPieces = self.pieceEntities[opposingPlayer] {
+                // trouver la piece a enlever a partir de la piece reçu par le listener
+                if let pieceObject = ownerPieces.first(where: { $0.value.piece.animal == piece.animal }) {
+                    self.anchor.removeChild(pieceObject.value.entity)
+                }
+            }
+        }
+        
+        self.game!.addGameOverListener { board, result, player in
+            
+            // game ended messsage holder
+            var gameEndedMessage: String
+
+            switch(result){
+            case .notFinished:
+                print("⏳ Game is not over yet!")
+            case .winner(winner: let o, reason: let result):
+                print(board)
+                print("**************************************")
+                print("Game Over!!!")
+                print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
+                switch(result){
+                case .denReached:
+                    print("🪺 the opponent's den has been reached.")
+                    gameEndedMessage = "🪺 the opponent's den has been reached."
+                case .noMorePieces:
+                    print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
+                    gameEndedMessage = "🐭🐱🐯🦁🐘 all the opponent's animals have been eaten..."
+                case .noMovesLeft:
+                    print("⛔️ the opponent can not move any piece!")
+                    gameEndedMessage = "⛔️ the opponent can not move any piece!"
+                case .tooManyOccurences:
+                    print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
+                    gameEndedMessage = "🔄 the opponent seem to like this situation... but enough is enough. Sorry..."
+                }
+                print("**************************************")
+                
+                // ! Mettre a jour UI dans le thread principale
+                // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
+                DispatchQueue.main.async {
+                    self.gameManager?.gameScene.gameEndResult = gameEndedMessage
+                    self.gameManager?.isGameEnded = true
+                }
+                
+            default:
+                break
+            }
+        }
+        
         Task {
             try! await self.game?.start()
         }
@@ -134,7 +198,7 @@ class ARGameView: ARView {
                     piece3D.scale = [pieceScale, pieceScale, pieceScale]
                     piece3D.name = "\(col),\(row)"
                     piece3D.generateCollisionShapes(recursive: true)
-                    anchor.addChild(piece3D)
+                    self.anchor.addChild(piece3D)
                     
                     if pieceEntities[piece.owner] == nil {
                         pieceEntities[piece.owner] = [:]
@@ -146,14 +210,13 @@ class ARGameView: ARView {
     }
     
     func setupBoardAndPieces() {
-        let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-        scene.addAnchor(anchor)
+        scene.addAnchor(self.anchor)
         let board3D = try? Entity.loadModel(named: "board")
         if let board3D {
             board3D.scale = [0.3, 0.3, 0.3]
-            anchor.addChild(board3D)
+            self.anchor.addChild(board3D)
         }
-        setupPieces(on: anchor)
+        setupPieces(on: self.anchor)
     }
     
     func setupGestureRecognizers() {
