@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PlayerProfilBoardView: View {
-    var imageSource: String
+    var imageSource: UIImage
     var username: String
     
     var body: some View {

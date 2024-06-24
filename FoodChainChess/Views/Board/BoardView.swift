@@ -46,13 +46,13 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
+                PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
+            PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
         // add linear gadient changes
         }
         .background(backgroundColor)
@@ -110,7 +110,7 @@ struct BoardView: View {
         }
         .navigationBarHidden(true)
         NavigationLink(
-            destination: EndGamePopUpView(playerOneScore: 1, playerTwoScore: 0, playerUsername1: "TUTU", playerUsername2: "TOTO", winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
+            destination: EndGamePopUpView(playerOneScore: 1, playerTwoScore: 0, playerUsername1: playerManager.selectedPlayer1.player.name, playerUsername2: playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
             isActive: $gameManager.isGameEnded,
             label: { EmptyView() }
         )

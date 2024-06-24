@@ -1,24 +1,22 @@
 import SwiftUI
 
 struct PlayerFaceView: View {
-    var imageSource: String = "" // TODO: default player image
+    var imageSource: UIImage // Use UIImage instead of String
     var circleWidth: CGFloat
     var circleHeight: CGFloat
+    
     var body: some View {
-        Image(imageSource)
+        Image(uiImage: imageSource)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: circleWidth, height: circleHeight)
             .clipShape(Circle())
-            .overlay(Circle().stroke(Color.black))
+            .overlay(Circle().stroke(Colors.text))
     }
 }
 
-struct MyPreviewProvider_Previews: PreviewProvider {
+struct PlayerFaceView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerFaceView(imageSource: "", circleWidth: 50, circleHeight: 50)
+        PlayerFaceView(imageSource: UIImage(named: "defaultPlayerImage")!, circleWidth: 50, circleHeight: 50)
     }
 }
-//#Preview {
-//    PlayerFaceView(imageSource: "", circleWidth: 100, circleHeight: 100)
-//}

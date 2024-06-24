@@ -7,10 +7,12 @@
 
 import Foundation
 import DouShouQiModel
+import UIKit
 
 /// The player manager class.
 class PlayerManager: ObservableObject {
     @Published var createdPlayers: [Player]
+    @Published var playerAvatars: [String : String] = [:]
     
     @Published var selectedPlayer1: PlayerVM
     @Published var selectedPlayer2: PlayerVM
@@ -18,7 +20,7 @@ class PlayerManager: ObservableObject {
     @Published var currentPlayer: PlayerVM?
     
     static let shared = PlayerManager()
-
+    
     private init() {
         // Default players
         guard let player1 = HumanPlayer(withName: "Player 1", andId: .player1),
@@ -26,7 +28,7 @@ class PlayerManager: ObservableObject {
               let botPlayer = RandomPlayer(withName: "Bot", andId: .player2) else {
             fatalError("Failed to create default players.")
         }
-
+        
         // Add defaults to list
         self.createdPlayers = [player1, player2, botPlayer]
         
@@ -42,7 +44,7 @@ class PlayerManager: ObservableObject {
     ///
     /// - Parameter username: the user's name
     /// - Returns: An optional error message if the username is invalid or already exists.
-    func addNewPlayer(username: String, identifier: Owner = .player1) -> String? {
+    func addNewPlayer(username: String, avatar: UIImage, identifier: Owner = .player1) -> String? {
         guard !username.isEmpty else {
             return "Username cannot be empty."
         }
@@ -55,10 +57,45 @@ class PlayerManager: ObservableObject {
         
         if let newPlayer {
             createdPlayers.append(newPlayer)
+            
+            if let avatarPath = saveImage(username: username, image: avatar) {
+                playerAvatars[username] = avatarPath
+            } else {
+                return "Failed to save avatar image."
+            }
+            
             return nil
         } else {
             return "Failed to create new player instance"
         }
+    }
+    
+    private func saveImage(username: String, image: UIImage) -> String? {
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+        let filename = getDocumentsDirectory().appendingPathComponent("\(username).jpg")
+        
+        do {
+            try data.write(to: filename)
+            return filename.path
+        } catch {
+            print("Unable to save image for \(username): \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func getAvatarImage(for username: String) -> UIImage {
+        if let avatarPath = playerAvatars[username] {
+            let imageUrl = URL(fileURLWithPath: avatarPath)
+            if let data = try? Data(contentsOf: imageUrl) {
+                return UIImage(data: data)!
+            }
+        }
+        return UIImage(named: "defaultAvatarPicture")!
     }
     
     /// Returns a player instance by username.
