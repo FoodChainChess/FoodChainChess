@@ -5,6 +5,8 @@ import Foundation
 class GameVM: ObservableObject {
     /// Le game
     @Published var game: Game?
+    
+    var playerManager = PlayerManager.shared
 
     /// Reference a current player VM
     var currenPlayerVM: PlayerVM? {
@@ -14,7 +16,6 @@ class GameVM: ObservableObject {
     ///CallBack pour reset piece dans SpriteMeeple
     private var meepleCallbacks: [SpriteMeeple: [String : ()  -> Void] ] = [:]
 
-    var playerManager = PlayerManager.shared
     
     func initGame() {
         self.game = try! Game(

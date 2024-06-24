@@ -5,7 +5,6 @@ import DouShouQiModel
 struct BoardView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var isShowingAlert = false
     @State private var isShowingEndgameAlert = false
     @State private var endgameMessage = ""
     @State private var winnerName = ""

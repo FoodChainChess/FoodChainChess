@@ -10,10 +10,12 @@ import SwiftUI
 struct PlayerProfileComponentView: View {
     var playerUsername: String
     
+    @ObservedObject var playerManager = PlayerManager.shared
+    
     var body: some View {
         VStack {
             PlayerFaceView(
-                imageSource: UIImage(named: "defaultAvatarPicture")!,
+                imageSource: playerManager.getAvatarImage(for: playerUsername),
                 circleWidth: 80,
                 circleHeight: 80)
             Text(playerUsername)
