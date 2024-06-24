@@ -10,7 +10,7 @@ struct PlayerFaceView: View {
             .aspectRatio(contentMode: .fit)
             .frame(width: circleWidth, height: circleHeight)
             .clipShape(Circle())
-            .overlay(Circle().stroke(Colors.text))
+            .overlay(Circle().stroke(Color.black))
     }
 }
 

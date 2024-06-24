@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    @State private var isShowingPopUp2 = false
-    
+struct HomeView: View {    
     var body: some View {
         NavigationStack {
             VStack {
@@ -39,7 +37,6 @@ struct HomeView: View {
                         buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                         color: Colors.primary,
                         iconName: "play.fill",
-                        textColor: Color("Background"),
                         destination: AnyView(StartGamePopUpView()))
                     
                     MainButtonView(
@@ -66,14 +63,6 @@ struct HomeView: View {
                 
                 
                 Spacer()
-            }.sheet(isPresented: $isShowingPopUp2) {
-                EndGamePopUpView(
-                    isShowing: $isShowingPopUp2,
-                    playerOneScore: 10,
-                    playerTwoScore: 2,
-                    playerUsername1: "Nicolas",
-                    playerUsername2: "Lou",
-                    winReason: "Den reached.")
             }.background(Colors.background)
         }
     }

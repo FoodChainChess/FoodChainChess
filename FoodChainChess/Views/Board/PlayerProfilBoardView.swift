@@ -7,7 +7,7 @@ struct PlayerProfilBoardView: View {
     var body: some View {
         HStack {
             PlayerFaceView(imageSource: imageSource, circleWidth: 40, circleHeight: 40)
-            Text(username)
+            Text(username).foregroundColor(.black)
         }.padding()
     }
 }
