@@ -8,8 +8,24 @@ FoodChainChess is a project to create a graphical interface for the game DouShou
 - Manage basic features such as the menu, scores, saved games, and theme management.
 - Implement a functional game with the possibility of playing on the same device or potentially on two devices.
 
+## 📋 CheckList
 
-# 📖 Sketchs
+- ✅ Create player  
+- ✅ Display all players  
+- ✅ Take a picture  
+- ❌ Crop a picture on the head  
+- ✅ Play a game on smartphone  
+    - ✅ Play again an other player  
+    - ✅ Play again a bot  
+    - ✅ Play with Simple Rules & Classic Rules  
+- ✅ Play a game in AR  
+- ✅ Dark Mode  
+- ⏳ Multi languages  
+- ✅ Animal sound in game  
+- ❌ Persistence  
+  
+
+## 📖 Sketches
 
 ![](./Documentation/maquette.jpeg)
 
