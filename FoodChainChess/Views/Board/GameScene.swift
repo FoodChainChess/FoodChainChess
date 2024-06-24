@@ -31,6 +31,19 @@ class GameScene: SKScene, ObservableObject {
         
         super.init(size: size)
         
+        self.scaleMode = .aspectFit
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        self.addChild(imageBoard)
+        
+        self.pieces = [:]
+    }
+    
+    /// Sets the game scene's images and meeples.
+    func setGameScene() {
+        // set the board according to game rules
+        imageBoard.removeFromParent()
+        
         if self.gameVM.game?.rules is ClassicRules {
             self.imageBoard = SKSpriteNode(imageNamed: "Board")
         }
@@ -38,22 +51,34 @@ class GameScene: SKScene, ObservableObject {
             self.imageBoard = SKSpriteNode(imageNamed: "LittleBoard")
         }
         
-        self.scaleMode = .aspectFit
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.addChild(self.imageBoard)
         
-        self.addChild(imageBoard)
-        
+        // set pieces according to game rules
         self.pieces = self.gameVM.createScenePieces()
-                
-        for piece in pieces.flatMap({ $0.value.values }) {
+        
+        for piece in self.pieces.flatMap({ $0.value.values }) {
             self.addChild(piece)
-            
-            if let board = self.gameVM.game?.board {
-                displayBoard(board)
-            }
+        }
+        
+        // display the board
+        if let board = self.gameVM.game?.board {
+            displayBoard(board)
         }
     }
     
+    /// Resets the game scene, removing images and meeples.
+    func resetGameScene() {
+        self.imageBoard.removeFromParent()
+        
+        for piece in self.pieces.flatMap({ $0.value.values }) {
+            piece.removeFromParent()
+        }
+        
+        // display the board
+        if let board = self.gameVM.game?.board {
+            displayBoard(board)
+        }
+    }
     
     func startGame() async{
         if let board = self.gameVM.game?.board {

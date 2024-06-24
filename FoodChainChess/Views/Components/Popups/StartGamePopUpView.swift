@@ -73,11 +73,9 @@ struct StartGamePopUpView: View {
                         if newValue == "cr" {
                             print("Classic Rules")
                             playerManager.rules = ClassicRules()
-                            gameManager.gameScene.gameVM.initGame()
                         } else {
                             print("Very Simple Rules")
                             playerManager.rules = VerySimpleRules()
-                            gameManager.gameScene.gameVM.initGame()
                         }
                     }
                 }

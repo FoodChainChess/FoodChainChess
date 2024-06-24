@@ -3,7 +3,7 @@ import SpriteKit
 import DouShouQiModel
 
 class SpriteMeeple: SKNode {
-    static var offset = CGPoint(x: -300, y: -400) //CGPoint.zero //-200 & -200 avec SimpleRules
+    static var offset = CGPoint(x: -300, y: -400)
     static let direction = CGVector(dx: 100, dy: 100)
     
     static var maxZPosition: CGFloat = 0
@@ -56,12 +56,6 @@ class SpriteMeeple: SKNode {
         self.owner = owner
         
         super.init()
-        
-//        if self.gameScene.gameVM.game?.rules is ClassicRules {
-//            SpriteMeeple.offset = CGPoint(x: -300, y: -400)
-//        } else {
-//            SpriteMeeple.offset = CGPoint(x: -200, y: -200)
-//        }
         
         self.addChild(ellipseNode)
         self.addChild(imageNode)

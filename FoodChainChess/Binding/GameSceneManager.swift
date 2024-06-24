@@ -12,7 +12,7 @@ import SwiftUI
 class GameSceneManager: ObservableObject {    
     var gameScene: GameScene
     @Published var isGameEnded: Bool = false
-
+    
     init() {
         self.gameScene = GameScene(size: CGSize(width: 700, height: 900))
     }

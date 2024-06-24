@@ -20,6 +20,57 @@ struct BoardView: View {
         return LinearGradient(gradient: Gradient(colors: colors), startPoint: .top, endPoint: .bottom)
     }
     
+    private func startGameInstance() async {
+        // init game instance
+        self.gameManager.gameScene.gameVM.initGame()
+        
+        // set game scene maintenant que game a été créer
+        self.gameManager.gameScene.setGameScene()
+
+        // add game ended listener (here to be able to bind with gameManager)
+        self.gameManager.gameScene.gameVM.game!.addGameOverListener { board, result, player in
+            
+            // game ended messsage holder
+            var gameEndedMessage: String
+
+            switch(result){
+            case .notFinished:
+                print("⏳ Game is not over yet!")
+            case .winner(winner: let o, reason: let result):
+                print(board)
+                print("**************************************")
+                print("Game Over!!!")
+                print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
+                switch(result){
+                case .denReached:
+                    print("🪺 the opponent's den has been reached.")
+                    gameEndedMessage = "🪺 the opponent's den has been reached."
+                case .noMorePieces:
+                    print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
+                    gameEndedMessage = "🐭🐱🐯🦁🐘 all the opponent's animals have been eaten..."
+                case .noMovesLeft:
+                    print("⛔️ the opponent can not move any piece!")
+                    gameEndedMessage = "⛔️ the opponent can not move any piece!"
+                case .tooManyOccurences:
+                    print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
+                    gameEndedMessage = "🔄 the opponent seem to like this situation... but enough is enough. Sorry..."
+                }
+                print("**************************************")
+                
+                self.gameManager.gameScene.gameEndResult = gameEndedMessage
+                
+                // ! Mettre a jour UI dans le thread principale
+                // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
+                DispatchQueue.main.async {
+                    self.gameManager.isGameEnded = true
+                }
+            default:
+                break
+            }
+        }
+        await self.gameManager.gameScene.startGame()
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -56,57 +107,9 @@ struct BoardView: View {
         // add linear gadient changes
         }
         .background(backgroundColor)
-        .onAppear(){
-            self.gameManager.gameScene.gameVM.initGame()
-        }
         .task {
-            // init game instance
-            self.gameManager.gameScene.gameVM.initGame()
-
-            // add game ended listener (here to be able to bind with gameManager)
-            self.gameManager.gameScene.gameVM.game!.addGameOverListener { board, result, player in
-                
-                // game ended messsage holder
-                var gameEndedMessage: String
-
-                switch(result){
-                case .notFinished:
-                    print("⏳ Game is not over yet!")
-                case .winner(winner: let o, reason: let result):
-                    print(board)
-                    print("**************************************")
-                    print("Game Over!!!")
-                    print("🥇🏆 and the winner is... \(o == .player1 ? "🟡" : "🔴") \(player?.name ?? "")!")
-                    switch(result){
-                    case .denReached:
-                        print("🪺 the opponent's den has been reached.")
-                        gameEndedMessage = "🪺 the opponent's den has been reached."
-                    case .noMorePieces:
-                        print("🐭🐱🐯🦁🐘 all the opponent's animals have been eaten...")
-                        gameEndedMessage = "🐭🐱🐯🦁🐘 all the opponent's animals have been eaten..."
-                    case .noMovesLeft:
-                        print("⛔️ the opponent can not move any piece!")
-                        gameEndedMessage = "⛔️ the opponent can not move any piece!"
-                    case .tooManyOccurences:
-                        print("🔄 the opponent seem to like this situation... but enough is enough. Sorry...")
-                        gameEndedMessage = "🔄 the opponent seem to like this situation... but enough is enough. Sorry..."
-                    }
-                    print("**************************************")
-                    
-                    self.gameManager.gameScene.gameEndResult = gameEndedMessage
-                    
-                    // ! Mettre a jour UI dans le thread principale
-                    // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
-                    DispatchQueue.main.async {
-                        self.gameManager.isGameEnded = true
-                        
-                    }
-                    
-                default:
-                    break
-                }
-            }
-            await self.gameManager.gameScene.startGame()
+            self.gameManager.gameScene.resetGameScene()
+            await self.startGameInstance()
         }
         .navigationBarHidden(true)
         NavigationLink(
@@ -116,6 +119,8 @@ struct BoardView: View {
         )
     }
 }
+
+
 
 struct BoardViewPreview: PreviewProvider {
     static var previews: some View {        

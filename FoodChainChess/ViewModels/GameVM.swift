@@ -52,10 +52,12 @@ class GameVM: ObservableObject {
         if self.game?.rules is ClassicRules {
             print("Classic Animals")
             animals = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+            SpriteMeeple.offset = CGPoint(x: -300, y: -400)
         }
         else {
             print("Simple Animals")
             animals = [.rat, .cat, .tiger, .lion, .elephant]
+            SpriteMeeple.offset = CGPoint(x: -200, y: -200)
         }
 
         for player in players {
@@ -71,6 +73,7 @@ class GameVM: ObservableObject {
                     color = .gray
                 }
                 let spriteMeeple = SpriteMeeple(imageNamed: "\(animal)", size: meepleSize, backgroundColor: color, owner: player.id)
+                
                 pieces[player.id]?[animal] = spriteMeeple
                 
                 //Listener qui va declencher le resetPiecePosition dans SpriteMeeple
