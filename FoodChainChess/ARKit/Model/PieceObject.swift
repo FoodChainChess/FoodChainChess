@@ -13,6 +13,7 @@ class PieceObject {
     var entity: Entity //C'est un attribut unique à chaque Piece
     var piece : Piece //Piece associé à l'objet 3D
     var originalPosition: SIMD3<Float>
+    
     var cellPosition: CGPoint {
         didSet {
             updatePosition()
@@ -26,6 +27,8 @@ class PieceObject {
         self.originalPosition = SIMD3<Float>(x: Float(PieceObject.offset.x + PieceObject.direction.dx * cellPosition.x),
                                              y: 0.02,
                                              z: Float(PieceObject.offset.y + PieceObject.direction.dy * cellPosition.y))
+        
+        
         updatePosition()
     }
     private func updatePosition() {

@@ -70,6 +70,35 @@ class ARGameView: ARView {
             }
         })
         
+        self.game!.addMoveChosenCallbacksListener { _, move, player in
+            print("**************************************")
+            print("Player \(player.id == .player1 ? "🟡 1" : "🔴 2") - \(player.name), has chosen: \(move)")
+            print("**************************************")
+        }
+        
+        self.game!.addInvalidMoveCallbacksListener { _, move, player, result in
+           if result {
+             return
+           }
+
+           print("**************************************")
+           print("⚠️⚠️⚠️⚠️ Invalid Move detected: \(move) by \(player.name) (\(player.id))")
+           print("**************************************")
+            
+            let allOwners: [Owner] = [.player1, .player2]
+            for owner in allOwners {
+                if let ownerPieces = self.pieceEntities[owner] {
+                    if let pieceObject = ownerPieces.first(where: { $0.value.isCurrentPieceObject }) {
+                        print("PIECE OBJECT: \(pieceObject.value.piece.animal)")
+                        pieceObject.value.cellPosition = CGPoint(x: move.columnOrigin, y: move.rowOrigin)
+                        
+                        // Set piece to not current
+                        pieceObject.value.isCurrentPieceObject = false
+                    }
+                }
+            }
+        }
+        
         Task {
             try! await self.game?.start()
         }
@@ -146,30 +175,29 @@ class ARGameView: ARView {
     @objc private func handleGesture(_ recognizer: UIGestureRecognizer) {
         guard let translationGesture = recognizer as? EntityTranslationGestureRecognizer, let entity = translationGesture.entity else { return }
         
-        //stock la position de depart de l'entité choisi
-        let startCellX = CGFloat(entity.position.x)
-        let startCellY = CGFloat(entity.position.y)
+        for animal in animals {
+            if let playerPieces = pieceEntities[.player1], let po = playerPieces[animal], entity == po.entity {
+                self.pieceObject = po
+                break
+            } else if let playerPieces = pieceEntities[.player2], let po = playerPieces[animal], entity == po.entity {
+                self.pieceObject = po
+                break
+            }
+        }
         
+        //stock la position de depart de l'entité choisi
+        var startCellX = CGFloat(entity.position.x)
+        var startCellY = CGFloat(entity.position.y)
+
         switch translationGesture.state {
         case .began:
-            
             // Iterate through animals to find the pieceObject
-            for animal in animals {
-                if let playerPieces = pieceEntities[.player1], let po = playerPieces[animal], entity == po.entity {
-                    self.pieceObject = po
-                    break
-                } else if let playerPieces = pieceEntities[.player2], let po = playerPieces[animal], entity == po.entity {
-                    self.pieceObject = po
-                    break
-                }
-            }
             self.initialTransform = entity.transform
             print("Gesture began on entity: \(entity.name)")
         case .changed:
             // Optionally handle ongoing translation
             print("Gesture changed on entity: \(entity.name)")
         case .ended:
-            
             let finalPosition = entity.position
             let cellX = round((CGFloat(finalPosition.x) - PieceObject.offset.x) / PieceObject.direction.dx)
             let cellY = round((CGFloat(finalPosition.z) - PieceObject.offset.y) / PieceObject.direction.dy)
@@ -178,12 +206,18 @@ class ARGameView: ARView {
                 fatalError("Could not find piece entity")
             }
             
+            // set piece object to current
+            currentPieceObject.isCurrentPieceObject = true
+            
+            startCellX = CGFloat(currentPieceObject.entity.position.x)
+            startCellY = CGFloat(currentPieceObject.entity.position.y)
+            
             if cellX != startCellX || cellY != startCellY {
                 let currentMove = Move(of: currentPieceObject.piece.owner,
-                                      fromRow: Int(startCellX),
-                                      andFromColumn: Int(startCellY),
-                                      toRow: Int(cellX),
-                                      andToColumn: Int(cellY))
+                                       fromRow: Int(currentPieceObject.cellPosition.y),
+                                       andFromColumn:  Int(currentPieceObject.cellPosition.x),
+                                      toRow: Int(cellY),
+                                      andToColumn: Int(cellX))
                 self.currenPlayer?.currentMove = currentMove
                 
                 Task{
@@ -194,6 +228,7 @@ class ARGameView: ARView {
            currentPieceObject.cellPosition = CGPoint(x: cellX, y: cellY)
             
             print("Gesture ended on entity: \(entity.name)")
+
         default:
             break
         }
