@@ -10,13 +10,18 @@ FoodChainChess is a project to create a graphical interface for the game DouShou
 ### Workaround:
 🚨 To avoid these issues, please restart the application before starting a new game. We are actively working on a fix and appreciate your patience.
 
-
 ## 🎯 Objectives
 
 - Create a user interface in SwiftUI for the game DouShouQi.
 - Integrate ARKit to enable playing in augmented reality.
 - Manage basic features such as the menu, scores, saved games, and theme management.
 - Implement a functional game with the possibility of playing on the same device or potentially on two devices.
+
+
+# 📖 Sketchs
+
+![](./Documentation/maquette.jpeg)
+
 
 ## ✨ Features
 
