@@ -7,6 +7,23 @@
     "🌗 Dark Mode" : {
 
     },
+    "Classic Rules" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Rules"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles Classiques"
+          }
+        }
+      }
+    },
     "Close" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -122,6 +139,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mode de jeu"
+          }
+        }
+      }
+    },
+    "Game Rules" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Rules"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles du jeu"
           }
         }
       }
@@ -523,6 +557,23 @@
     },
     "Select Players" : {
 
+    },
+    "Simple Rules" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simple Rules"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles Simples"
+          }
+        }
+      }
     },
     "Yes" : {
       "extractionState" : "manual",

@@ -18,7 +18,7 @@ class GameVM: ObservableObject {
     
     func initGame() {
         self.game = try! Game(
-            withRules: ClassicRules(),
+            withRules: playerManager.rules,
             andPlayer1: playerManager.selectedPlayer1.player,
             andPlayer2: playerManager.selectedPlayer2.player
         )
@@ -47,8 +47,17 @@ class GameVM: ObservableObject {
         
         let players = [self.playerManager.selectedPlayer2.player, self.playerManager.selectedPlayer1.player]
         
-        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+        let animals: [Animal]
         
+        if self.game?.rules is ClassicRules {
+            print("Classic Animals")
+            animals = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+        }
+        else {
+            print("Simple Animals")
+            animals = [.rat, .cat, .tiger, .lion, .elephant]
+        }
+
         for player in players {
             pieces[player.id] = [:]
             for animal in animals {

@@ -10,10 +10,13 @@ import DouShouQiModel
 
 struct StartGamePopUpView: View {
     @State private var selectedGameMode: String = "pvp"
+    @State private var selectedGameRules: String = "cr"
     @State private var selectedPlayer1: String = "Player 1"
     @State private var selectedPlayer2: String = "Player 2"
     @State private var isNavigationActive = false
     
+    @EnvironmentObject var gameManager: GameSceneManager
+
     var playerManager = PlayerManager.shared
     
     @Environment(\.dismiss) private var dismiss
@@ -44,6 +47,37 @@ struct StartGamePopUpView: View {
                             selectedPlayer2 = "Bot"
                         } else {
                             selectedPlayer2 = "Player 2"
+                        }
+                    }
+                }
+                .padding()
+                .background(Color(UIColor.systemGray6))
+                .cornerRadius(10)
+                
+                // Rules selection
+                Section(header: Text("Select Game Rules")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .padding(.top)) {
+                    Picker(NSLocalizedString("Game Rules", tableName: "Localization", comment: ""),
+                           selection: $selectedGameRules) {
+                        
+                        Text("Classic Rules", tableName: "Localization")
+                            .tag("cr")
+                        
+                        Text("Simple Rules", tableName: "Localization")
+                            .tag("sr")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .onChange(of: selectedGameRules) { newValue in
+                        if newValue == "cr" {
+                            print("Classic Rules")
+                            playerManager.rules = ClassicRules()
+                            gameManager.gameScene.gameVM.initGame()
+                        } else {
+                            print("Very Simple Rules")
+                            playerManager.rules = VerySimpleRules()
+                            gameManager.gameScene.gameVM.initGame()
                         }
                     }
                 }
@@ -131,12 +165,12 @@ struct StartGamePopUpView: View {
     }
 }
 
-struct StartGamePopUpView_Previews: PreviewProvider {
-    @State static var isShowing = true
-    
-    static var previews: some View {
-        
-        return StartGamePopUpView()
-    }
-}
+//struct StartGamePopUpView_Previews: PreviewProvider {
+//    @State static var isShowing = true
+//    
+//    static var previews: some View {
+//        
+//        return StartGamePopUpView()
+//    }
+//}
 

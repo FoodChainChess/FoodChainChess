@@ -19,6 +19,8 @@ class PlayerManager: ObservableObject {
     
     @Published var currentPlayer: PlayerVM?
     
+    @Published var rules: Rules = ClassicRules()
+    
     static let shared = PlayerManager()
     
     private init() {

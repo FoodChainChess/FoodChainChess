@@ -6,7 +6,7 @@ import AVFoundation
 
 class GameScene: SKScene, ObservableObject {
 
-    let imageBoard: SKSpriteNode = SKSpriteNode(imageNamed: "Board")
+    var imageBoard: SKSpriteNode
     //Variable pour binder dans la view quand la game est fini
     var gameEndResult : String = ""
         
@@ -26,8 +26,18 @@ class GameScene: SKScene, ObservableObject {
     
     override init(size: CGSize) {
         self.gameVM = GameVM()
+        
+        self.imageBoard = SKSpriteNode(imageNamed: "Board")
+        
         super.init(size: size)
-                
+        
+        if self.gameVM.game?.rules is ClassicRules {
+            self.imageBoard = SKSpriteNode(imageNamed: "Board")
+        }
+        else {
+            self.imageBoard = SKSpriteNode(imageNamed: "LittleBoard")
+        }
+        
         self.scaleMode = .aspectFit
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
