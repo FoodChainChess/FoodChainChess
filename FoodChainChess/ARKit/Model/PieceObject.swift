@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import ARKit
 import RealityKit
+import DouShouQiModel
 
 
 class PieceObject {
@@ -9,7 +10,8 @@ class PieceObject {
     static var direction = CGVector(dx: 0.1145 * 0.3, dy: 0.1145 * 0.3)
     
     var isCurrentPieceObject : Bool = false
-    var entity: Entity
+    var entity: Entity //C'est un attribut unique à chaque Piece
+    var piece : Piece //Piece associé à l'objet 3D
     var originalPosition: SIMD3<Float>
     var cellPosition: CGPoint {
         didSet {
@@ -17,7 +19,8 @@ class PieceObject {
         }
     }
     
-    init(entity: Entity, cellPosition: CGPoint) {
+    init(entity: Entity, cellPosition: CGPoint, piece: Piece) {
+        self.piece = piece
         self.entity = entity
         self.cellPosition = cellPosition
         self.originalPosition = SIMD3<Float>(x: Float(PieceObject.offset.x + PieceObject.direction.dx * cellPosition.x),

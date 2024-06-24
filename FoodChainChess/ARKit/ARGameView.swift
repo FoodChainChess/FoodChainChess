@@ -9,6 +9,9 @@ class ARGameView: ARView {
     var initialTransform: Transform = Transform()
     var pieceEntities: [Owner: [Animal: PieceObject]] = [:]
     var playerManager : PlayerManager = PlayerManager.shared
+    let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
+    var pieceObject : PieceObject? = nil
+    
     
     @Published var game: Game?
     
@@ -26,9 +29,10 @@ class ARGameView: ARView {
     
     convenience init() {
         self.init(frame: UIScreen.main.bounds)
+        initGame()
+        addListeners()
         setupBoardAndPieces()
         setupGestureRecognizers()
-        addListeners()
     }
     
     func initGame() {
@@ -40,6 +44,10 @@ class ARGameView: ARView {
     }
     
     private func addListeners() {
+        self.game!.addGameStartedListener { _ in
+            print("Game Started")
+        }
+        
         self.game?.addPlayerNotifiedListener({ board, player in
             let lastPlayerId = player.id == Owner.player1 ? Owner.player2 : Owner.player1
             
@@ -63,7 +71,7 @@ class ARGameView: ARView {
         })
         
         Task {
-            try! await game?.start()
+            try! await self.game?.start()
         }
     }
     
@@ -93,7 +101,7 @@ class ARGameView: ARView {
                     }
                     
                     let cellPosition = CGPoint(x: row, y: col)
-                    let pieceObject = PieceObject(entity: piece3D, cellPosition: cellPosition)
+                    let pieceObject = PieceObject(entity: piece3D, cellPosition: cellPosition, piece: piece)
                     piece3D.scale = [pieceScale, pieceScale, pieceScale]
                     piece3D.name = "\(col),\(row)"
                     piece3D.generateCollisionShapes(recursive: true)
@@ -120,9 +128,8 @@ class ARGameView: ARView {
     }
     
     func setupGestureRecognizers() {
-        let animals: [Animal] = [.rat, .cat, .dog, .wolf, .leopard, .tiger, .lion, .elephant]
         
-        for animal in animals {
+        for animal in self.animals {
             if let playerPieces = pieceEntities[.player1], let pieceObject = playerPieces[animal] {
                 installGestures(.all, for: pieceObject.entity as! Entity & HasCollision).forEach { gestureRecognizer in
                     gestureRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
@@ -139,15 +146,53 @@ class ARGameView: ARView {
     @objc private func handleGesture(_ recognizer: UIGestureRecognizer) {
         guard let translationGesture = recognizer as? EntityTranslationGestureRecognizer, let entity = translationGesture.entity else { return }
         
+        //stock la position de depart de l'entité choisi
+        let startCellX = CGFloat(entity.position.x)
+        let startCellY = CGFloat(entity.position.y)
+        
         switch translationGesture.state {
         case .began:
+            
+            // Iterate through animals to find the pieceObject
+            for animal in animals {
+                if let playerPieces = pieceEntities[.player1], let po = playerPieces[animal], entity == po.entity {
+                    self.pieceObject = po
+                    break
+                } else if let playerPieces = pieceEntities[.player2], let po = playerPieces[animal], entity == po.entity {
+                    self.pieceObject = po
+                    break
+                }
+            }
             self.initialTransform = entity.transform
             print("Gesture began on entity: \(entity.name)")
         case .changed:
             // Optionally handle ongoing translation
             print("Gesture changed on entity: \(entity.name)")
         case .ended:
-            entity.move(to: initialTransform, relativeTo: entity.parent, duration: 1)
+            
+            let finalPosition = entity.position
+            let cellX = round((CGFloat(finalPosition.x) - PieceObject.offset.x) / PieceObject.direction.dx)
+            let cellY = round((CGFloat(finalPosition.z) - PieceObject.offset.y) / PieceObject.direction.dy)
+            
+            guard let currentPieceObject = pieceObject else{
+                fatalError("Could not find piece entity")
+            }
+            
+            if cellX != startCellX || cellY != startCellY {
+                let currentMove = Move(of: currentPieceObject.piece.owner,
+                                      fromRow: Int(startCellX),
+                                      andFromColumn: Int(startCellY),
+                                      toRow: Int(cellX),
+                                      andToColumn: Int(cellY))
+                self.currenPlayer?.currentMove = currentMove
+                
+                Task{
+                    try! await( self.currenPlayer?.player as! HumanPlayer).chooseMove(currentMove)
+                }
+           }
+            
+           currentPieceObject.cellPosition = CGPoint(x: cellX, y: cellY)
+            
             print("Gesture ended on entity: \(entity.name)")
         default:
             break
