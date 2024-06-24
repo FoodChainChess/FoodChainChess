@@ -156,6 +156,7 @@ class ARGameView: ARView {
                 DispatchQueue.main.async {
                     self.gameManager?.gameScene.gameEndResult = gameEndedMessage
                     self.gameManager?.isGameEnded = true
+                    self.gameManager?.gameWinner = player!.id
                 }
                 
             default:

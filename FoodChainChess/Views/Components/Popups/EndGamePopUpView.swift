@@ -6,17 +6,33 @@
 //
 
 import SwiftUI
-
+import DouShouQiModel
 
 struct EndGamePopUpView: View {
-    // { TODO: use player object as parameter }
-    var playerOneScore: Int
-    var playerTwoScore: Int
+    var playerOneScore: Int = 0
+    var playerTwoScore: Int = 0
+    
+    var winner: Owner
     
     var playerUsername1: String
     var playerUsername2: String
     
     var winReason: String
+    
+    init(winner: Owner, playerUsername1: String, playerUsername2: String, winReason: String) {
+        self.winner = winner
+        self.playerUsername1 = playerUsername1
+        self.playerUsername2 = playerUsername2
+        self.winReason = winReason
+        
+        if winner == .player1 {
+            playerOneScore = 1
+            playerTwoScore = 0
+        } else {
+            playerOneScore = 0
+            playerTwoScore = 1
+        }
+    }
     
     var body: some View {
         NavigationStack{
@@ -85,8 +101,7 @@ struct EndGamePopUpView: View {
 struct EndGamePopUpView_Previews: PreviewProvider {
     static var previews: some View {
         EndGamePopUpView(
-            playerOneScore: 13,
-            playerTwoScore: 0,
+            winner: .player1,
             playerUsername1: "NicolasTop1",
             playerUsername2: "LouSusQi",
             winReason: "Den reached."

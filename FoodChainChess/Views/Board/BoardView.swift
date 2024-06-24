@@ -68,7 +68,7 @@ struct BoardView: View {
                 
                 // game ended messsage holder
                 var gameEndedMessage: String
-
+            
                 switch(result){
                 case .notFinished:
                     print("⏳ Game is not over yet!")
@@ -94,6 +94,7 @@ struct BoardView: View {
                     print("**************************************")
                     
                     self.gameManager.gameScene.gameEndResult = gameEndedMessage
+                    self.gameManager.gameWinner = player!.id
                     
                     // ! Mettre a jour UI dans le thread principale
                     // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
@@ -110,7 +111,7 @@ struct BoardView: View {
         }
         .navigationBarHidden(true)
         NavigationLink(
-            destination: EndGamePopUpView(playerOneScore: 1, playerTwoScore: 0, playerUsername1: playerManager.selectedPlayer1.player.name, playerUsername2: playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
+            destination: EndGamePopUpView(winner: self.gameManager.gameWinner, playerUsername1: playerManager.selectedPlayer1.player.name, playerUsername2: playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
             isActive: $gameManager.isGameEnded,
             label: { EmptyView() }
         )
