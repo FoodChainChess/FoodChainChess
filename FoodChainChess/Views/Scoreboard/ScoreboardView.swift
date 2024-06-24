@@ -1,15 +1,19 @@
 import SwiftUI
+import DouShouQiModel
 
 struct ScoreboardView: View {
+    var playerManager: PlayerManager = PlayerManager.shared
+    
     var body: some View {
         VStack {
             TopBarTitleBackArrowView(title: NSLocalizedString("Scoreboard", tableName: "Localization", comment: ""))
-            List {
-                ForEach((1...10), id: \.self) {_ in
-                    ListItemScoreboardView()
-                }.listRowBackground(Colors.background)
-            }.scrollContentBackground(.hidden).background(Color.clear)
-        }.background(Colors.background)
+            
+            List(Array(playerManager.createdPlayers.enumerated()), id: \.element.name) { index, player in
+                ListItemScoreboardView(player: player, index: index)
+            }
+            .listRowBackground(Colors.background)
+        }
+        .background(Colors.background)
     }
 }
 

@@ -26,7 +26,7 @@ struct BoardView: View {
                 Button(action: {isShowingAlert = true }) {
                     Image(systemName: "chevron.left")
                         .imageScale(.large)
-                        .foregroundColor(Colors.text)
+                        .foregroundColor(Color.black)
                 }
                 .alert(isPresented: $isShowingAlert) {
                     Alert(
@@ -46,16 +46,19 @@ struct BoardView: View {
                     )
                 }
                 Spacer()
-                PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
+                PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer2.player.name)
                 Spacer()
             }.padding()
             Spacer()
             SpriteView(scene: self.gameManager.gameScene)
             Spacer()
-            PlayerProfilBoardView(imageSource: "defaultAvatarPicture", username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
+            PlayerProfilBoardView(imageSource: playerManager.getAvatarImage(for: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name), username: self.gameManager.gameScene.gameVM.playerManager.selectedPlayer1.player.name)
         // add linear gadient changes
         }
         .background(backgroundColor)
+        .onAppear(){
+            self.gameManager.gameScene.gameVM.initGame()
+        }
         .task {
             // init game instance
             self.gameManager.gameScene.gameVM.initGame()
@@ -96,6 +99,7 @@ struct BoardView: View {
                     // On fait ça pq SWIFT demande que les changements affectent la vue se fassent dans le main thread
                     DispatchQueue.main.async {
                         self.gameManager.isGameEnded = true
+                        
                     }
                     
                 default:
@@ -104,9 +108,12 @@ struct BoardView: View {
             }
             await self.gameManager.gameScene.startGame()
         }
-        .sheet(isPresented: self.$gameManager.isGameEnded) {
-            EndGamePopUpView(isShowing: self.$gameManager.isGameEnded, playerOneScore: 1, playerTwoScore: 0, playerUsername1: self.playerManager.selectedPlayer1.player.name, playerUsername2: self.playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult)
-        }
+        .navigationBarHidden(true)
+        NavigationLink(
+            destination: EndGamePopUpView(playerOneScore: 1, playerTwoScore: 0, playerUsername1: playerManager.selectedPlayer1.player.name, playerUsername2: playerManager.selectedPlayer2.player.name, winReason: self.gameManager.gameScene.gameEndResult.description).navigationBarBackButtonHidden(true),
+            isActive: $gameManager.isGameEnded,
+            label: { EmptyView() }
+        )
     }
 }
 
@@ -115,6 +122,3 @@ struct BoardViewPreview: PreviewProvider {
         BoardView()
     }
 }
-//#Preview {
-//    BoardView(player1: PlayerVM(player: IAPlayer(withName: "Lou", andId: .player1)!), player2: PlayerVM(player: IAPlayer(withName: "LouBis", andId: .player2)!))
-//}

@@ -44,12 +44,21 @@
 		EC62C8932BF3549F008A99F5 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8922BF3549F008A99F5 /* MainButtonView.swift */; };
 		EC62C8962BF36923008A99F5 /* StartGamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */; };
 		EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62C89B2BF39254008A99F5 /* PickerItems.swift */; };
+		EC6478502C288F0800E59ED5 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64784F2C288F0800E59ED5 /* Animal.swift */; };
 		EC83FCD72C046D780075D6F4 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */; };
 		EC83FCD92C0475FE0075D6F4 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */; };
 		EC9736D32C038FA100442C23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9736D22C038FA100442C23 /* ImagePicker.swift */; };
 		ECA1ED962BF29FDF001F546D /* TopBarTitleBackArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */; };
 		ECA1ED982BF2A4FD001F546D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED972BF2A4FD001F546D /* TextStyles.swift */; };
 		ECA1ED9A2BF2A776001F546D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ED992BF2A776001F546D /* Colors.swift */; };
+		ECA2828F2C294C9F003D8CEB /* leopard_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA2828E2C294C9F003D8CEB /* leopard_sound.mp3 */; };
+		ECA282972C294D71003D8CEB /* wolf_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282902C294D70003D8CEB /* wolf_sound.mp3 */; };
+		ECA282982C294D71003D8CEB /* lion_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282912C294D70003D8CEB /* lion_sound.mp3 */; };
+		ECA282992C294D71003D8CEB /* tiger_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282922C294D70003D8CEB /* tiger_sound.mp3 */; };
+		ECA2829A2C294D71003D8CEB /* cat_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282932C294D70003D8CEB /* cat_sound.mp3 */; };
+		ECA2829B2C294D71003D8CEB /* rat_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282942C294D71003D8CEB /* rat_sound.mp3 */; };
+		ECA2829C2C294D71003D8CEB /* elephant_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282952C294D71003D8CEB /* elephant_sound.mp3 */; };
+		ECA2829D2C294D71003D8CEB /* dog_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ECA282962C294D71003D8CEB /* dog_sound.mp3 */; };
 		ECA5AE4C2C09FC97004A0A39 /* PlayerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5AE4B2C09FC97004A0A39 /* PlayerVM.swift */; };
 		ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E322C00C30D005C7689 /* BoardView.swift */; };
 		ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */; };
@@ -71,6 +80,8 @@
 		ECD2FF632BF212EE007836C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF622BF212EE007836C4 /* Assets.xcassets */; };
 		ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */; };
 		ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */; };
+		ECF76BC72C28AB99006BD0AC /* DSQ.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; };
+		ECF76BC82C28AB99006BD0AC /* DSQ.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ECFE19AB2BF343F500A1D841 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE19AA2BF343F500A1D841 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,12 +135,21 @@
 		EC62C8922BF3549F008A99F5 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 		EC62C8952BF36923008A99F5 /* StartGamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGamePopUpView.swift; sourceTree = "<group>"; };
 		EC62C89B2BF39254008A99F5 /* PickerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItems.swift; sourceTree = "<group>"; };
+		EC64784F2C288F0800E59ED5 /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		EC83FCD62C046D780075D6F4 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
 		EC83FCD82C0475FE0075D6F4 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		EC9736D22C038FA100442C23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		ECA1ED952BF29FDF001F546D /* TopBarTitleBackArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTitleBackArrowView.swift; sourceTree = "<group>"; };
 		ECA1ED972BF2A4FD001F546D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyles.swift; path = FoodChainChess/Views/TextStyles.swift; sourceTree = SOURCE_ROOT; };
 		ECA1ED992BF2A776001F546D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FoodChainChess/Views/Colors.swift; sourceTree = SOURCE_ROOT; };
+		ECA2828E2C294C9F003D8CEB /* leopard_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = leopard_sound.mp3; path = FoodChainChess/Ressources/Sound/leopard_sound.mp3; sourceTree = SOURCE_ROOT; };
+		ECA282902C294D70003D8CEB /* wolf_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wolf_sound.mp3; sourceTree = "<group>"; };
+		ECA282912C294D70003D8CEB /* lion_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lion_sound.mp3; sourceTree = "<group>"; };
+		ECA282922C294D70003D8CEB /* tiger_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tiger_sound.mp3; sourceTree = "<group>"; };
+		ECA282932C294D70003D8CEB /* cat_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_sound.mp3; sourceTree = "<group>"; };
+		ECA282942C294D71003D8CEB /* rat_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rat_sound.mp3; sourceTree = "<group>"; };
+		ECA282952C294D71003D8CEB /* elephant_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = elephant_sound.mp3; sourceTree = "<group>"; };
+		ECA282962C294D71003D8CEB /* dog_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_sound.mp3; sourceTree = "<group>"; };
 		ECA5AE4B2C09FC97004A0A39 /* PlayerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVM.swift; sourceTree = "<group>"; };
 		ECA69E322C00C30D005C7689 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		ECA69E342C00C33A005C7689 /* PlayerProfilBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfilBoardView.swift; sourceTree = "<group>"; };
@@ -153,6 +173,7 @@
 		ECD2FF652BF212EE007836C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		ECD5282F2C00CD0D00BA6C4E /* DSQ.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DSQ.xcframework; path = XCFramework/DSQ.xcframework; sourceTree = "<group>"; };
+		ECF76BCA2C28AFB6006BD0AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ECFE19AA2BF343F500A1D841 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +286,29 @@
 				EC62C89B2BF39254008A99F5 /* PickerItems.swift */,
 			);
 			path = Stub;
+			sourceTree = "<group>";
+		};
+		EC64784E2C288EF400E59ED5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC64784F2C288F0800E59ED5 /* Animal.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC6478512C2896EA00E59ED5 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				ECA282932C294D70003D8CEB /* cat_sound.mp3 */,
+				ECA282962C294D71003D8CEB /* dog_sound.mp3 */,
+				ECA282952C294D71003D8CEB /* elephant_sound.mp3 */,
+				ECA282912C294D70003D8CEB /* lion_sound.mp3 */,
+				ECA282942C294D71003D8CEB /* rat_sound.mp3 */,
+				ECA282922C294D70003D8CEB /* tiger_sound.mp3 */,
+				ECA282902C294D70003D8CEB /* wolf_sound.mp3 */,
+				ECA2828E2C294C9F003D8CEB /* leopard_sound.mp3 */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		EC83FCD32C046D500075D6F4 /* Settings */ = {
@@ -388,6 +432,8 @@
 			isa = PBXGroup;
 			children = (
 				EC44CA792C2876EE003C4A13 /* ARKit */,
+				EC64784E2C288EF400E59ED5 /* Model */,
+				ECF76BCA2C28AFB6006BD0AC /* Info.plist */,
 				ECA5AE4A2C09FC7F004A0A39 /* ViewModels */,
 				EC055C582C05FEC3008A5C56 /* Binding */,
 				EC83FCD32C046D500075D6F4 /* Settings */,
@@ -440,6 +486,7 @@
 		ECD2FF6E2BF213CD007836C4 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				EC6478512C2896EA00E59ED5 /* Sound */,
 				ECA69E3A2C00C551005C7689 /* Localization */,
 				ECD2FF6F2BF213F8007836C4 /* Colors.xcassets */,
 				EC62C8902BF351C2008A99F5 /* ButtonSize.swift */,
@@ -535,7 +582,16 @@
 				EC44CAA12C2876EE003C4A13 /* tiger.usdz in Resources */,
 				EC44CA962C2876EE003C4A13 /* tigerMeeple.png in Resources */,
 				EC44CA952C2876EE003C4A13 /* dogMeeple.png in Resources */,
+				ECA282992C294D71003D8CEB /* tiger_sound.mp3 in Resources */,
+				ECA2828F2C294C9F003D8CEB /* leopard_sound.mp3 in Resources */,
+				ECD2FF702BF213F8007836C4 /* Colors.xcassets in Resources */,
+				ECA2829A2C294D71003D8CEB /* cat_sound.mp3 in Resources */,
+				ECA2829B2C294D71003D8CEB /* rat_sound.mp3 in Resources */,
+				ECA2829D2C294D71003D8CEB /* dog_sound.mp3 in Resources */,
+				ECA282972C294D71003D8CEB /* wolf_sound.mp3 in Resources */,
+				ECA282982C294D71003D8CEB /* lion_sound.mp3 in Resources */,
 				ECD2FF662BF212EE007836C4 /* Preview Assets.xcassets in Resources */,
+				ECA2829C2C294D71003D8CEB /* elephant_sound.mp3 in Resources */,
 				ECA69E3C2C00C577005C7689 /* Localization.xcstrings in Resources */,
 				EC44CA992C2876EE003C4A13 /* leopardMeeple.png in Resources */,
 				EC44CA9A2C2876EE003C4A13 /* lionMeeple.png in Resources */,
@@ -588,6 +644,8 @@
 				ECA69E352C00C33A005C7689 /* PlayerProfilBoardView.swift in Sources */,
 				EC1E90E32BFDE83E0006C610 /* LanguagePickerView.swift in Sources */,
 				EC62C89C2BF39254008A99F5 /* PickerItems.swift in Sources */,
+				ECD2FF612BF212EE007836C4 /* ContentView.swift in Sources */,
+				EC6478502C288F0800E59ED5 /* Animal.swift in Sources */,
 				ECAA4C5E2BF330A5008172E0 /* ScoreboardView.swift in Sources */,
 				ECAA4C632BF332D5008172E0 /* PlayerFaceView.swift in Sources */,
 				ECA69E332C00C30D005C7689 /* BoardView.swift in Sources */,
@@ -736,6 +794,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Open the camera\"";
+				INFOPLIST_FILE = FoodChainChess/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -772,6 +831,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Open the camera\"";
+				INFOPLIST_FILE = FoodChainChess/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -2,6 +2,7 @@ import Foundation
 import SpriteKit
 import SwiftUI
 import DouShouQiModel
+import AVFoundation
 
 class GameScene: SKScene, ObservableObject {
 
@@ -11,6 +12,10 @@ class GameScene: SKScene, ObservableObject {
         
     var pieces: [Owner: [Animal: SpriteMeeple]] = [:]
     var highlightedNodes: [SKShapeNode] = []
+    
+    var audioPlayer: AVAudioPlayer?
+    var rowEaten: Int?
+    var columnEaten: Int?
     
     /// Instance de game vm
     @ObservedObject var gameVM: GameVM
@@ -48,9 +53,13 @@ class GameScene: SKScene, ObservableObject {
             print("Game Started")
         }
         
-        self.gameVM.game!.addBoardChangedListener { _ in
+        self.gameVM.game!.addBoardChangedListener { board in
             print("*** BOARD CHANGED ***")
             print("*** ***** ******* ***")
+            
+            if let rowEaten = self.rowEaten, let columnEaten = self.columnEaten {
+                self.playSound(board: board)
+            }
         }
         
         self.gameVM.game?.addPlayerNotifiedListener({ board, player in
@@ -99,15 +108,17 @@ class GameScene: SKScene, ObservableObject {
         }
         
         self.gameVM.game!.addPieceRemovedListener { row, column, piece in
-            
             print("**************************************")
             print("XXXXXXX Piece Removed: \(piece)")
             print("**************************************")
-            
+                        
             //self.triggerRemovePieceCallback()
             self.removePiece(for: piece.owner, animal: piece.animal)
+            
+            self.rowEaten = row
+            self.columnEaten = column
         }
-
+        
         await self.gameVM.start()
     }
 
@@ -137,6 +148,7 @@ class GameScene: SKScene, ObservableObject {
             let xPosition = CGFloat(move.columnDestination) * cellWidth - imageBoard.size.width / 2 + cellWidth / 2
             let yPosition = CGFloat(move.rowDestination) * cellHeight - imageBoard.size.height / 2 + cellHeight / 2
             highlight.position = CGPoint(x: xPosition, y: yPosition)
+            highlight.zPosition = 100
             
             self.addChild(highlight)
             highlightedNodes.append(highlight)
@@ -153,6 +165,7 @@ class GameScene: SKScene, ObservableObject {
         highlightedNodes.removeAll()
     }
     
+    /// Supprimer une pièce
     func removePiece(for owner: Owner, animal: Animal) {
         // Vérifiez si le propriétaire a des pièces
         if var ownerPieces = pieces[owner] {
@@ -166,4 +179,27 @@ class GameScene: SKScene, ObservableObject {
             ownerPieces.removeValue(forKey: animal)
         }
     }
+    
+    /// Jouer le son d'un animal lorsqu'il mange une pièce
+    func playSound(board: Board){
+        if let rowEaten = rowEaten, let columnEaten = columnEaten  {
+            let soundFileName = board.grid[rowEaten][columnEaten].piece?.animal.soundFileName
+
+            if let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: "mp3") {
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                    self.audioPlayer?.play()
+                } catch {
+                    print("Erreur lors de la lecture du fichier son : \(error.localizedDescription)")
+                }
+            } else {
+                print("Fichier son \(String(describing: soundFileName)) introuvable.")
+            }
+            
+            // Remettre rowEaten et columnEaten à nil
+            self.rowEaten = nil
+            self.columnEaten = nil
+        }
+    }
+    
 }

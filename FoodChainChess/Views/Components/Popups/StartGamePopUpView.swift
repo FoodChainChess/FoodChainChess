@@ -12,8 +12,7 @@ struct StartGamePopUpView: View {
     @State private var selectedGameMode: String = "pvp"
     @State private var selectedPlayer1: String = "Player 1"
     @State private var selectedPlayer2: String = "Player 2"
-    // flag pour la navigation de BoardView
-    @State private var isNavigationActive = false 
+    @State private var isNavigationActive = false
     
     var playerManager = PlayerManager.shared
     
@@ -40,6 +39,13 @@ struct StartGamePopUpView: View {
                             .tag("multi")
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    .onChange(of: selectedGameMode) { newValue in
+                        if newValue == "pve" {
+                            selectedPlayer2 = "Bot"
+                        } else {
+                            selectedPlayer2 = "Player 2"
+                        }
+                    }
                 }
                 .padding()
                 .background(Color(UIColor.systemGray6))
@@ -50,12 +56,13 @@ struct StartGamePopUpView: View {
                     .font(.headline)
                     .foregroundColor(.primary)
                     .padding(.top)) {
+                    
+                    // Player 1 Picker
                     Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 1",
                            selection: $selectedPlayer1) {
                         
-                        ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
-                            Text(playerManager.createdPlayers[index].name)
-                                .tag(playerManager.createdPlayers[index].name)
+                        ForEach(playerManager.createdPlayers.filter { $0.name != "Bot" }, id: \.name) { player in
+                            Text(player.name).tag(player.name)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -63,18 +70,25 @@ struct StartGamePopUpView: View {
                     .background(Color(UIColor.systemGray6))
                     .cornerRadius(10)
                     
-                    Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
-                           selection: $selectedPlayer2) {
-                        
-                        ForEach(0..<playerManager.createdPlayers.count, id: \.self) { index in
-                            Text(playerManager.createdPlayers[index].name)
-                                .tag(playerManager.createdPlayers[index].name)
+                    // Player 2 Picker
+                    if selectedGameMode == "pve" {
+                        Text("Bot")
+                            .padding()
+                            .background(Color(UIColor.systemGray6))
+                            .cornerRadius(10)
+                    } else {
+                        Picker("\(NSLocalizedString("Player", tableName: "Localization", comment: "")) 2",
+                               selection: $selectedPlayer2) {
+                            
+                            ForEach(playerManager.createdPlayers.filter { $0.name != selectedPlayer1 && $0.name != "Bot" }, id: \.name) { player in
+                                Text(player.name).tag(player.name)
+                            }
                         }
+                        .pickerStyle(MenuPickerStyle())
+                        .padding()
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(10)
                     }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding()
-                    .background(Color(UIColor.systemGray6))
-                    .cornerRadius(10)
                 }
                 .padding()
             }
@@ -121,7 +135,6 @@ struct StartGamePopUpView: View {
                     label: { EmptyView() } // Hide navigation link label
                 )
             }
-            
         }
     }
 }

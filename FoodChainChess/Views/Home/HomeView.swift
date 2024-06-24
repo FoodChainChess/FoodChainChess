@@ -7,11 +7,13 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    @State private var isShowingPopUp2 = false
-    
+struct HomeView: View {    
     var body: some View {
         NavigationStack {
+            Image("HomeBackground")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .overlay(
             VStack {
                 HStack {
                     IconButtonView(
@@ -22,7 +24,7 @@ struct HomeView: View {
                     Spacer()
                     
                     Text("Home", tableName: "Localization")
-                        .TextStyle(TitleTextStyle())
+                        .TextStyle(TitleHomeTextStyle())
                         .padding(.top, 40)
                     
                     Spacer()
@@ -39,7 +41,6 @@ struct HomeView: View {
                         buttonText: NSLocalizedString("Play", tableName: "Localization", comment: ""),
                         color: Colors.primary,
                         iconName: "play.fill",
-                        textColor: Color("Background"),
                         destination: AnyView(StartGamePopUpView()))
                     
                     MainButtonView(
@@ -64,18 +65,9 @@ struct HomeView: View {
                 .padding(70)
                 .font(.title2)
                 
-                
                 Spacer()
-            }.sheet(isPresented: $isShowingPopUp2) {
-                EndGamePopUpView(
-                    isShowing: $isShowingPopUp2,
-                    playerOneScore: 10,
-                    playerTwoScore: 2,
-                    playerUsername1: "Nicolas",
-                    playerUsername2: "Lou",
-                    winReason: "Den reached.")
-            }.background(Colors.background)
-        }
+            }
+        )}
     }
 }
 

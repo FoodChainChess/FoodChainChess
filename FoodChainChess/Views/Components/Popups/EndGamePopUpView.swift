@@ -9,8 +9,6 @@ import SwiftUI
 
 
 struct EndGamePopUpView: View {
-    @Binding var isShowing: Bool
-    
     // { TODO: use player object as parameter }
     var playerOneScore: Int
     var playerTwoScore: Int
@@ -21,71 +19,72 @@ struct EndGamePopUpView: View {
     var winReason: String
     
     var body: some View {
-        VStack {
-            
-            HStack {
-                Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
-                    isShowing = false
+        NavigationStack{
+            VStack {
+                Spacer()
+//                HStack {
+//                    Button(NSLocalizedString("Close", tableName: "Localization", comment: "")) {
+//                    }
+//                    .padding(20)
+//                    
+//                    Spacer()
+//                }
+//                
+//                Spacer()
+                
+                Text("Game Ended", tableName: "Localization")
+                    .TextStyle(TitleTextStyle())
+                    .padding(.bottom, 0)
+                
+                // Scores
+                HStack {
+                    
+                    // user profile 1
+                    PlayerProfileComponentView(
+                        playerUsername: playerUsername1)
+
+                    // player score
+                    PlayerScoreComponentView(
+                        playerOneScore: playerOneScore,
+                        playerTwoScore: playerTwoScore)
+                    .padding(20)
+                    
+                    // user profile 2
+                    PlayerProfileComponentView(
+                        playerUsername: playerUsername2)
                 }
-                .padding(20)
+                .padding(.bottom, 25)
+                
+                Text(winReason)
+                    .padding(.bottom, 25)
+
+                
+                // Buttons
+                HStack {
+                    MainButtonView(
+                        buttonText: "\(NSLocalizedString("Home", tableName: "Localization", comment: "")) 🏠",
+                        color: Color("Primary"),
+                        destination: AnyView(HomeView().navigationBarBackButtonHidden(true)))
+                    
+                    MainButtonView(
+                        buttonText: "\(NSLocalizedString("Rematch", tableName: "Localization", comment: "")) 🔄",
+                        color: Color("Accent"),
+                        destination: AnyView(StartGamePopUpView().navigationBarBackButtonHidden(true)))
+                }
+                .padding(30)
+
                 
                 Spacer()
+                Spacer()
             }
-            
-            Spacer()
-            
-            Text("Game Ended", tableName: "Localization")
-                .TextStyle(TitleTextStyle())
-                .padding(.bottom, 0)
-            
-            // Scores
-            HStack {
-                
-                // user profile 1
-                PlayerProfileComponentView(
-                    playerUsername: playerUsername1)
-
-                // player score
-                PlayerScoreComponentView(
-                    playerOneScore: playerOneScore,
-                    playerTwoScore: playerTwoScore)
-                .padding(20)
-                
-                // user profile 2
-                PlayerProfileComponentView(
-                    playerUsername: playerUsername2)
-            }
-            .padding(.bottom, 25)
-            
-            Text(winReason)
-                .padding(.bottom, 25)
-
-            
-            // Buttons
-            HStack {
-                MainButtonView(
-                    buttonText: "\(NSLocalizedString("Home", tableName: "Localization", comment: "")) 🏠",
-                    color: Color("Primary"))
-                
-                MainButtonView(
-                    buttonText: "\(NSLocalizedString("Rematch", tableName: "Localization", comment: "")) 🔄",
-                    color: Color("Accent"))
-            }
-            .padding(30)
-
-            
-            Spacer()
-            Spacer()
         }
+        
     }
 }
 
 struct EndGamePopUpView_Previews: PreviewProvider {
-    @State static var isShowing = true
-
     static var previews: some View {
         EndGamePopUpView(
-            isShowing: $isShowing,
             playerOneScore: 13,
             playerTwoScore: 0,
             playerUsername1: "NicolasTop1",
